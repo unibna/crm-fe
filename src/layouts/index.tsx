@@ -162,7 +162,7 @@ export default function DashboardLayout() {
           TITLE_PAGE[
             (last(pathname.split("/")) || "") as keyof typeof TITLE_PAGE
           ]
-      ) || "Skycom Enterprise"
+      ) || "Smart Process Innovation"
     );
   }, [pathname]);
 
@@ -187,7 +187,7 @@ export default function DashboardLayout() {
                 <PopupProvider>
                   {isHorizontalLayout ? horizontalLayout : verticalLayout}
                   <Footer themeLayout={themeLayout} theme={theme}>
-                    Developed by <b>Skycom Enterprise</b>
+                    Developed by <b>Smart Process Innovation</b>
                   </Footer>
                 </PopupProvider>
               </DndProvider>
