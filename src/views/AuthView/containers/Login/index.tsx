@@ -58,7 +58,8 @@ export default function LoginView() {
 
   if (token) {
     return user ? (
-      <Navigate to={user.group_permission?.route ? user.group_permission.route : "*"} replace />
+      // <Navigate to={user.group_permission?.route ? user.group_permission.route : "*"} replace />
+      <Navigate to={"/dashboard"} replace />
     ) : (
       <LoadingScreen />
     );
@@ -78,7 +79,10 @@ export default function LoginView() {
       <Container maxWidth="sm">
         <MHidden width="mdUp">
           <BackgroundStyle>
-            <img src="/static/illustrations/illustration_login.png" alt="login" />
+            <img
+              src="/static/illustrations/illustration_login.png"
+              alt="login"
+            />
           </BackgroundStyle>
         </MHidden>
         <ContentStyle>

@@ -14,17 +14,17 @@ import CategoryIcon from "@mui/icons-material/Category";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 // import ContentPasteIcon from "@mui/icons-material/ContentPaste";
-// import DashboardIcon from "@mui/icons-material/Dashboard";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import DiscountIcon from "@mui/icons-material/Discount";
 // import FacebookIcon from "@mui/icons-material/Facebook";
 import FolderIcon from "@mui/icons-material/Folder";
 // import GoogleIcon from "@mui/icons-material/Google";
-// import GridViewIcon from "@mui/icons-material/GridView";
-// import LeaderboardIcon from "@mui/icons-material/Leaderboard";
+import GridViewIcon from "@mui/icons-material/GridView";
+import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 // import ListAltIcon from "@mui/icons-material/ListAlt";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ReceiptIcon from "@mui/icons-material/Receipt";
-// import SettingsIcon from "@mui/icons-material/Settings";
+import SettingsIcon from "@mui/icons-material/Settings";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ThreePIcon from "@mui/icons-material/ThreeP";
 import ViewTimelineIcon from "@mui/icons-material/ViewTimeline";
@@ -40,7 +40,7 @@ import {
   // STATUS_ROLE_GOOGLE,
   STATUS_ROLE_LEAD,
   STATUS_ROLE_PRODUCT,
-  // STATUS_ROLE_SETTINGS,
+  STATUS_ROLE_SETTINGS,
   STATUS_ROLE_SHIPPING,
   STATUS_ROLE_SKYCOM_TABLE,
   STATUS_ROLE_TRANSPORTATION,
@@ -384,6 +384,49 @@ const SidebarConfig = ({
         //   ],
         // },
         {
+          title: "General",
+          path: PATH_DASHBOARD[STATUS_ROLE_DASHBOARD.DASHBOARD],
+          icon: <DashboardIcon />,
+          roles: isMatchRoles(
+            user?.is_superuser,
+            roles?.[ROLE_TAB.DASHBOARD]?.[STATUS_ROLE_DASHBOARD.DASHBOARD]
+          ),
+          code: "general",
+          children: [
+            {
+              title: "Dashboard",
+              path: PATH_DASHBOARD[STATUS_ROLE_DASHBOARD.DASHBOARD],
+              roles: isMatchRoles(
+                user?.is_superuser,
+                roles?.[ROLE_TAB.DASHBOARD]?.[STATUS_ROLE_DASHBOARD.DASHBOARD]
+              ),
+              code: "dashboard",
+            },
+            {
+              title: "Dashboard MKT",
+              path: PATH_DASHBOARD[STATUS_ROLE_DASHBOARD.MKT_DASHBOARD],
+              roles: isMatchRoles(
+                user?.is_superuser,
+                roles?.[ROLE_TAB.DASHBOARD]?.[
+                  STATUS_ROLE_DASHBOARD.MKT_DASHBOARD
+                ]
+              ),
+              code: "dashboard-mkt",
+            },
+            {
+              title: "Dashboard Sale",
+              path: PATH_DASHBOARD[STATUS_ROLE_DASHBOARD.SALE_DASHBOARD],
+              roles: isMatchRoles(
+                user?.is_superuser,
+                roles?.[ROLE_TAB.DASHBOARD]?.[
+                  STATUS_ROLE_DASHBOARD.SALE_DASHBOARD
+                ]
+              ),
+              code: "dashboard-sale",
+            },
+          ],
+        },
+        {
           title: TITLE_PAGE.CDP,
           path: PATH_DASHBOARD[ROLE_TAB.CDP][ROOT],
           icon: <ContactMailIcon />,
@@ -422,107 +465,6 @@ const SidebarConfig = ({
               code: "order-report",
             },
           ],
-        },
-        // {
-        //   title: TITLE_PAGE.SHIPPING,
-        //   path: PATH_DASHBOARD[ROLE_TAB.SHIPPING][ROOT],
-        //   icon: <LocalShippingIcon />,
-        //   roles: isMatchRoles(
-        //     user?.is_superuser,
-        //     map(
-        //       Object.values(STATUS_ROLE_SHIPPING),
-        //       (item: string) => roles?.[ROLE_TAB.SHIPPING]?.[item]
-        //     )
-        //   ),
-        //   children: [
-        //     {
-        //       title: TITLE_PAGE.SHIPPING_STATUS,
-        //       roles: isMatchRoles(
-        //         user?.is_superuser,
-        //         roles?.[ROLE_TAB.SHIPPING]
-        //       ),
-        //       path: PATH_DASHBOARD[ROLE_TAB.SHIPPING][ROOT],
-        //       code: "shipping-status",
-        //     },
-        //     {
-        //       title: TITLE_PAGE["report-shipping"],
-        //       roles: isMatchRoles(
-        //         user?.is_superuser,
-        //         roles?.[ROLE_TAB.SHIPPING]?.[STATUS_ROLE_SHIPPING.REPORT]
-        //       ),
-        //       path: `${STATUS_ROLE_SHIPPING.REPORT}`,
-        //       code: "shipping-report",
-        //     },
-        //   ],
-        // },
-        {
-          title: "Sản phẩm",
-          path: PATH_DASHBOARD[ROLE_TAB.PRODUCT][ROOT],
-          icon: <CategoryIcon />,
-          roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.PRODUCT]),
-          code: "product",
-          children: [
-            {
-              title: "Danh sách",
-              path: PATH_DASHBOARD[ROLE_TAB.PRODUCT][
-                STATUS_ROLE_PRODUCT.LIST_PRODUCT
-              ][ROOT],
-              roles: isMatchRoles(
-                user?.is_superuser,
-                roles?.[ROLE_TAB.PRODUCT]?.[STATUS_ROLE_PRODUCT.LIST_PRODUCT]
-              ),
-              code: "list-product",
-            },
-            {
-              title: "TMDT",
-              path: PATH_DASHBOARD[ROLE_TAB.PRODUCT][
-                STATUS_ROLE_PRODUCT.MAP_ECOMMERCE
-              ][ROOT],
-              roles: isMatchRoles(
-                user?.is_superuser,
-                roles?.[ROLE_TAB.PRODUCT]?.[STATUS_ROLE_PRODUCT.MAP_ECOMMERCE]
-              ),
-              code: "map-ecommerce",
-            },
-          ],
-        },
-        {
-          title: "Kế toán",
-          path: PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ROOT],
-          icon: <CalculateIcon />,
-          roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.ACCOUNTANT]),
-          code: "accountant",
-          children: [
-            {
-              title: "Báo cáo",
-              path: PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ACCOUNTANT_PATH.REPORT][
-                ROOT
-              ],
-              roles: isMatchRoles(
-                user?.is_superuser,
-                roles?.[ROLE_TAB.ACCOUNTANT]?.[ACCOUNTANT_PATH.REPORT]
-              ),
-              code: "report",
-            },
-            {
-              title: "Đối soát",
-              path: PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][
-                ACCOUNTANT_PATH.COLLATION
-              ][ROOT],
-              roles: isMatchRoles(
-                user?.is_superuser,
-                roles?.[ROLE_TAB.ACCOUNTANT]?.[ACCOUNTANT_PATH.COLLATION]
-              ),
-              code: "collation",
-            },
-          ],
-        },
-        {
-          title: "Khuyến mãi",
-          path: PATH_DASHBOARD[ROLE_TAB.PROMOTION][ROOT],
-          icon: <DiscountIcon />,
-          roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.PROMOTION]),
-          code: "promote",
         },
         {
           title: "Kho",
@@ -578,6 +520,109 @@ const SidebarConfig = ({
             },
           ],
         },
+        // {
+        //   title: TITLE_PAGE.SHIPPING,
+        //   path: PATH_DASHBOARD[ROLE_TAB.SHIPPING][ROOT],
+        //   icon: <LocalShippingIcon />,
+        //   roles: isMatchRoles(
+        //     user?.is_superuser,
+        //     map(
+        //       Object.values(STATUS_ROLE_SHIPPING),
+        //       (item: string) => roles?.[ROLE_TAB.SHIPPING]?.[item]
+        //     )
+        //   ),
+        //   children: [
+        //     {
+        //       title: TITLE_PAGE.SHIPPING_STATUS,
+        //       roles: isMatchRoles(
+        //         user?.is_superuser,
+        //         roles?.[ROLE_TAB.SHIPPING]
+        //       ),
+        //       path: PATH_DASHBOARD[ROLE_TAB.SHIPPING][ROOT],
+        //       code: "shipping-status",
+        //     },
+        //     {
+        //       title: TITLE_PAGE["report-shipping"],
+        //       roles: isMatchRoles(
+        //         user?.is_superuser,
+        //         roles?.[ROLE_TAB.SHIPPING]?.[STATUS_ROLE_SHIPPING.REPORT]
+        //       ),
+        //       path: `${STATUS_ROLE_SHIPPING.REPORT}`,
+        //       code: "shipping-report",
+        //     },
+        //   ],
+        // },
+        {
+          title: "Kế toán",
+          path: PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ROOT],
+          icon: <CalculateIcon />,
+          roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.ACCOUNTANT]),
+          code: "accountant",
+          children: [
+            {
+              title: "Báo cáo",
+              path: PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ACCOUNTANT_PATH.REPORT][
+                ROOT
+              ],
+              roles: isMatchRoles(
+                user?.is_superuser,
+                roles?.[ROLE_TAB.ACCOUNTANT]?.[ACCOUNTANT_PATH.REPORT]
+              ),
+              code: "report",
+            },
+            {
+              title: "Đối soát",
+              path: PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][
+                ACCOUNTANT_PATH.COLLATION
+              ][ROOT],
+              roles: isMatchRoles(
+                user?.is_superuser,
+                roles?.[ROLE_TAB.ACCOUNTANT]?.[ACCOUNTANT_PATH.COLLATION]
+              ),
+              code: "collation",
+            },
+          ],
+        },
+        {
+          title: "Sản phẩm",
+          path: PATH_DASHBOARD[ROLE_TAB.PRODUCT][ROOT],
+          icon: <CategoryIcon />,
+          roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.PRODUCT]),
+          code: "product",
+          children: [
+            {
+              title: "Danh sách",
+              path: PATH_DASHBOARD[ROLE_TAB.PRODUCT][
+                STATUS_ROLE_PRODUCT.LIST_PRODUCT
+              ][ROOT],
+              roles: isMatchRoles(
+                user?.is_superuser,
+                roles?.[ROLE_TAB.PRODUCT]?.[STATUS_ROLE_PRODUCT.LIST_PRODUCT]
+              ),
+              code: "list-product",
+            },
+            {
+              title: "TMDT",
+              path: PATH_DASHBOARD[ROLE_TAB.PRODUCT][
+                STATUS_ROLE_PRODUCT.MAP_ECOMMERCE
+              ][ROOT],
+              roles: isMatchRoles(
+                user?.is_superuser,
+                roles?.[ROLE_TAB.PRODUCT]?.[STATUS_ROLE_PRODUCT.MAP_ECOMMERCE]
+              ),
+              code: "map-ecommerce",
+            },
+          ],
+        },
+
+        {
+          title: "Khuyến mãi",
+          path: PATH_DASHBOARD[ROLE_TAB.PROMOTION][ROOT],
+          icon: <DiscountIcon />,
+          roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.PROMOTION]),
+          code: "promote",
+        },
+
         // {
         //   title: "Chăm sóc khách hàng",
         //   path: PATH_DASHBOARD[ROLE_TAB.CSKH][ROOT],
