@@ -403,7 +403,7 @@ const SidebarConfig = ({
               code: "General",
             },
             {
-              title: "Dashboard MKT",
+              title: "Marketing",
               path: PATH_DASHBOARD[STATUS_ROLE_DASHBOARD.MKT_DASHBOARD],
               roles: isMatchRoles(
                 user?.is_superuser,
@@ -414,7 +414,7 @@ const SidebarConfig = ({
               code: "dashboard-mkt",
             },
             {
-              title: "Dashboard Sale",
+              title: "Sales",
               path: PATH_DASHBOARD[STATUS_ROLE_DASHBOARD.SALE_DASHBOARD],
               roles: isMatchRoles(
                 user?.is_superuser,
