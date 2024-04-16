@@ -1,7 +1,17 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { store } from "store";
-import { CancelRequest, NetworkError, ServerError, ValidationError } from "_types_/ResponseApiType";
-import { deleteAllStorages, deleteStorage, getStorage, setStorage } from "utils/asyncStorageUtil";
+import {
+  CancelRequest,
+  NetworkError,
+  ServerError,
+  ValidationError,
+} from "_types_/ResponseApiType";
+import {
+  deleteAllStorages,
+  deleteStorage,
+  getStorage,
+  setStorage,
+} from "utils/asyncStorageUtil";
 import { toastError, toastWarning } from "store/redux/toast/slice";
 import { RESPONSE_MESSAGES } from "assets/messages/response.messages";
 import { VALIDATION_MESSAGE } from "assets/messages/validation.messages";
@@ -46,7 +56,10 @@ export const getAuthorizationHeaderFormData = () => {
   return headers;
 };
 
-export const APIConfig = (baseUrl?: string, config?: AxiosRequestConfig | undefined) => {
+export const APIConfig = (
+  baseUrl?: string,
+  config?: AxiosRequestConfig | undefined
+) => {
   service = axios.create({
     baseURL: baseUrl ? baseUrl : import.meta.env.REACT_APP_API_URL + "/api",
     responseType: "json",
@@ -61,7 +74,13 @@ export const APIConfig = (baseUrl?: string, config?: AxiosRequestConfig | undefi
   return service;
 };
 
-function awaitSaveStorage({ access, refresh }: { access: string; refresh: string }) {
+function awaitSaveStorage({
+  access,
+  refresh,
+}: {
+  access: string;
+  refresh: string;
+}) {
   return new Promise((resolve) => {
     setStorage("access-token", access);
     setStorage("refresh-token", refresh);
@@ -150,7 +169,9 @@ const handleError = (error: any) => {
         message: RESPONSE_MESSAGES.ERROR_CONNECTION_SERVER,
       })
     );
-    return Promise.reject(new ServerError(RESPONSE_MESSAGES.ERROR_CONNECTION_SERVER));
+    return Promise.reject(
+      new ServerError(RESPONSE_MESSAGES.ERROR_CONNECTION_SERVER)
+    );
   } else if (!error?.response) {
     if (axios.isCancel(error)) {
       return Promise.reject(new CancelRequest(error));
@@ -171,11 +192,14 @@ const handleError = (error: any) => {
     case 429: {
       store.dispatch(
         toastWarning({
-          message: "Hệ thống hạn chế hành động này trong 5 phút. Xin thực hiện lại sau!",
+          message:
+            "Hệ thống hạn chế hành động này trong 5 phút. Xin thực hiện lại sau!",
         })
       );
       return Promise.reject(
-        new ValidationError("Hệ thống hạn chế hành động này trong 5 phút. Xin thực hiện lại sau!")
+        new ValidationError(
+          "Hệ thống hạn chế hành động này trong 5 phút. Xin thực hiện lại sau!"
+        )
       );
     }
     case 500:
@@ -187,7 +211,9 @@ const handleError = (error: any) => {
           message: RESPONSE_MESSAGES.ERROR_CONNECTION_SERVER,
         })
       );
-      return Promise.reject(new ServerError(RESPONSE_MESSAGES.ERROR_CONNECTION_SERVER));
+      return Promise.reject(
+        new ServerError(RESPONSE_MESSAGES.ERROR_CONNECTION_SERVER)
+      );
     }
     default: {
       // switch (method) {

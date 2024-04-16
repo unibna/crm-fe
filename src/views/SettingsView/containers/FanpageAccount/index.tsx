@@ -1,5 +1,12 @@
 // Libraries
-import { useEffect, useContext, useRef, useMemo, useState, useCallback } from "react";
+import {
+  useEffect,
+  useContext,
+  useRef,
+  useMemo,
+  useState,
+  useCallback,
+} from "react";
 import produce from "immer";
 
 // Context
@@ -109,9 +116,14 @@ const FanpageAccount = () => {
     }
   };
 
-  const handleData = (objData: any, dataSyncAdAccount: FanpageAccountType[]) => {
+  const handleData = (
+    objData: any,
+    dataSyncAdAccount: FanpageAccountType[]
+  ) => {
     return produce(dataSyncAdAccount, (draft: any) => {
-      const index = draft.findIndex((item: any) => item.page_id === objData.page_id);
+      const index = draft.findIndex(
+        (item: any) => item.page_id === objData.page_id
+      );
       if (index !== -1) {
         draft[index] = {
           ...draft[index],
@@ -123,7 +135,10 @@ const FanpageAccount = () => {
 
   const hanldeSyncData = (itemSync: any) => {
     itemSync.interval = setInterval(async () => {
-      const result: any = await facebookApi.getId({ id: itemSync.page_id }, "fanpages/");
+      const result: any = await facebookApi.getId(
+        { id: itemSync.page_id },
+        "fanpages/"
+      );
       const { status_sync } = result.data;
       // Tối đa 200 lần gọi
       count = count + 1;
@@ -131,7 +146,10 @@ const FanpageAccount = () => {
         switch (status_sync) {
           case statusSync.IP:
           case statusSync.OH: {
-            const newData = handleData({ ...result.data, isLoading: true }, arrData.current);
+            const newData = handleData(
+              { ...result.data, isLoading: true },
+              arrData.current
+            );
             arrData.current = newData;
 
             setData(newData);
@@ -141,7 +159,10 @@ const FanpageAccount = () => {
           case statusSync.RJ: {
             clearInterval(itemSync.interval);
 
-            const newData = handleData({ ...result.data, isLoading: false }, arrData.current);
+            const newData = handleData(
+              { ...result.data, isLoading: false },
+              arrData.current
+            );
             arrData.current = newData;
             setData(newData);
 
@@ -150,7 +171,10 @@ const FanpageAccount = () => {
           case statusSync.CO: {
             clearInterval(itemSync.interval);
 
-            const newData = handleData({ ...result.data, isLoading: false }, arrData.current);
+            const newData = handleData(
+              { ...result.data, isLoading: false },
+              arrData.current
+            );
             arrData.current = newData;
             setData(newData);
             break;
@@ -166,14 +190,20 @@ const FanpageAccount = () => {
 
   const hanldeTurnOffSyncData = (itemSync: any) => {
     itemSync.interval = setInterval(async () => {
-      const result: any = await facebookApi.getId({ id: itemSync.page_id }, "fanpages/");
+      const result: any = await facebookApi.getId(
+        { id: itemSync.page_id },
+        "fanpages/"
+      );
       const { status_sync } = result.data;
       // Tối đa 200 lần gọi
       count = count + 1;
       if (count < MAX_COUNT_SYNC) {
         switch (status_sync) {
           case statusSync.IP: {
-            const newData = handleData({ ...result.data, isLoading: true }, arrData.current);
+            const newData = handleData(
+              { ...result.data, isLoading: true },
+              arrData.current
+            );
             arrData.current = newData;
 
             setData(newData);
@@ -183,7 +213,10 @@ const FanpageAccount = () => {
           case statusSync.OH: {
             clearInterval(itemSync.interval);
 
-            const newData = handleData({ ...result.data, isLoading: false }, arrData.current);
+            const newData = handleData(
+              { ...result.data, isLoading: false },
+              arrData.current
+            );
             arrData.current = newData;
             setData(newData);
 
@@ -219,15 +252,25 @@ const FanpageAccount = () => {
             getObjectPropSafely(() => result.data.status_sync)
           )
         ) {
-          const newData = handleData({ ...result.data, isLoading: false }, data);
+          const newData = handleData(
+            { ...result.data, isLoading: false },
+            data
+          );
           arrData.current = newData;
           setData(newData);
         } else {
           hanldeSyncData({ ...result.data, interval: null });
         }
       } else {
-        if ([statusSync.OH].includes(getObjectPropSafely(() => result.data.status_sync))) {
-          const newData = handleData({ ...result.data, isLoading: false }, data);
+        if (
+          [statusSync.OH].includes(
+            getObjectPropSafely(() => result.data.status_sync)
+          )
+        ) {
+          const newData = handleData(
+            { ...result.data, isLoading: false },
+            data
+          );
           arrData.current = newData;
           setData(newData);
         } else {
@@ -245,7 +288,10 @@ const FanpageAccount = () => {
       sync_is_active: true,
     };
 
-    setStorage(`${keySaveTimeOnLocal.TIME_SYNC_FANPAGE}-${row.page_id}`, new Date());
+    setStorage(
+      `${keySaveTimeOnLocal.TIME_SYNC_FANPAGE}-${row.page_id}`,
+      new Date()
+    );
 
     const result: any = await facebookApi.update(params, "fanpages/");
 
@@ -277,7 +323,9 @@ const FanpageAccount = () => {
           },
         ]}
         columns={columns}
-        onChangeColumn={(columns) => updateCell(STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT, columns)}
+        onChangeColumn={(columns) =>
+          updateCell(STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT, columns)
+        }
         handleRefresh={handleRefresh}
         handleFilter={handleFilter}
       />
@@ -289,7 +337,9 @@ const FanpageAccount = () => {
       ? name
         ? data.filter((item: any) => {
             return (
-              getObjectPropSafely(() => item.name.toLowerCase().indexOf(name.toLowerCase())) !== -1
+              getObjectPropSafely(() =>
+                item.name.toLowerCase().indexOf(name.toLowerCase())
+              ) !== -1
             );
           })
         : data
@@ -324,10 +374,14 @@ const FanpageAccount = () => {
   };
   const removeTenantUrl = async (id: string, url: string) => {
     const tenant = tenantUrl.find(
-      (item) => item["fb_page_id"] === id && item.tenant.url_tenant?.includes(url)
+      (item) =>
+        item["fb_page_id"] === id && item.tenant.url_tenant?.includes(url)
     );
     if (tenant) {
-      const removeRes = await tanentApi.deleteTenant({}, `tenant-facebook-page/${tenant.id}/`);
+      const removeRes = await tanentApi.deleteTenant(
+        {},
+        `tenant-facebook-page/${tenant.id}/`
+      );
       if (removeRes) {
         getListTenantUrl();
       } else {
@@ -338,7 +392,11 @@ const FanpageAccount = () => {
     }
   };
 
-  const onToggleSyncTannetSwitch = async (checked: boolean, id: string, columnName: string) => {
+  const onToggleSyncTannetSwitch = async (
+    checked: boolean,
+    id: string,
+    columnName: string
+  ) => {
     const url = columnName === "sync_habt" ? TANENT_URL.HABT : TANENT_URL.JP24;
     setLoading(true);
     if (checked) {
@@ -389,7 +447,9 @@ const FanpageAccount = () => {
       //tenant
       getCheckedValue={(id, tenantName) =>
         tenantUrl.find(
-          (item) => item.fb_page_id === id && item.tenant.url_tenant?.includes(tenantName)
+          (item) =>
+            item.fb_page_id === id &&
+            item.tenant.url_tenant?.includes(tenantName)
         )
       }
       accountKey="page_id"
@@ -405,7 +465,9 @@ const FanpageAccount = () => {
         handleRefresh: handleOperationRefresh,
       }}
       renderHeader={renderHeader}
-      setColumnWidths={(columns) => resizeColumn(STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT, columns)}
+      setColumnWidths={(columns) =>
+        resizeColumn(STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT, columns)
+      }
       handleChangeColumnOrder={(columns) =>
         orderColumn(STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT, columns)
       }

@@ -25,7 +25,10 @@ import {
   summaryColumnFanpage,
   arrTakeValueParamsHeader,
 } from "views/ReportFacebookView/constants";
-import { handleParamsHeaderFilter, handleParamsApi } from "utils/formatParamsUtil";
+import {
+  handleParamsHeaderFilter,
+  handleParamsApi,
+} from "utils/formatParamsUtil";
 
 const initState: InitialStateReport = {
   data: [],
@@ -82,7 +85,8 @@ const storeFanpage = (state: InitialStateReport, action: any) => {
 
 const Fanpage = () => {
   const [state, dispatch] = useReducer(storeFanpage, initState);
-  const { state: store, dispatch: dispatchStore } = useContext(StoreReportFacebook);
+  const { state: store, dispatch: dispatchStore } =
+    useContext(StoreReportFacebook);
   const { newCancelToken } = useCancelToken();
   const { adAccount, fanpage, campaign, adset, params: paramsStore } = store;
 
@@ -196,7 +200,10 @@ const Fanpage = () => {
   };
 
   const handleChangeSorting = (value: SortType[]) => {
-    const ordering = value[0].direction === "asc" ? value[0].columnName : "-" + value[0].columnName;
+    const ordering =
+      value[0].direction === "asc"
+        ? value[0].columnName
+        : "-" + value[0].columnName;
 
     dispatch({
       type: actionType.UPDATE_PARAMS,

@@ -101,7 +101,8 @@ const Post = () => {
     dataTotalTable,
     totalRow,
   } = state;
-  const { state: store, dispatch: dispatchStore } = useContext(StoreReportFanpage);
+  const { state: store, dispatch: dispatchStore } =
+    useContext(StoreReportFanpage);
   const { post, params: paramsStore } = store;
   const {
     dataFilter: { dataFilterFanpage },
@@ -148,7 +149,12 @@ const Post = () => {
       ...paramsStore,
     };
 
-    const newParams = chooseParams(objParams, ["date_from", "date_to", "post_type", "page_id"]);
+    const newParams = chooseParams(objParams, [
+      "date_from",
+      "date_to",
+      "post_type",
+      "page_id",
+    ]);
 
     getListFacebookPost({
       ...newParams,
@@ -272,7 +278,10 @@ const Post = () => {
   };
 
   const handleChangeSorting = (value: SortType[]) => {
-    const ordering = value[0].direction === "asc" ? value[0].columnName : "-" + value[0].columnName;
+    const ordering =
+      value[0].direction === "asc"
+        ? value[0].columnName
+        : "-" + value[0].columnName;
 
     dispatch({
       type: actionType.UPDATE_PARAMS,

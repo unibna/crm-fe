@@ -537,15 +537,18 @@ export const getListTags = async () => {
   );
   if (result.data) {
     const { results = [] } = result.data;
-    const newDataTags = results.reduce((prevArr: any[], current: { id: number; tag: string }) => {
-      return [
-        ...prevArr,
-        {
-          label: current.tag,
-          value: current.id,
-        },
-      ];
-    }, []);
+    const newDataTags = results.reduce(
+      (prevArr: any[], current: { id: number; tag: string }) => {
+        return [
+          ...prevArr,
+          {
+            label: current.tag,
+            value: current.id,
+          },
+        ];
+      },
+      []
+    );
 
     store.dispatch(
       updateAttributesProduct({
@@ -671,7 +674,9 @@ export const getListAttributesSkytable = async () => {
   }
 };
 
-export const getListTransporationCareReason = async (type: TransportationCareTaskType) => {
+export const getListTransporationCareReason = async (
+  type: TransportationCareTaskType
+) => {
   const result = await orderApi.get<TransportationAttributeGroupType>({
     endpoint: "transportation-care-reason/",
     params: {
@@ -728,7 +733,9 @@ export const getListTransporationCareReason = async (type: TransportationCareTas
   }
 };
 
-export const getListTransporationCareAction = async (type: TransportationCareTaskType) => {
+export const getListTransporationCareAction = async (
+  type: TransportationCareTaskType
+) => {
   const result = await orderApi.get<{ id: number; label: string }>({
     endpoint: "transportation-care-action/",
     params: {
@@ -880,7 +887,9 @@ export const updateTransporationCareAction = async (
   });
 
   if (result.data) {
-    const newData = actions.map((item) => (item.id === id ? result.data : item));
+    const newData = actions.map((item) =>
+      item.id === id ? result.data : item
+    );
     store.dispatch(
       updateAttributesTransportationCare({
         ...(type === TransportationCareTaskType.LATE && {
@@ -922,7 +931,9 @@ export const updateTransporationCareReason = async (
   });
 
   if (result.data) {
-    const newData = reasons.map((item) => (item.id === id ? result.data : item));
+    const newData = reasons.map((item) =>
+      item.id === id ? result.data : item
+    );
     store.dispatch(
       updateAttributesTransportationCare({
         ...(type === TransportationCareTaskType.LATE && {
@@ -1075,7 +1086,9 @@ export const updateDepartment = async (
   );
 
   if (result.data) {
-    const newData = list.map((item) => (item.value === id ? { label: name, value: id } : item));
+    const newData = list.map((item) =>
+      item.value === id ? { label: name, value: id } : item
+    );
     store.dispatch(
       updateAttributesSetting({
         departments: newData,
@@ -1185,8 +1198,14 @@ export const getListAttributesDataFlow = async () => {
 export const getListFilterOption = async () => {
   const result: any = await airtableMarketingApi.get({}, "options/");
   if (result.data) {
-    const { content_creators, content_designers, digital_fb, digital_gg, product, team } =
-      result.data;
+    const {
+      content_creators,
+      content_designers,
+      digital_fb,
+      digital_gg,
+      product,
+      team,
+    } = result.data;
     const newDataCreator = content_creators.map((item: any) => {
       return {
         label: item,
@@ -1372,8 +1391,14 @@ export const getListAttribute = async () => {
       }) => {
         return {
           type: item.type,
-          levelOne: item.type === TYPE_RANKING.CPA ? item.level_1 : fNumber(item.level_1 * 100),
-          levelTwo: item.type === TYPE_RANKING.CPA ? item.level_2 : fNumber(item.level_2 * 100),
+          levelOne:
+            item.type === TYPE_RANKING.CPA
+              ? item.level_1
+              : fNumber(item.level_1 * 100),
+          levelTwo:
+            item.type === TYPE_RANKING.CPA
+              ? item.level_2
+              : fNumber(item.level_2 * 100),
           label: item.product_name,
           value: item.id,
         };
@@ -1389,7 +1414,10 @@ export const getListAttribute = async () => {
 };
 
 export const getListAdAccount = async () => {
-  const result: any = await dashboard.get({ limit: 100 }, "marketing-ad-accounts/");
+  const result: any = await dashboard.get(
+    { limit: 100 },
+    "marketing-ad-accounts/"
+  );
 
   if (result && result.data) {
     const { facebook_account = [], google_account } = result.data;

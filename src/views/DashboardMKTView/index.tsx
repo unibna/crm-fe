@@ -1,11 +1,21 @@
 // Libraries
-import { useEffect, useState, FunctionComponent, useReducer, useContext } from "react";
+import {
+  useEffect,
+  useState,
+  FunctionComponent,
+  useReducer,
+  useContext,
+} from "react";
 
 import { styled, useTheme } from "@mui/material/styles";
 import { Icon } from "@iconify/react";
 
 // Context
-import { reducerDashboardMkt, StoreDashboardMkt, initialState } from "./contextStore";
+import {
+  reducerDashboardMkt,
+  StoreDashboardMkt,
+  initialState,
+} from "./contextStore";
 
 // Hooks
 import useSettings from "hooks/useSettings";
@@ -137,11 +147,17 @@ const DashboardMKT: FunctionComponent = () => {
     return (
       <Grid container spacing={3} sx={{ mt: 1, p: 1 }}>
         <Grid item xs={12} md={12}>
-          <MotionInView setInView={() => setInView({ ...isInView, isViewOverview: true })}>
-            <Overview isInView={isInView.isViewOverview} isRefresh={isRefresh} params={params} />
+          <MotionInView
+            setInView={() => setInView({ ...isInView, isViewOverview: true })}
+          >
+            <Overview
+              isInView={isInView.isViewOverview}
+              isRefresh={isRefresh}
+              params={params}
+            />
           </MotionInView>
         </Grid>
-        <Grid item xl={4} lg={6} sm={12} xs={12}>
+        {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
           <MotionInView
             setInView={() =>
               setInView({
@@ -167,7 +183,7 @@ const DashboardMKT: FunctionComponent = () => {
               params={params}
             />
           </MotionInView>
-        </Grid>
+        </Grid> */}
         {/* <Grid item xl={6} lg={6} sm={12} xs={12}>
           <MotionInView setInView={() => setInView({ ...isInView, isViewObjectiveRevenue: true })}>
             <ObjectiveRevenue isInView={isInView.isViewObjectiveRevenue} isRefresh={isRefresh} />
@@ -185,7 +201,7 @@ const DashboardMKT: FunctionComponent = () => {
             />
           </MotionInView>
         </Grid> */}
-        <Grid item xl={4} lg={6} sm={12} xs={12}>
+        {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
           <TableWrapper
             setInView={() => setInView({ ...isInView, isViewTopContentIdMessageFacebook: true })}
           >
@@ -285,7 +301,7 @@ const DashboardMKT: FunctionComponent = () => {
               params={params}
             />
           </MotionInView>
-        </Grid>
+        </Grid> */}
       </Grid>
     );
   };

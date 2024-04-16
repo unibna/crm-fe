@@ -27,14 +27,18 @@ import image2Fill from "@iconify/icons-eva/image-2-fill";
 import filmFill from "@iconify/icons-eva/film-fill";
 
 // Constants
-import { fShortenNumber, fPercent, fPercentOmitDecimal } from "utils/formatNumber";
+import {
+  fShortenNumber,
+  fPercent,
+  fPercentOmitDecimal,
+} from "utils/formatNumber";
 import { getObjectPropSafely } from "utils/getObjectPropsSafelyUtil";
 import { excludeContentAdsStartWith } from "views/DashboardMKTView/constants";
 interface Props {
   params?: {
     date_from: string;
     date_to: string;
-    exclude_content_ads_start_with: string[]
+    exclude_content_ads_start_with: string[];
   };
   isRefresh?: boolean;
   isInView?: boolean;
@@ -164,7 +168,7 @@ const arrUnitVnd = [
   "total_spend_per_ads_qualified",
   "revenue_ads",
   "revenue_ads_per_order_ads",
-  "tt_spend"
+  "tt_spend",
 ];
 
 const arrUnitPercent = [
@@ -193,11 +197,11 @@ const ReportCards = (props: Props) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (isInView) {
-      getDataOverview();
-    }
-  }, [params, isRefresh, isInView]);
+  // useEffect(() => {
+  //   if (isInView) {
+  //     getDataOverview();
+  //   }
+  // }, [params, isRefresh, isInView]);
 
   const formatValue = (name: string, value: any) => {
     switch (true) {
@@ -236,7 +240,7 @@ const ReportCards = (props: Props) => {
       {
         ...params,
         cancelToken: cancelRequest.token,
-        exclude_content_ads_start_with: excludeContentAdsStartWith
+        exclude_content_ads_start_with: excludeContentAdsStartWith,
       },
       "report/date/v2/"
     );
@@ -268,16 +272,30 @@ const ReportCards = (props: Props) => {
   };
 
   return (
-    <Box sx={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(260px, 1fr))` }}>
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: `repeat(auto-fit, minmax(260px, 1fr))`,
+      }}
+    >
       <Grid container spacing={[1, 2]}>
         {dataOverview.map((item) => {
-          const { label, value, id, icon, isLoading, description, subPercent } = item;
+          const { label, value, id, icon, isLoading, description, subPercent } =
+            item;
           const newValue = formatValue(id, value);
           const newDescription = convertDescription(id) || description;
           const newTitle = convertTitle(id) || label;
 
           return (
-            <Grid item xs={12} sm={6} md={4} lg={isCollapse ? 3 : 4} xl={3} key={id}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={isCollapse ? 3 : 4}
+              xl={3}
+              key={id}
+            >
               <ScoreCard
                 title={newTitle}
                 value={newValue}

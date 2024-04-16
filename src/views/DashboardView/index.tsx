@@ -114,11 +114,17 @@ const Dashboard: FunctionComponent = () => {
     return (
       <Grid container spacing={3} sx={{ mt: 1, p: 1 }}>
         <Grid item xs={12} md={12}>
-          <MotionInView setInView={() => setInView({ ...isInView, isViewOverview: true })}>
-            <ReportCards isInView={isInView.isViewOverview} isRefresh={isRefresh} params={params} />
+          <MotionInView
+            setInView={() => setInView({ ...isInView, isViewOverview: true })}
+          >
+            <ReportCards
+              isInView={isInView.isViewOverview}
+              isRefresh={isRefresh}
+              params={params}
+            />
           </MotionInView>
         </Grid>
-        <Grid item xl={4} lg={6} sm={12} xs={12}>
+        {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
           <TableWrapper
             setInView={() =>
               setInView({
@@ -133,11 +139,13 @@ const Dashboard: FunctionComponent = () => {
               params={params}
             />
           </TableWrapper>
-        </Grid>
+        </Grid> */}
 
-        <Grid item xl={4} lg={6} sm={12} xs={12}>
+        {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
           <TableWrapper
-            setInView={() => setInView({ ...isInView, isViewTopContentIdGoogle: true })}
+            setInView={() =>
+              setInView({ ...isInView, isViewTopContentIdGoogle: true })
+            }
           >
             <TopContentIdGoogle
               isInView={isInView.isViewTopContentIdGoogle}
@@ -145,7 +153,7 @@ const Dashboard: FunctionComponent = () => {
               params={params}
             />
           </TableWrapper>
-        </Grid>
+        </Grid> */}
         {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
           <TableWrapper
             setInView={() =>
@@ -162,7 +170,7 @@ const Dashboard: FunctionComponent = () => {
             />
           </TableWrapper>
         </Grid> */}
-        <Grid item xl={4} lg={6} sm={12} xs={12}>
+        {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
           <TableWrapper
             setInView={() =>
               setInView({
@@ -177,26 +185,34 @@ const Dashboard: FunctionComponent = () => {
               params={params}
             />
           </TableWrapper>
-        </Grid>
-        <Grid item xl={4} lg={6} sm={12} xs={12}>
-          <TableWrapper setInView={() => setInView({ ...isInView, isViewBuyRateByChannel: true })}>
+        </Grid> */}
+        {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
+          <TableWrapper
+            setInView={() =>
+              setInView({ ...isInView, isViewBuyRateByChannel: true })
+            }
+          >
             <BuyRateByChannel
               isInView={isInView.isViewBuyRateByChannel}
               isRefresh={isRefresh}
               params={params}
             />
           </TableWrapper>
-        </Grid>
-        <Grid item xl={4} lg={6} sm={12} xs={12}>
-          <TableWrapper setInView={() => setInView({ ...isInView, isViewReportByProduct: true })}>
+        </Grid> */}
+        {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
+          <TableWrapper
+            setInView={() =>
+              setInView({ ...isInView, isViewReportByProduct: true })
+            }
+          >
             <ReportByProduct
               isInView={isInView.isViewReportByProduct}
               isRefresh={isRefresh}
               params={params}
             />
           </TableWrapper>
-        </Grid>
-        <Grid item xl={4} lg={6} sm={12} xs={12}>
+        </Grid> */}
+        {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
           <TableWrapper
             sx={{
               "& > .MuiBox-root, & > .MuiPaper-root,": {
@@ -206,7 +222,9 @@ const Dashboard: FunctionComponent = () => {
                 height: "100%",
               },
             }}
-            setInView={() => setInView({ ...isInView, isViewReportByChannel: true })}
+            setInView={() =>
+              setInView({ ...isInView, isViewReportByChannel: true })
+            }
           >
             <ReportByChannel
               isInView={isInView.isViewReportByChannel}
@@ -214,18 +232,26 @@ const Dashboard: FunctionComponent = () => {
               params={params}
             />
           </TableWrapper>
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <MotionInView setInView={() => setInView({ ...isInView, isViewChartReportByDate: true })}>
+        </Grid> */}
+        {/* <Grid item xs={12} md={12}>
+          <MotionInView
+            setInView={() =>
+              setInView({ ...isInView, isViewChartReportByDate: true })
+            }
+          >
             <ChartReportByDate
               isInView={isInView.isViewChartReportByDate}
               isRefresh={isRefresh}
               params={params}
             />
           </MotionInView>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} md={12}>
-          <MotionInView setInView={() => setInView({ ...isInView, isViewTableReportByDate: true })}>
+          <MotionInView
+            setInView={() =>
+              setInView({ ...isInView, isViewTableReportByDate: true })
+            }
+          >
             <TableReportByDate
               isInView={isInView.isViewTableReportByDate}
               isRefresh={isRefresh}

@@ -18,7 +18,10 @@ import { redirectByPermission } from "utils/redirectUrlUtil";
 import ProtectedRoute from "./ProtectedRoute";
 import { UserType } from "_types_/UserType";
 
-export const TAB_HEADER_SETTING = (user: Partial<UserType> | null, roles: any) => [
+export const TAB_HEADER_SETTING = (
+  user: Partial<UserType> | null,
+  roles: any
+) => [
   {
     value: STATUS_ROLE_SETTINGS.SKYLINK_ACCOUNT,
     component: <SkylinkAccount />,
@@ -150,21 +153,26 @@ const useSettingRouter = () => {
         path: "",
         element: <Navigate to={routeDefault} />,
       },
-      ...map(TAB_HEADER_SETTING(user, user?.group_permission?.data), (item) => ({
-        path: item.value,
-        element: (
-          <ProtectedRoute user={user} hasPermission={item.roles}>
-            {item.component}
-          </ProtectedRoute>
-        ),
-      })),
+      ...map(
+        TAB_HEADER_SETTING(user, user?.group_permission?.data),
+        (item) => ({
+          path: item.value,
+          element: (
+            <ProtectedRoute user={user} hasPermission={item.roles}>
+              {item.component}
+            </ProtectedRoute>
+          ),
+        })
+      ),
     ],
   };
 };
 
 export default useSettingRouter;
 
-const SettingsView = Loadable(lazyWithRetry(() => import("views/SettingsView")));
+const SettingsView = Loadable(
+  lazyWithRetry(() => import("views/SettingsView"))
+);
 
 // Settings
 const SkylinkAccount = Loadable(

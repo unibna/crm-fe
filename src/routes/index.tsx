@@ -3,7 +3,12 @@ import LogoImage from "components/Images/LogoImage";
 import Loadable from "components/Loadings/Loadable";
 import LoadingScreen from "components/Loadings/LoadingScreen";
 import useAuth from "hooks/useAuth";
-import { Navigate, Outlet, Link as RouterLink, useRoutes } from "react-router-dom";
+import {
+  Navigate,
+  Outlet,
+  Link as RouterLink,
+  useRoutes,
+} from "react-router-dom";
 import { lazyWithRetry } from "utils/retryLazyLoadUtil";
 import useAccountantRouter from "./useAccountantRouter";
 import useAirtableRouter from "./useAirtableRouter";
@@ -33,12 +38,13 @@ import useZaloRouter from "./useZaloRouter";
 const Router = () => {
   const { user } = useAuth();
 
-  let defaultRoute = user?.group_permission?.route
-    ? user?.group_permission?.route
-    : user?.is_superuser
-    ? "/dashboard"
-    : "";
-  
+  // let defaultRoute = user?.group_permission?.route
+  //   ? user?.group_permission?.route
+  //   : user?.is_superuser
+  //   ? "/dashboard"
+  //   : "";
+  let defaultRoute = "/dashboard";
+
   return useRoutes([
     {
       path: "login",
@@ -50,15 +56,15 @@ const Router = () => {
       children: [
         {
           path: "",
-          // element: user ? (
-          //   user.group_permission?.route ? (
-          //     <Navigate to={defaultRoute} replace />
-          //   ) : (
-          //     <Navigate to={`/login`} replace />
-          //   )
-          // ) : (
-          //   <LoadingScreen />
-          // ),
+          element: user ? (
+            user.group_permission?.route ? (
+              <Navigate to={defaultRoute} replace />
+            ) : (
+              <Navigate to={`/login`} replace />
+            )
+          ) : (
+            <LoadingScreen />
+          ),
         },
         { path: "version", element: <VersionView /> },
         { path: "profile", element: <ProfileView /> },
@@ -108,15 +114,21 @@ const Router = () => {
 };
 
 // IMPORT COMPONENTS
-const NotFoundView = Loadable(lazyWithRetry(() => import("views/NotFoundView")));
+const NotFoundView = Loadable(
+  lazyWithRetry(() => import("views/NotFoundView"))
+);
 const VersionView = Loadable(lazyWithRetry(() => import("views/VersionView")));
 const ProfileView = Loadable(lazyWithRetry(() => import("views/ProfileView")));
-const LoginView = Loadable(lazyWithRetry(() => import("views/AuthView/containers/Login")));
+const LoginView = Loadable(
+  lazyWithRetry(() => import("views/AuthView/containers/Login"))
+);
 const DashboardLayout = Loadable(lazyWithRetry(() => import("layouts")));
 const SupportView = Loadable(lazyWithRetry(() => import("views/UserManual")));
 
 const Privacy = Loadable(lazyWithRetry(() => import("views/PrivacyView")));
-const TermsOfService = Loadable(lazyWithRetry(() => import("views/TermOfServiceView")));
+const TermsOfService = Loadable(
+  lazyWithRetry(() => import("views/TermOfServiceView"))
+);
 
 export default Router;
 

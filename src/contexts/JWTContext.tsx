@@ -1,5 +1,11 @@
 // Libraries
-import { useCallback, createContext, ReactNode, useEffect, useReducer } from "react";
+import {
+  useCallback,
+  createContext,
+  ReactNode,
+  useEffect,
+  useReducer,
+} from "react";
 
 // Services
 import { authApi } from "_apis_/auth.api";
@@ -18,21 +24,29 @@ import {
   getListVariantAttributes,
   getListWarehouse,
   getListKeyMapReport,
-  getListAttributesDataFlow,
+  // getListAttributesDataFlow,
   getListFilterOption,
-  getListFacebookFanpage,
-  getListCustomer,
+  // getListFacebookFanpage,
+  // getListCustomer,
   getListAttribute,
   getListRule,
-  getListAdAccount,
+  // getListAdAccount,
 } from "store/redux/attributes/slice";
 
 // Types
-import { ActionMap, AuthState, JWTContextType } from "_types_/AuthenticationType";
+import {
+  ActionMap,
+  AuthState,
+  JWTContextType,
+} from "_types_/AuthenticationType";
 import { UserType } from "_types_/UserType";
 
 // Constants & Utils
-import { deleteAllStorages, getStorage, setStorage } from "utils/asyncStorageUtil";
+import {
+  deleteAllStorages,
+  getStorage,
+  setStorage,
+} from "utils/asyncStorageUtil";
 import { isMatchRoles } from "utils/roleUtils";
 import { ROLE_TAB, STATUS_ROLE_SETTINGS } from "constants/rolesTab";
 
@@ -63,7 +77,8 @@ type JWTAuthPayload = {
   };
 };
 
-export type JWTActions = ActionMap<JWTAuthPayload>[keyof ActionMap<JWTAuthPayload>];
+export type JWTActions =
+  ActionMap<JWTAuthPayload>[keyof ActionMap<JWTAuthPayload>];
 
 const initialState: AuthState = {
   isAuthenticated: false,
@@ -137,10 +152,22 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     getUsers();
 
     if (
-      isMatchRoles(data?.is_superuser, data?.group_permission?.data?.[ROLE_TAB.LEAD]) ||
-      isMatchRoles(data?.is_superuser, data?.group_permission?.data?.[ROLE_TAB.SHIPPING]) ||
-      isMatchRoles(data?.is_superuser, data?.group_permission?.data?.[ROLE_TAB.ORDERS]) ||
-      isMatchRoles(data?.is_superuser, data?.group_permission?.data?.[ROLE_TAB.TRANSPORTATION])
+      isMatchRoles(
+        data?.is_superuser,
+        data?.group_permission?.data?.[ROLE_TAB.LEAD]
+      ) ||
+      isMatchRoles(
+        data?.is_superuser,
+        data?.group_permission?.data?.[ROLE_TAB.SHIPPING]
+      ) ||
+      isMatchRoles(
+        data?.is_superuser,
+        data?.group_permission?.data?.[ROLE_TAB.ORDERS]
+      ) ||
+      isMatchRoles(
+        data?.is_superuser,
+        data?.group_permission?.data?.[ROLE_TAB.TRANSPORTATION]
+      )
     ) {
       await getPhoneLeadAttribute();
     }
@@ -148,61 +175,114 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (
       isMatchRoles(
         data?.is_superuser,
-        data.group_permission?.data?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.ROLE]
+        data.group_permission?.data?.[ROLE_TAB.SETTINGS]?.[
+          STATUS_ROLE_SETTINGS.ROLE
+        ]
       )
     ) {
       getRolesAction();
     }
 
-    if (isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.WAREHOUSE])) {
+    if (
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.WAREHOUSE]
+      )
+    ) {
       getListWarehouse();
       getListAttributesWarehouse();
     }
 
-    if (isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.SHIPPING])) {
+    if (
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.SHIPPING]
+      )
+    ) {
       getListAttributesShipping();
     }
 
-    if (isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.PRODUCT])) {
+    if (
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.PRODUCT]
+      )
+    ) {
       getListTags();
       getListOption();
       getListVariantAttributes();
     }
 
-    if (isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.MANAGE_FILE])) {
+    if (
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.MANAGE_FILE]
+      )
+    ) {
       getAllUsersGroup();
     }
 
-    if (isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.CSKH])) {
+    if (
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.CSKH]
+      )
+    ) {
       getListAttributesSkytable();
     }
 
     if (
-      isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.DASHBOARD]) ||
-      isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.MKT_DASHBOARD])
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.DASHBOARD]
+      ) ||
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.MKT_DASHBOARD]
+      )
     ) {
       getListKeyMapReport();
     }
 
-    if (isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.DATA_FLOW])) {
-      getListAttributesDataFlow();
+    if (
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.DATA_FLOW]
+      )
+    ) {
+      // getListAttributesDataFlow();
     }
 
     if (
-      isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.DATA_FLOW]) ||
-      isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.CONTENT_ID]) ||
-      isMatchRoles(data?.is_superuser, data.group_permission?.data?.[ROLE_TAB.CONTENT_DAILY])
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.DATA_FLOW]
+      ) ||
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.CONTENT_ID]
+      ) ||
+      isMatchRoles(
+        data?.is_superuser,
+        data.group_permission?.data?.[ROLE_TAB.CONTENT_DAILY]
+      )
     ) {
       getListFilterOption();
-      getListFacebookFanpage();
-      getListCustomer();
+      // getListFacebookFanpage();
+      // getListCustomer();
       getListAttribute();
       getListRule();
-      getListAdAccount();
+      // getListAdAccount();
     }
   };
 
-  const login = async ({ email, password }: { email: string; password: string }) => {
+  const login = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
     try {
       const response = await authApi.login({ email, password });
       const { data } = response;

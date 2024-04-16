@@ -34,7 +34,7 @@ interface Props {
   params?: {
     date_from: string;
     date_to: string;
-    exclude_content_ads_start_with: string[]
+    exclude_content_ads_start_with: string[];
   };
   isRefresh?: boolean;
   isInView?: boolean;
@@ -46,12 +46,13 @@ const TableReportByDate = (props: Props) => {
     params: paramsAll = {
       date_from: format(subDays(new Date(), 0), yyyy_MM_dd),
       date_to: format(subDays(new Date(), 0), yyyy_MM_dd),
-      exclude_content_ads_start_with: excludeContentAdsStartWith
+      exclude_content_ads_start_with: excludeContentAdsStartWith,
     },
     isInView = false,
   } = props;
   const { newCancelToken } = useCancelToken();
-  const { state: store, dispatch: dispatchStore } = useContext(StoreDashboardMkt);
+  const { state: store, dispatch: dispatchStore } =
+    useContext(StoreDashboardMkt);
   const { convertDescription, convertTitle } = useContext(AttributeContext);
   const { reportByDate } = store;
 
@@ -62,14 +63,14 @@ const TableReportByDate = (props: Props) => {
   const [dataTotal, setDataTotal] = useState<number>(0);
   const [totalRow, setTotalRow] = useState({});
 
-  useEffect(() => {
-    if (isInView) {
-      getListReportByDate({
-        date_from: format(subDays(new Date(), 7), yyyy_MM_dd),
-        date_to: format(subDays(new Date(), 0), yyyy_MM_dd),
-      });
-    }
-  }, [isInView]);
+  // useEffect(() => {
+  //   if (isInView) {
+  //     getListReportByDate({
+  //       date_from: format(subDays(new Date(), 7), yyyy_MM_dd),
+  //       date_to: format(subDays(new Date(), 0), yyyy_MM_dd),
+  //     });
+  //   }
+  // }, [isInView]);
 
   useEffect(() => {
     loadDataTable();
@@ -83,9 +84,9 @@ const TableReportByDate = (props: Props) => {
 
     const newParams = chooseParams(objParams, ["date_from", "date_to"]);
 
-    if (isInView) {
-      getListReportByDate(newParams);
-    }
+    // if (isInView) {
+    //   getListReportByDate(newParams);
+    // }
   };
 
   const getListReportByDate = async (params: any) => {
@@ -141,7 +142,10 @@ const TableReportByDate = (props: Props) => {
   };
 
   const handleChangeSorting = (value: SortType[]) => {
-    const ordering = value[0].direction === "asc" ? value[0].columnName : "-" + value[0].columnName;
+    const ordering =
+      value[0].direction === "asc"
+        ? value[0].columnName
+        : "-" + value[0].columnName;
 
     setParams({
       ...params,
@@ -150,7 +154,12 @@ const TableReportByDate = (props: Props) => {
   };
 
   const renderHeader = () => {
-    return <HeaderFilter columns={reportByDate} onChangeColumn={handleChangeColumn} />;
+    return (
+      <HeaderFilter
+        columns={reportByDate}
+        onChangeColumn={handleChangeColumn}
+      />
+    );
   };
 
   const newResultColumnsShow = useMemo(() => {
@@ -202,7 +211,7 @@ const TableReportByDate = (props: Props) => {
           "total_spend_per_revenue",
           "total_spend_per_ads_qualified",
           "ads_qualified",
-          "provisional_revenue"
+          "provisional_revenue",
         ],
         infoCell: reportByDate.columnsShow,
       }}

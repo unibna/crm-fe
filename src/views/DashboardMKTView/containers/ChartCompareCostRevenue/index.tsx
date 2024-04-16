@@ -25,8 +25,7 @@ interface Props {
     dateValue?: number | string;
     date_from: string;
     date_to: string;
-    exclude_content_ads_start_with: string[]
-    
+    exclude_content_ads_start_with: string[];
   };
   isRefresh?: boolean;
   isInView?: boolean;
@@ -40,7 +39,7 @@ const ChartCompareCostRevenue = (props: Props) => {
     params = {
       date_from: format(subDays(new Date(), 0), yyyy_MM_dd),
       date_to: format(subDays(new Date(), 0), yyyy_MM_dd),
-      exclude_content_ads_start_with : excludeContentAdsStartWith
+      exclude_content_ads_start_with: excludeContentAdsStartWith,
     },
     isInView = false,
   } = props;
@@ -62,11 +61,11 @@ const ChartCompareCostRevenue = (props: Props) => {
     };
   }, [isInView]);
 
-  useDidUpdateEffect(() => {
-    if (isInView) {
-      getDataChart();
-    }
-  }, [params, isRefresh]);
+  // useDidUpdateEffect(() => {
+  //   if (isInView) {
+  //     getDataChart();
+  //   }
+  // }, [params, isRefresh]);
 
   const getDataChart = async (paramsAgrs: Partial<any> = {}) => {
     if (cancelRequest) {

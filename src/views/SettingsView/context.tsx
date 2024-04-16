@@ -62,14 +62,16 @@ const initialState: InitialStateType = {
   [STATUS_ROLE_SETTINGS.SKYLINK_ACCOUNT]: {
     columnsShow: getColumnsShow(columnSkylinkAccount.columnShowTable),
     resultColumnsShow: columnSkylinkAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnSkylinkAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnSkylinkAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnSkylinkAccount.columnWidths,
     columnSelected: [],
   },
   [STATUS_ROLE_SETTINGS.FACEBOOK_ACCOUNT]: {
     columnsShow: getColumnsShow(columnShowFacebookAccount.columnShowTable),
     resultColumnsShow: columnShowFacebookAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowFacebookAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowFacebookAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowFacebookAccount.columnWidths,
     columnSelected: [],
   },
@@ -83,14 +85,16 @@ const initialState: InitialStateType = {
   [STATUS_ROLE_SETTINGS.GOOGLE_ACCOUNT_BM]: {
     columnsShow: getColumnsShow(columnShowGoogleAccount.columnShowTable),
     resultColumnsShow: columnShowGoogleAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowGoogleAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowGoogleAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowGoogleAccount.columnWidths,
     columnSelected: [],
   },
   [STATUS_ROLE_SETTINGS.CUSTOMER_ACCOUNT]: {
     columnsShow: getColumnsShow(columnShowCustomerAccount.columnShowTable),
     resultColumnsShow: columnShowCustomerAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowCustomerAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowCustomerAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowCustomerAccount.columnWidths,
     columnSelected: [],
   },
@@ -104,42 +108,48 @@ const initialState: InitialStateType = {
   [STATUS_ROLE_SETTINGS.ZALO_ACCOUNT]: {
     columnsShow: getColumnsShow(columnShowZaloAccount.columnShowTable),
     resultColumnsShow: columnShowZaloAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowZaloAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowZaloAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowZaloAccount.columnWidths,
     columnSelected: [],
   },
   [STATUS_ROLE_SETTINGS.TIKTOK_ACCOUNT]: {
     columnsShow: getColumnsShow(columnShowTiktokAccount.columnShowTable),
     resultColumnsShow: columnShowTiktokAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowTiktokAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowTiktokAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowTiktokAccount.columnWidths,
     columnSelected: [],
   },
   [STATUS_ROLE_SETTINGS.TIKTOK_BM_ACCOUNT]: {
     columnsShow: getColumnsShow(columnShowTiktokBmAccount.columnShowTable),
     resultColumnsShow: columnShowTiktokBmAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowTiktokBmAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowTiktokBmAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowTiktokBmAccount.columnWidths,
     columnSelected: [],
   },
   [STATUS_ROLE_SETTINGS.TIKTOK_ADS_ACCOUNT]: {
     columnsShow: getColumnsShow(columnShowTiktokAdsAccount.columnShowTable),
     resultColumnsShow: columnShowTiktokAdsAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowTiktokAdsAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowTiktokAdsAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowTiktokAdsAccount.columnWidths,
     columnSelected: [],
   },
   [STATUS_ROLE_SETTINGS.LAZADA_ACCOUNT]: {
     columnsShow: getColumnsShow(columnShowLazadaAccount.columnShowTable),
     resultColumnsShow: columnShowLazadaAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowLazadaAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowLazadaAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowLazadaAccount.columnWidths,
     columnSelected: [],
   },
   [STATUS_ROLE_SETTINGS.SHOPEE_ACCOUNT]: {
     columnsShow: getColumnsShow(columnShowShopeeAccount.columnShowTable),
     resultColumnsShow: columnShowShopeeAccount.columnsShowHeader,
-    countShowColumn: getColumnsShow(columnShowShopeeAccount.columnShowTable).length,
+    countShowColumn: getColumnsShow(columnShowShopeeAccount.columnShowTable)
+      .length,
     columnsWidthResize: columnShowShopeeAccount.columnWidths,
     columnSelected: [],
   },
@@ -152,7 +162,10 @@ const initialState: InitialStateType = {
   },
 };
 
-const reducerShipping = (state: Partial<any>, action: DispatchAction): Partial<any> => {
+const reducerShipping = (
+  state: Partial<any>,
+  action: DispatchAction
+): Partial<any> => {
   const { payload = {} } = action;
 
   switch (action.type) {
@@ -226,7 +239,9 @@ const SettingProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <SettingContext.Provider value={{ state, updateColumn, updateCell, resizeColumn, orderColumn }}>
+    <SettingContext.Provider
+      value={{ state, updateColumn, updateCell, resizeColumn, orderColumn }}
+    >
       {children}
     </SettingContext.Provider>
   );
