@@ -384,23 +384,23 @@ const SidebarConfig = ({
         //   ],
         // },
         {
-          title: "General",
+          title: "Dashboard",
           path: PATH_DASHBOARD[STATUS_ROLE_DASHBOARD.DASHBOARD],
           icon: <DashboardIcon />,
           roles: isMatchRoles(
             user?.is_superuser,
             roles?.[ROLE_TAB.DASHBOARD]?.[STATUS_ROLE_DASHBOARD.DASHBOARD]
           ),
-          code: "general",
+          code: "dashboard",
           children: [
             {
-              title: "Dashboard",
+              title: "General",
               path: PATH_DASHBOARD[STATUS_ROLE_DASHBOARD.DASHBOARD],
               roles: isMatchRoles(
                 user?.is_superuser,
                 roles?.[ROLE_TAB.DASHBOARD]?.[STATUS_ROLE_DASHBOARD.DASHBOARD]
               ),
-              code: "dashboard",
+              code: "General",
             },
             {
               title: "Dashboard MKT",
