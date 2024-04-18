@@ -152,7 +152,8 @@ const DashboardSidebar = ({
         >
           <Box
             component={RouterLink}
-            to={`${getObjectPropSafely(() => user?.group_permission?.route)}`}
+            // to={`${getObjectPropSafely(() => user?.group_permission?.route)}`}
+            to={"/dashboard"}
             sx={{
               display: "inline-flex",
               width: "100%",
