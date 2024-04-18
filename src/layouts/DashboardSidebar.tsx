@@ -15,6 +15,7 @@ import {
   Button,
   useTheme,
 } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
 
 // Hooks
@@ -161,32 +162,6 @@ const DashboardSidebar = ({
           </Box>
         </Stack>
 
-        {/* {isCollapse ? (
-          <Avatar
-            onMouseDown={() => navigate(`/${ROLE_TAB.PROFILE}`)}
-            alt="My Avatar"
-            src={getObjectPropSafely(() => user?.image?.url) || DEFAULT_AVATAR}
-            sx={{ mx: "auto", mb: 2, cursor: 'pointer' }}
-          />
-        ) : (
-          <Stack direction="column" spacing={0.5} sx={{ mt: 1 }}>
-            <AccountStyle onClick={() => navigate(`/${ROLE_TAB.PROFILE}`)} ref={anchorRef as any}>
-              <Avatar
-                alt="My Avatar"
-                src={getObjectPropSafely(() => user?.image?.url) || DEFAULT_AVATAR}
-              />
-              <Box sx={{ ml: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
-                  {user?.name}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                  {user?.group_permission?.name}
-                </Typography>
-              </Box>
-            </AccountStyle>
-          </Stack>
-        )} */}
-
         <MenuPopover
           open={open}
           onClose={handleClose}
@@ -232,6 +207,57 @@ const DashboardSidebar = ({
         })}
         isShow={!isCollapse}
       />
+      {isCollapse ? (
+        <Avatar
+          // onMouseDown={() => navigate(`/${ROLE_TAB.PROFILE}`)}
+          alt="My Avatar"
+          src={getObjectPropSafely(() => user?.image?.url) || DEFAULT_AVATAR}
+          sx={{ mx: "auto", mb: 2, cursor: "pointer" }}
+        />
+      ) : (
+        <Stack direction="column" spacing={0.5} sx={{ mt: 1 }}>
+          <AccountStyle
+            // onClick={() => navigate(`/${ROLE_TAB.PROFILE}`)}
+            onClick={(e: any) => handleLogout(e)}
+            ref={anchorRef as any}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Avatar
+                alt="My Avatar"
+                src={
+                  getObjectPropSafely(() => user?.image?.url) || DEFAULT_AVATAR
+                }
+              />
+              <Box sx={{ ml: 2 }}>
+                <Typography variant="subtitle2" sx={{ color: "white" }}>
+                  {user?.username}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  {user?.email}
+                </Typography>
+              </Box>
+            </Box>
+            <Box>
+              <LogoutIcon
+                style={{
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
+          </AccountStyle>
+        </Stack>
+      )}
     </Scrollbar>
   );
 
