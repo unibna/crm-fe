@@ -18,13 +18,20 @@ interface Props extends CardProps {
   rangeDate: JSX.Element;
 }
 
-export default function AppFeatured({ list, isControlFullScreen, rangeDate, ...other }: Props) {
+export default function AppFeatured({
+  list,
+  isControlFullScreen,
+  rangeDate,
+  ...other
+}: Props) {
   const theme = useTheme();
   const isMobile = useResponsive("down", "sm");
 
   const carouselRef = useRef<Slider>(null);
 
-  const [currentIndex, setCurrentIndex] = useState(theme.direction === "rtl" ? list.length - 1 : 0);
+  const [currentIndex, setCurrentIndex] = useState(
+    theme.direction === "rtl" ? list.length - 1 : 0
+  );
 
   const settings = {
     speed: 1500,
@@ -167,7 +174,7 @@ const Logo = () => {
     >
       <img
         src={theme.palette.mode === "light" ? lightLogo : darkLogo}
-        alt="Skylink Group"
+        alt="Smart Process Innovation"
         style={styles.imageLogo}
       />
     </Box>
