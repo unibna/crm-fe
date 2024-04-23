@@ -38,6 +38,7 @@ import { toastError } from "store/redux/toast/slice";
 import sidebarConfig from "layouts/navbar/SidebarConfig";
 import { getObjectPropSafely } from "utils/getObjectPropsSafelyUtil";
 import { handleToggleCollapse, sidebarStore } from "store/redux/sidebar/slice";
+import { is } from "date-fns/locale";
 // import { ROLE_TAB } from "constants/rolesTab";
 
 // ----------------------------------------------------------------------
@@ -208,57 +209,67 @@ const DashboardSidebar = ({
         })}
         isShow={!isCollapse}
       />
-      {isCollapse ? (
-        <Avatar
-          // onMouseDown={() => navigate(`/${ROLE_TAB.PROFILE}`)}
-          alt="My Avatar"
-          src={getObjectPropSafely(() => user?.image?.url) || DEFAULT_AVATAR}
-          sx={{ mx: "auto", mb: 2, cursor: "pointer" }}
-        />
-      ) : (
-        <Stack direction="column" spacing={0.5} sx={{ mt: 1 }}>
-          <AccountStyle
-            // onClick={() => navigate(`/${ROLE_TAB.PROFILE}`)}
-            onClick={(e: any) => handleLogout(e)}
-            ref={anchorRef as any}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box
+      <Box
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: !isCollapse ? "280px" : "90px",
+        }}
+      >
+        {isCollapse ? (
+          <Avatar
+            // onMouseDown={() => navigate(`/${ROLE_TAB.PROFILE}`)}
+            alt="My Avatar"
+            src={getObjectPropSafely(() => user?.image?.url) || DEFAULT_AVATAR}
+            sx={{ mx: "auto", mb: 2, cursor: "pointer" }}
+          />
+        ) : (
+          <Stack direction="column" spacing={0.5} sx={{ mt: 1 }}>
+            <AccountStyle
+              // onClick={() => navigate(`/${ROLE_TAB.PROFILE}`)}
+              onClick={(e: any) => handleLogout(e)}
+              ref={anchorRef as any}
               style={{
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "space-between",
               }}
             >
-              <Avatar
-                alt="My Avatar"
-                src={
-                  getObjectPropSafely(() => user?.image?.url) || DEFAULT_AVATAR
-                }
-              />
-              <Box sx={{ ml: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: "white" }}>
-                  {user?.username}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                  {user?.email}
-                </Typography>
-              </Box>
-            </Box>
-            <Box>
-              <LogoutIcon
+              <Box
                 style={{
-                  color: "white",
-                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
                 }}
-              />
-            </Box>
-          </AccountStyle>
-        </Stack>
-      )}
+              >
+                <Avatar
+                  alt="My Avatar"
+                  src={
+                    getObjectPropSafely(() => user?.image?.url) ||
+                    DEFAULT_AVATAR
+                  }
+                />
+                <Box sx={{ ml: 2 }}>
+                  <Typography variant="subtitle2" sx={{ color: "white" }}>
+                    {user?.username}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                    {user?.email}
+                  </Typography>
+                </Box>
+              </Box>
+              <Box>
+                <LogoutIcon
+                  style={{
+                    color: "white",
+                    cursor: "pointer",
+                  }}
+                />
+              </Box>
+            </AccountStyle>
+          </Stack>
+        )}
+      </Box>
     </Scrollbar>
   );
 
