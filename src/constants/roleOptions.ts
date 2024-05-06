@@ -68,282 +68,282 @@ export const ROLE_RENDER: TypeRenderComponent[] = [
     roles: [
       {
         name: STATUS_ROLE_SETTINGS.SKYLINK_ACCOUNT,
-        label: "Tài khoản",
+        label: "Tài khoản nhân sự",
       },
-      {
-        name: STATUS_ROLE_SETTINGS.FACEBOOK_ACCOUNT,
-        label: "Tài khoản Facebook BM",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.AD_FACEBOOK_ACCOUNT,
-        label: "Tài khoản quảng cáo Facebook",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT,
-        label: "Tài khoản Fanpage",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.GOOGLE_ACCOUNT_BM,
-        label: "Tài khoản Google BM",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.CUSTOMER_ACCOUNT,
-        label: "Tài khoản Google CT",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.TIKTOK_ACCOUNT,
-        label: "Tài khoản Tiktok Shop",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.TIKTOK_BM_ACCOUNT,
-        label: "Tài khoản Tiktok BM",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.TIKTOK_ADS_ACCOUNT,
-        label: "Tài khoản Tiktok Ads",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.LAZADA_ACCOUNT,
-        label: "Tài khoản Lazada",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.TIKI_ACCOUNT,
-        label: "Tài khoản Tiki",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.SHOPEE_ACCOUNT,
-        label: "Tài khoản Shopee",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.ZALO_ACCOUNT,
-        label: "Tài khoản Zalo",
-      },
-      {
-        name: STATUS_ROLE_SETTINGS.CDP_CARD,
-        label: "Thẻ CDP",
-      },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.FACEBOOK_ACCOUNT,
+      //   label: "Tài khoản Facebook BM",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.AD_FACEBOOK_ACCOUNT,
+      //   label: "Tài khoản quảng cáo Facebook",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT,
+      //   label: "Tài khoản Fanpage",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.GOOGLE_ACCOUNT_BM,
+      //   label: "Tài khoản Google BM",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.CUSTOMER_ACCOUNT,
+      //   label: "Tài khoản Google CT",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.TIKTOK_ACCOUNT,
+      //   label: "Tài khoản Tiktok Shop",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.TIKTOK_BM_ACCOUNT,
+      //   label: "Tài khoản Tiktok BM",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.TIKTOK_ADS_ACCOUNT,
+      //   label: "Tài khoản Tiktok Ads",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.LAZADA_ACCOUNT,
+      //   label: "Tài khoản Lazada",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.TIKI_ACCOUNT,
+      //   label: "Tài khoản Tiki",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.SHOPEE_ACCOUNT,
+      //   label: "Tài khoản Shopee",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.ZALO_ACCOUNT,
+      //   label: "Tài khoản Zalo",
+      // },
+      // {
+      //   name: STATUS_ROLE_SETTINGS.CDP_CARD,
+      //   label: "Thẻ CDP",
+      // },
       {
         name: STATUS_ROLE_SETTINGS.ROLE,
-        label: "Quyền",
+        label: "Phân quyền hệ thống",
       },
     ],
   },
-  {
-    group: "Marketing",
-    label: "Content ID",
-    name: ROLE_TAB.CONTENT_ID,
-    roles: [
-      {
-        name: STATUS_ROLE_CONTENT_ID.TOTAL,
-        label: "Tổng",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_CONTENT_ID.FACEBOOK,
-        label: "Facebook",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_CONTENT_ID.GOOGLE,
-        label: "Google",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_CONTENT_ID.PHONE_LEAD,
-        label: "Số điện thoại",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_CONTENT_ID.ATTACH_PHONE,
-        label: "Gán số điện thoại",
-      },
-      {
-        name: STATUS_ROLE_CONTENT_ID.TIKTOK,
-        label: "Tiktok",
-      },
-      {
-        name: STATUS_ROLE_CONTENT_ID.PIVOT,
-        label: "Pivot",
-      },
-      {
-        name: STATUS_ROLE_CONTENT_ID.ATTRIBUTES,
-        label: "Thuộc tính",
-      },
-    ],
-  },
-  {
-    group: "Marketing",
-    label: "Content Daily",
-    name: ROLE_TAB.CONTENT_DAILY,
-    roles: [
-      {
-        name: STATUS_ROLE_CONTENT_DAILY.OVERVIEW,
-        label: "Tổng quan",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_CONTENT_DAILY.PIVOT,
-        label: "Pivot table",
-        isShowRadioReadWrite: false,
-      },
-    ],
-  },
-  {
-    group: "Marketing",
-    label: "Facebook",
-    name: ROLE_TAB.FACEBOOK,
-    roles: [
-      {
-        name: STATUS_ROLE_FACEBOOK.AD_FACEBOOK,
-        label: "Thông tin Facebook Ads",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_FACEBOOK.AD_FANPAGE,
-        label: "Thông tin Fanpage Ads",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_FACEBOOK.REPORT_AD_FACEBOOK,
-        label: "Báo cáo Facebook Ads",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_FACEBOOK.REPORT_AD_FANPAGE,
-        label: "Báo cáo Fanpage Ads",
-        isShowRadioReadWrite: false,
-      },
-    ],
-  },
-  {
-    group: "Marketing",
-    label: "Google",
-    name: ROLE_TAB.GOOGLE,
-    roles: [
-      {
-        name: STATUS_ROLE_GOOGLE.CUSTOMER_ACCOUNT,
-        label: "Tài khoản khách hàng",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_GOOGLE.CAMPAIGN_GOOGLE,
-        label: "Chiến dịch",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_GOOGLE.ADGROUP_GOOGLE,
-        label: "Nhóm quảng cáo",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_GOOGLE.AD_GOOGLE,
-        label: "Quảng cáo",
-        isShowRadioReadWrite: false,
-      },
-    ],
-  },
-  {
-    group: "Management",
-    label: "Lead Center",
-    name: ROLE_TAB.LEAD,
-    roles: [
-      {
-        name: STATUS_ROLE_LEAD.ADD_LEAD,
-        label: "Thêm Lead",
-        isShowRadioRead: false,
-      },
-      {
-        name: STATUS_ROLE_LEAD.STATUS,
-        label: "Xử lý Lead",
-      },
-      {
-        name: STATUS_ROLE_LEAD.HANDLE_BY,
-        label: "Chia số",
-        isShowRadioRead: false,
-      },
-      {
-        name: STATUS_ROLE_LEAD.DATA_STATUS,
-        label: "Trạng thái dữ liệu",
-      },
-      {
-        name: STATUS_ROLE_LEAD.REPORT_DAILY_HANDLE_BY,
-        label: "Báo cáo chia số hằng ngày",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_LEAD.IMPORT_LEAD_EXCEL,
-        label: "Tạo Lead bằng file",
-        isShowRadioRead: false,
-      },
-      {
-        name: STATUS_ROLE_LEAD.VOIP,
-        label: "Cuộc gọi",
-      },
-      {
-        name: STATUS_ROLE_LEAD.REPORT,
-        label: "Báo cáo",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_LEAD.ACCOUNTS,
-        label: "Tài khoản",
-      },
-      {
-        name: STATUS_ROLE_LEAD.SPAM_CHECK,
-        label: "Spam check",
-      },
-    ],
-  },
-  {
-    group: "Management",
-    label: "Sale online report",
-    name: ROLE_TAB.SALE_ONLINE_REPORT,
-    roles: [
-      {
-        name: STATUS_ROLE_DASHBOARD.SALE_ONLINE_REPORT,
-        label: "Báo cáo online",
-      },
-    ],
-  },
-  {
-    group: "Management",
-    label: "Zalo",
-    name: ROLE_TAB.ZALO,
-    roles: [
-      {
-        name: STATUS_ROLE_ZALO.DASHBOARD,
-        label: "Tổng thể",
-        isShowRadioReadWrite: false,
-      },
-      {
-        name: STATUS_ROLE_ZALO.FOLLOWER_ACCOUNT,
-        label: "Tài khoản quan tâm",
-      },
-      {
-        name: STATUS_ROLE_ZALO.NOTIFICATION,
-        label: "Thông báo",
-      },
-    ],
-  },
-  {
-    group: "Management",
-    label: "Chăm sóc vận đơn",
-    name: ROLE_TAB.TRANSPORTATION,
-    roles: [
-      {
-        name: STATUS_ROLE_TRANSPORTATION.ADD_HANDLE_BY,
-        label: "Chia số",
-      },
-      {
-        name: STATUS_ROLE_TRANSPORTATION.STATUS,
-        label: "Trạng thái",
-      },
-      {
-        name: STATUS_ROLE_TRANSPORTATION.REPORT_ASSIGNED,
-        label: "Báo cáo",
-      },
-    ],
-  },
+  // {
+  //   group: "Marketing",
+  //   label: "Content ID",
+  //   name: ROLE_TAB.CONTENT_ID,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_CONTENT_ID.TOTAL,
+  //       label: "Tổng",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_CONTENT_ID.FACEBOOK,
+  //       label: "Facebook",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_CONTENT_ID.GOOGLE,
+  //       label: "Google",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_CONTENT_ID.PHONE_LEAD,
+  //       label: "Số điện thoại",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_CONTENT_ID.ATTACH_PHONE,
+  //       label: "Gán số điện thoại",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_CONTENT_ID.TIKTOK,
+  //       label: "Tiktok",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_CONTENT_ID.PIVOT,
+  //       label: "Pivot",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_CONTENT_ID.ATTRIBUTES,
+  //       label: "Thuộc tính",
+  //     },
+  //   ],
+  // },
+  // {
+  //   group: "Marketing",
+  //   label: "Content Daily",
+  //   name: ROLE_TAB.CONTENT_DAILY,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_CONTENT_DAILY.OVERVIEW,
+  //       label: "Tổng quan",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_CONTENT_DAILY.PIVOT,
+  //       label: "Pivot table",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   group: "Marketing",
+  //   label: "Facebook",
+  //   name: ROLE_TAB.FACEBOOK,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_FACEBOOK.AD_FACEBOOK,
+  //       label: "Thông tin Facebook Ads",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_FACEBOOK.AD_FANPAGE,
+  //       label: "Thông tin Fanpage Ads",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_FACEBOOK.REPORT_AD_FACEBOOK,
+  //       label: "Báo cáo Facebook Ads",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_FACEBOOK.REPORT_AD_FANPAGE,
+  //       label: "Báo cáo Fanpage Ads",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   group: "Marketing",
+  //   label: "Google",
+  //   name: ROLE_TAB.GOOGLE,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_GOOGLE.CUSTOMER_ACCOUNT,
+  //       label: "Tài khoản khách hàng",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_GOOGLE.CAMPAIGN_GOOGLE,
+  //       label: "Chiến dịch",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_GOOGLE.ADGROUP_GOOGLE,
+  //       label: "Nhóm quảng cáo",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_GOOGLE.AD_GOOGLE,
+  //       label: "Quảng cáo",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   group: "Management",
+  //   label: "Lead Center",
+  //   name: ROLE_TAB.LEAD,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_LEAD.ADD_LEAD,
+  //       label: "Thêm Lead",
+  //       isShowRadioRead: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.STATUS,
+  //       label: "Xử lý Lead",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.HANDLE_BY,
+  //       label: "Chia số",
+  //       isShowRadioRead: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.DATA_STATUS,
+  //       label: "Trạng thái dữ liệu",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.REPORT_DAILY_HANDLE_BY,
+  //       label: "Báo cáo chia số hằng ngày",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.IMPORT_LEAD_EXCEL,
+  //       label: "Tạo Lead bằng file",
+  //       isShowRadioRead: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.VOIP,
+  //       label: "Cuộc gọi",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.REPORT,
+  //       label: "Báo cáo",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.ACCOUNTS,
+  //       label: "Tài khoản",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_LEAD.SPAM_CHECK,
+  //       label: "Spam check",
+  //     },
+  //   ],
+  // },
+  // {
+  //   group: "Management",
+  //   label: "Sale online report",
+  //   name: ROLE_TAB.SALE_ONLINE_REPORT,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_DASHBOARD.SALE_ONLINE_REPORT,
+  //       label: "Báo cáo online",
+  //     },
+  //   ],
+  // },
+  // {
+  //   group: "Management",
+  //   label: "Zalo",
+  //   name: ROLE_TAB.ZALO,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_ZALO.DASHBOARD,
+  //       label: "Tổng thể",
+  //       isShowRadioReadWrite: false,
+  //     },
+  //     {
+  //       name: STATUS_ROLE_ZALO.FOLLOWER_ACCOUNT,
+  //       label: "Tài khoản quan tâm",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_ZALO.NOTIFICATION,
+  //       label: "Thông báo",
+  //     },
+  //   ],
+  // },
+  // {
+  //   group: "Management",
+  //   label: "Chăm sóc vận đơn",
+  //   name: ROLE_TAB.TRANSPORTATION,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_TRANSPORTATION.ADD_HANDLE_BY,
+  //       label: "Chia số",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_TRANSPORTATION.STATUS,
+  //       label: "Trạng thái",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_TRANSPORTATION.REPORT_ASSIGNED,
+  //       label: "Báo cáo",
+  //     },
+  //   ],
+  // },
   {
     group: "Management",
     label: "CDP",
@@ -601,17 +601,17 @@ export const ROLE_RENDER: TypeRenderComponent[] = [
       },
     ],
   },
-  {
-    group: "Management",
-    label: "CSKH",
-    name: ROLE_TAB.CSKH,
-    roles: [
-      {
-        name: STATUS_ROLE_AIRTABLE.CSKH,
-        label: "CSKH",
-      },
-    ],
-  },
+  // {
+  //   group: "Management",
+  //   label: "CSKH",
+  //   name: ROLE_TAB.CSKH,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_AIRTABLE.CSKH,
+  //       label: "CSKH",
+  //     },
+  //   ],
+  // },
   {
     group: "Management",
     label: "Quản lý file",
@@ -627,25 +627,25 @@ export const ROLE_RENDER: TypeRenderComponent[] = [
       },
     ],
   },
-  {
-    group: "Management",
-    label: "SkyTable",
-    name: ROLE_TAB.SKYCOM_TABLE,
-    roles: [
-      {
-        name: STATUS_ROLE_SKYCOM_TABLE.HANDLE,
-        label: "Danh sách bảng",
-      },
-      {
-        name: STATUS_ROLE_SKYCOM_TABLE.CREATE,
-        label: "Tạo bảng",
-      },
-      {
-        name: STATUS_ROLE_SKYCOM_TABLE.DELETE,
-        label: "Xoá bảng",
-      },
-    ],
-  },
+  // {
+  //   group: "Management",
+  //   label: "SkyTable",
+  //   name: ROLE_TAB.SKYCOM_TABLE,
+  //   roles: [
+  //     {
+  //       name: STATUS_ROLE_SKYCOM_TABLE.HANDLE,
+  //       label: "Danh sách bảng",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_SKYCOM_TABLE.CREATE,
+  //       label: "Tạo bảng",
+  //     },
+  //     {
+  //       name: STATUS_ROLE_SKYCOM_TABLE.DELETE,
+  //       label: "Xoá bảng",
+  //     },
+  //   ],
+  // },
   {
     group: "Management",
     label: "Data Flow",

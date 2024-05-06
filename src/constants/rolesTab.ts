@@ -249,7 +249,7 @@ export enum STATUS_ROLE_CONTENT_DAILY {
 }
 
 export enum STATUS_ROLE_SETTINGS {
-  SKYLINK_ACCOUNT = "skylink-account",
+  SKYLINK_ACCOUNT = "user-account",
   FACEBOOK_ACCOUNT = "facebook-account",
   AD_FACEBOOK_ACCOUNT = "ad-facebook-account",
   FANPAGE_ACCOUNT = "fanpage-account",

@@ -17,7 +17,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { IOSSwitch } from "components/Switches";
 
 import { ROLE_RENDER } from "constants/roleOptions";
-import { ROLE_OPTION, ROLE_TYPE, TypeRenderComponent } from "constants/rolesTab";
+import {
+  ROLE_OPTION,
+  ROLE_TYPE,
+  TypeRenderComponent,
+} from "constants/rolesTab";
 import { DIRECTION_ROUTE_OPTIONS } from "constants/directionRouter";
 import { groupBy } from "utils/helpers";
 
@@ -49,7 +53,10 @@ function ControlPanel({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [expanded, setExpanded] = React.useState<any>(
-    ROLE_RENDER.reduce((prev, current) => ({ ...prev, [current.name]: false }), {})
+    ROLE_RENDER.reduce(
+      (prev, current) => ({ ...prev, [current.name]: false }),
+      {}
+    )
   );
 
   const groupPermission = useMemo(() => groupBy(ROLE_RENDER, "group"), []);
@@ -60,7 +67,8 @@ function ControlPanel({
     roleType: ROLE_TYPE
   ) => {
     return permission.roles.reduce((prev: number, current: any) => {
-      prev += rolItemData?.[permission.name]?.[current.name] === roleType ? 1 : 0;
+      prev +=
+        rolItemData?.[permission.name]?.[current.name] === roleType ? 1 : 0;
       return prev;
     }, 0);
   };
@@ -84,7 +92,8 @@ function ControlPanel({
               return {
                 ...prev,
                 [current.name]:
-                  roleItem?.data?.[permission.name]?.[current.name] || ROLE_OPTION.NO_PERMISSION,
+                  roleItem?.data?.[permission.name]?.[current.name] ||
+                  ROLE_OPTION.NO_PERMISSION,
               };
             }, {}) || {},
         },
@@ -111,7 +120,8 @@ function ControlPanel({
                 [current.name]: e.target.checked
                   ? (roleType === ROLE_OPTION.READ_AND_WRITE &&
                       current.isShowRadioReadWrite === false) ||
-                    (roleType === ROLE_OPTION.READ && current.isShowRadioRead === false)
+                    (roleType === ROLE_OPTION.READ &&
+                      current.isShowRadioRead === false)
                     ? current.name
                     : roleType
                   : ROLE_OPTION.NO_PERMISSION,
@@ -138,11 +148,16 @@ function ControlPanel({
           <Autocomplete
             disablePortal
             id="roles-autocomplete"
-            options={roles.map((role: any) => ({ label: role.name.value, value: role.id }))}
+            options={roles.map((role: any) => ({
+              label: role.name.value,
+              value: role.id,
+            }))}
             renderInput={(params) => <TextField {...params} label="Roles" />}
             value={{ ...roleItem, value: roleItem?.id }}
             onChange={(e, role) => {
-              const temp = roles.find((roleTemp: any) => roleTemp.id === role?.value);
+              const temp = roles.find(
+                (roleTemp: any) => roleTemp.id === role?.value
+              );
               temp &&
                 setRoleItem({
                   label: temp?.name?.value,
@@ -152,14 +167,18 @@ function ControlPanel({
                   id: temp?.id,
                 });
             }}
-            isOptionEqualToValue={(option, value) => option.value === value.value}
+            isOptionEqualToValue={(option, value) =>
+              option.value === value.value
+            }
           />
         </Box>
       )}
 
       {!isCreate && (
         <Box sx={{ mb: 3 }}>
-          <Typography sx={{ ...styles.titleSection, mb: 2 }}>Chi tiết nhóm quyền</Typography>
+          <Typography sx={{ ...styles.titleSection, mb: 2 }}>
+            Chi tiết nhóm quyền
+          </Typography>
           <Stack direction={"row"} spacing={2}>
             <>
               <TextField
@@ -187,17 +206,32 @@ function ControlPanel({
               disablePortal
               id="route-autocomplete"
               options={DIRECTION_ROUTE_OPTIONS}
-              renderInput={(params) => <TextField {...params} label="Đường dẫn mặc định" />}
-              value={DIRECTION_ROUTE_OPTIONS.find((item) => item.value === roleItem?.route) || null}
-              onChange={(e, route) => handleChange("route")(route?.value?.toString() || "")}
-              isOptionEqualToValue={(option, value) => option.value === value.value}
+              renderInput={(params) => (
+                <TextField {...params} label="Đường dẫn mặc định" />
+              )}
+              value={
+                DIRECTION_ROUTE_OPTIONS.find(
+                  (item) => item.value === roleItem?.route
+                ) || null
+              }
+              onChange={(e, route) =>
+                handleChange("route")(route?.value?.toString() || "")
+              }
+              isOptionEqualToValue={(option, value) =>
+                option.value === value.value
+              }
               fullWidth
             />
           </Stack>
         </Box>
       )}
 
-      <Stack display="flex" alignItems="center" justifyContent={"space-between"} direction="row">
+      <Stack
+        display="flex"
+        alignItems="center"
+        justifyContent={"space-between"}
+        direction="row"
+      >
         <Typography sx={styles.titleSection}>Chi tiết quyền</Typography>
         <Typography
           component={"span"}
@@ -234,27 +268,35 @@ function ControlPanel({
           <React.Fragment key={group}>
             <Typography sx={styles.groupName}>{group}</Typography>
             {groupPermission[group].map((permission: TypeRenderComponent) => {
-              const permissionReadAndWriteLength = findLengthPermissonGroupByRoleType(
-                permission,
-                roleItem?.data,
-                ROLE_OPTION.READ_AND_WRITE
+              const permissionReadAndWriteLength =
+                findLengthPermissonGroupByRoleType(
+                  permission,
+                  roleItem?.data,
+                  ROLE_OPTION.READ_AND_WRITE
+                );
+
+              const permissionReadOnlyLength =
+                findLengthPermissonGroupByRoleType(
+                  permission,
+                  roleItem?.data,
+                  ROLE_OPTION.READ
+                );
+
+              const isHiddenTotalReadAndWriteRole = permission.roles.reduce(
+                (prev, cur) => {
+                  const isHidden = cur.isShowRadioReadWrite === false ? 1 : 0;
+                  return (prev += isHidden);
+                },
+                0
               );
 
-              const permissionReadOnlyLength = findLengthPermissonGroupByRoleType(
-                permission,
-                roleItem?.data,
-                ROLE_OPTION.READ
+              const isHiddenTotalReadRole = permission.roles.reduce(
+                (prev, cur) => {
+                  const isHidden = cur.isShowRadioRead === false ? 1 : 0;
+                  return (prev += isHidden);
+                },
+                0
               );
-
-              const isHiddenTotalReadAndWriteRole = permission.roles.reduce((prev, cur) => {
-                const isHidden = cur.isShowRadioReadWrite === false ? 1 : 0;
-                return (prev += isHidden);
-              }, 0);
-
-              const isHiddenTotalReadRole = permission.roles.reduce((prev, cur) => {
-                const isHidden = cur.isShowRadioRead === false ? 1 : 0;
-                return (prev += isHidden);
-              }, 0);
 
               return (
                 <Box key={permission.name} sx={styles.groupItem}>
@@ -268,7 +310,9 @@ function ControlPanel({
                   >
                     <Grid item xs={4}>
                       <Stack direction="column" spacing={1}>
-                        <Typography sx={styles.titleGroupPermission}>{permission.label}</Typography>
+                        <Typography sx={styles.titleGroupPermission}>
+                          {permission.label}
+                        </Typography>
                         <Typography
                           component={"span"}
                           onMouseDown={() => {
@@ -299,7 +343,8 @@ function ControlPanel({
                       </Stack>
                     </Grid>
                     <Grid item xs={4}>
-                      {isHiddenTotalReadAndWriteRole !== permission.roles.length && (
+                      {isHiddenTotalReadAndWriteRole !==
+                        permission.roles.length && (
                         <Stack direction="column" spacing={1}>
                           <Typography>{`Đọc và ghi${
                             permissionReadAndWriteLength > 0
@@ -321,12 +366,17 @@ function ControlPanel({
                       {isHiddenTotalReadRole !== permission.roles.length && (
                         <Stack direction="column" spacing={1}>
                           <Typography>{`Chỉ đọc${
-                            permissionReadOnlyLength > 0 ? ` (${permissionReadOnlyLength})` : ""
+                            permissionReadOnlyLength > 0
+                              ? ` (${permissionReadOnlyLength})`
+                              : ""
                           }`}</Typography>
                           <IOSSwitch
                             sx={{ mt: 1 }}
                             checked={permissionReadOnlyLength > 0}
-                            onChange={handleChangePermissionGroup(permission, ROLE_OPTION.READ)}
+                            onChange={handleChangePermissionGroup(
+                              permission,
+                              ROLE_OPTION.READ
+                            )}
                           />
                         </Stack>
                       )}
@@ -334,7 +384,12 @@ function ControlPanel({
                   </Grid>
                   {expanded[permission.name] && (
                     <Grow in={expanded[permission.name]}>
-                      <Grid container sx={{ p: 2 }} display="flex" alignItems="center">
+                      <Grid
+                        container
+                        sx={{ p: 2 }}
+                        display="flex"
+                        alignItems="center"
+                      >
                         {permission.roles.map((role) => {
                           return (
                             <Grid
@@ -344,15 +399,22 @@ function ControlPanel({
                               key={role.name}
                               sx={{ borderBottom: "1px solid #eee" }}
                             >
-                              <Grid item xs={4} sx={{ ...styles.permissionItem, pr: 2 }}>
-                                <Typography sx={styles.permissionItemName}>{role.label}</Typography>
+                              <Grid
+                                item
+                                xs={4}
+                                sx={{ ...styles.permissionItem, pr: 2 }}
+                              >
+                                <Typography sx={styles.permissionItemName}>
+                                  {role.label}
+                                </Typography>
                               </Grid>
                               <Grid item xs={4} sx={styles.permissionItem}>
                                 {role.isShowRadioReadWrite !== false && (
                                   <IOSSwitch
                                     checked={
-                                      roleItem?.data?.[permission.name]?.[role.name] ===
-                                      ROLE_OPTION.READ_AND_WRITE
+                                      roleItem?.data?.[permission.name]?.[
+                                        role.name
+                                      ] === ROLE_OPTION.READ_AND_WRITE
                                     }
                                     onChange={handleChangePermission(
                                       permission,
@@ -366,8 +428,9 @@ function ControlPanel({
                                 {role.isShowRadioRead !== false && (
                                   <IOSSwitch
                                     checked={
-                                      roleItem?.data?.[permission.name]?.[role.name] ===
-                                      ROLE_OPTION.READ
+                                      roleItem?.data?.[permission.name]?.[
+                                        role.name
+                                      ] === ROLE_OPTION.READ
                                     }
                                     onChange={handleChangePermission(
                                       permission,

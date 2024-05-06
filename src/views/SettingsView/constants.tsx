@@ -26,6 +26,7 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 import LoyaltyIcon from "@mui/icons-material/Loyalty";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import PasswordIcon from "@mui/icons-material/Password";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import GroupIcon from "@mui/icons-material/Group";
@@ -242,71 +243,72 @@ export const actionType = {
 };
 
 // Column
-export const columnShowAccountDefault: ColumnShowDatagrid<AccountTypeDefault> = {
-  columnWidths: [
-    { columnName: "is_active", width: 120 },
-    { columnName: "is_export_data", width: 150 },
-    { columnName: "operation", width: 100 },
+export const columnShowAccountDefault: ColumnShowDatagrid<AccountTypeDefault> =
+  {
+    columnWidths: [
+      { columnName: "is_active", width: 120 },
+      { columnName: "is_export_data", width: 150 },
+      { columnName: "operation", width: 100 },
 
-    { columnName: "account", width: 350 },
-    { columnName: "info", width: 250 },
-    { columnName: "name", width: 150 },
-    { columnName: "status_sync_show", width: 180 },
-    { columnName: "time_refresh_data", width: 300 },
+      { columnName: "account", width: 350 },
+      { columnName: "info", width: 250 },
+      { columnName: "name", width: 150 },
+      { columnName: "status_sync_show", width: 180 },
+      { columnName: "time_refresh_data", width: 300 },
 
-    { columnName: "operation_refresh", width: 100 },
-    { columnName: "sync_is_active", width: 120 },
-    { columnName: "fb_account", width: 150 },
-    { columnName: "ad_account_name", width: 200 },
-    { columnName: "ad_account_status", width: 150 },
-    { columnName: "sync_habt", width: 120 },
-    { columnName: "sync_jp24", width: 120 },
+      { columnName: "operation_refresh", width: 100 },
+      { columnName: "sync_is_active", width: 120 },
+      { columnName: "fb_account", width: 150 },
+      { columnName: "ad_account_name", width: 200 },
+      { columnName: "ad_account_status", width: 150 },
+      { columnName: "sync_habt", width: 120 },
+      { columnName: "sync_jp24", width: 120 },
 
-    { columnName: "currency_code", width: 150 },
-    { columnName: "time_zone", width: 150 },
-    { columnName: "gg_account", width: 150 },
-    { columnName: "customer_id", width: 150 },
-    { columnName: "account_name", width: 150 },
-    { columnName: "created", width: 150 },
-    { columnName: "modified", width: 150 },
-    { columnName: "description", width: 150 },
-    { columnName: "is_verified", width: 150 },
+      { columnName: "currency_code", width: 150 },
+      { columnName: "time_zone", width: 150 },
+      { columnName: "gg_account", width: 150 },
+      { columnName: "customer_id", width: 150 },
+      { columnName: "account_name", width: 150 },
+      { columnName: "created", width: 150 },
+      { columnName: "modified", width: 150 },
+      { columnName: "description", width: 150 },
+      { columnName: "is_verified", width: 150 },
 
-    // Tiktok Bm
-    { columnName: "is_activate", width: 150 },
-    { columnName: "created", width: 150 },
-    { columnName: "email", width: 150 },
-    { columnName: "display_name", width: 150 },
-  ],
-  columnsShowHeader: [
-    {
-      name: "status_sync_show",
-      title: "Trạng thái đồng bộ",
-      isShow: true,
-    },
-    {
-      name: "time_refresh_data",
-      title: "Thời gian đồng bộ gần nhất",
-      isShow: true,
-    },
-  ],
-  columnShowTable: [
-    {
-      name: "status_sync_show",
-      title: "Trạng thái đồng bộ",
-      isShow: true,
-      column: "status_sync_show",
-      isShowTitle: false,
-    },
-    {
-      name: "time_refresh_data",
-      title: "Thời gian đồng bộ gần nhất",
-      isShow: true,
-      column: "time_refresh_data",
-      isShowTitle: false,
-    },
-  ],
-};
+      // Tiktok Bm
+      { columnName: "is_activate", width: 150 },
+      { columnName: "created", width: 150 },
+      { columnName: "email", width: 150 },
+      { columnName: "display_name", width: 150 },
+    ],
+    columnsShowHeader: [
+      {
+        name: "status_sync_show",
+        title: "Trạng thái đồng bộ",
+        isShow: true,
+      },
+      {
+        name: "time_refresh_data",
+        title: "Thời gian đồng bộ gần nhất",
+        isShow: true,
+      },
+    ],
+    columnShowTable: [
+      {
+        name: "status_sync_show",
+        title: "Trạng thái đồng bộ",
+        isShow: true,
+        column: "status_sync_show",
+        isShowTitle: false,
+      },
+      {
+        name: "time_refresh_data",
+        title: "Thời gian đồng bộ gần nhất",
+        isShow: true,
+        column: "time_refresh_data",
+        isShowTitle: false,
+      },
+    ],
+  };
 
 export const columnSkylinkAccount: ColumnShowDatagrid<SkylinkAccountType> = {
   columnWidths: columnShowAccountDefault.columnWidths,
@@ -387,27 +389,28 @@ export const columnSkylinkAccount: ColumnShowDatagrid<SkylinkAccountType> = {
   ],
 };
 
-export const columnShowFacebookAccount: ColumnShowDatagrid<FacebookAccountType> = {
-  columnWidths: columnShowAccountDefault.columnWidths,
-  columnsShowHeader: [
-    {
-      name: "name",
-      title: "Tài khoản",
-      isShow: true,
-    },
-    ...columnShowAccountDefault.columnsShowHeader,
-  ],
-  columnShowTable: [
-    {
-      name: "name",
-      title: "Tài khoản",
-      isShow: true,
-      column: "name",
-      isShowTitle: false,
-    },
-    ...columnShowAccountDefault.columnShowTable,
-  ],
-};
+export const columnShowFacebookAccount: ColumnShowDatagrid<FacebookAccountType> =
+  {
+    columnWidths: columnShowAccountDefault.columnWidths,
+    columnsShowHeader: [
+      {
+        name: "name",
+        title: "Tài khoản",
+        isShow: true,
+      },
+      ...columnShowAccountDefault.columnsShowHeader,
+    ],
+    columnShowTable: [
+      {
+        name: "name",
+        title: "Tài khoản",
+        isShow: true,
+        column: "name",
+        isShowTitle: false,
+      },
+      ...columnShowAccountDefault.columnShowTable,
+    ],
+  };
 
 export const columnShowAdAccount: ColumnShowDatagrid<AdAccountType> = {
   columnWidths: columnShowAccountDefault.columnWidths,
@@ -573,113 +576,114 @@ export const columnShowGoogleAccount: ColumnShowDatagrid<GoogleAccountType> = {
   ],
 };
 
-export const columnShowCustomerAccount: ColumnShowDatagrid<CustomerAccountType> = {
-  columnWidths: columnShowAccountDefault.columnWidths,
-  columnsShowHeader: [
-    {
-      name: "sync_is_active",
-      title: "Đồng bộ",
-      isShow: true,
-    },
-    {
-      name: "sync_habt",
-      title: "Đồng bộ HABT",
-      isShow: true,
-      tenantName: "habt",
-    },
-    {
-      name: "sync_jp24",
-      title: "Đồng bộ JP24",
-      isShow: true,
-      tenantName: "jp24",
-    },
-    {
-      name: "name",
-      title: "Khách hàng",
-      isShow: true,
-    },
-    ...columnShowAccountDefault.columnsShowHeader,
-    {
-      name: "currency_code",
-      title: "Loại tiền tệ",
-      isShow: true,
-    },
-    {
-      name: "time_zone",
-      title: "Mốc thời gian",
-      isShow: true,
-    },
-    {
-      name: "customer_id",
-      title: "ID Customer",
-      isShow: true,
-    },
-    {
-      name: "gg_account",
-      title: "Tài khoản Google",
-      isShow: true,
-    },
-  ],
-  columnShowTable: [
-    {
-      name: "sync_is_active",
-      column: "sync_is_active",
-      isShowTitle: false,
-      title: "Đồng bộ",
-      isShow: true,
-    },
-    {
-      name: "sync_habt",
-      column: "sync_habt",
-      isShowTitle: false,
-      title: "Đồng bộ HABT",
-      isShow: true,
-    },
-    {
-      name: "sync_jp24",
-      column: "sync_jp24",
-      isShowTitle: false,
-      title: "Đồng bộ JP24",
-      isShow: true,
-    },
-    {
-      name: "name",
-      column: "name",
-      isShowTitle: false,
-      title: "Khách hàng",
-      isShow: true,
-    },
-    ...columnShowAccountDefault.columnShowTable,
-    {
-      name: "currency_code",
-      column: "currency_code",
-      isShowTitle: false,
-      title: "Loại tiền tệ",
-      isShow: true,
-    },
-    {
-      name: "time_zone",
-      column: "time_zone",
-      isShowTitle: false,
-      title: "Mốc thời gian",
-      isShow: true,
-    },
-    {
-      name: "customer_id",
-      column: "customer_id",
-      isShowTitle: false,
-      title: "ID Customer",
-      isShow: true,
-    },
-    {
-      name: "gg_account",
-      column: "gg_account",
-      isShowTitle: false,
-      title: "Tài khoản Google",
-      isShow: true,
-    },
-  ],
-};
+export const columnShowCustomerAccount: ColumnShowDatagrid<CustomerAccountType> =
+  {
+    columnWidths: columnShowAccountDefault.columnWidths,
+    columnsShowHeader: [
+      {
+        name: "sync_is_active",
+        title: "Đồng bộ",
+        isShow: true,
+      },
+      {
+        name: "sync_habt",
+        title: "Đồng bộ HABT",
+        isShow: true,
+        tenantName: "habt",
+      },
+      {
+        name: "sync_jp24",
+        title: "Đồng bộ JP24",
+        isShow: true,
+        tenantName: "jp24",
+      },
+      {
+        name: "name",
+        title: "Khách hàng",
+        isShow: true,
+      },
+      ...columnShowAccountDefault.columnsShowHeader,
+      {
+        name: "currency_code",
+        title: "Loại tiền tệ",
+        isShow: true,
+      },
+      {
+        name: "time_zone",
+        title: "Mốc thời gian",
+        isShow: true,
+      },
+      {
+        name: "customer_id",
+        title: "ID Customer",
+        isShow: true,
+      },
+      {
+        name: "gg_account",
+        title: "Tài khoản Google",
+        isShow: true,
+      },
+    ],
+    columnShowTable: [
+      {
+        name: "sync_is_active",
+        column: "sync_is_active",
+        isShowTitle: false,
+        title: "Đồng bộ",
+        isShow: true,
+      },
+      {
+        name: "sync_habt",
+        column: "sync_habt",
+        isShowTitle: false,
+        title: "Đồng bộ HABT",
+        isShow: true,
+      },
+      {
+        name: "sync_jp24",
+        column: "sync_jp24",
+        isShowTitle: false,
+        title: "Đồng bộ JP24",
+        isShow: true,
+      },
+      {
+        name: "name",
+        column: "name",
+        isShowTitle: false,
+        title: "Khách hàng",
+        isShow: true,
+      },
+      ...columnShowAccountDefault.columnShowTable,
+      {
+        name: "currency_code",
+        column: "currency_code",
+        isShowTitle: false,
+        title: "Loại tiền tệ",
+        isShow: true,
+      },
+      {
+        name: "time_zone",
+        column: "time_zone",
+        isShowTitle: false,
+        title: "Mốc thời gian",
+        isShow: true,
+      },
+      {
+        name: "customer_id",
+        column: "customer_id",
+        isShowTitle: false,
+        title: "ID Customer",
+        isShow: true,
+      },
+      {
+        name: "gg_account",
+        column: "gg_account",
+        isShowTitle: false,
+        title: "Tài khoản Google",
+        isShow: true,
+      },
+    ],
+  };
 
 export const columnShowZaloAccount: ColumnShowDatagrid<ZaloAccountType> = {
   columnWidths: columnShowAccountDefault.columnWidths,
@@ -749,114 +753,116 @@ export const columnShowZaloAccount: ColumnShowDatagrid<ZaloAccountType> = {
   ],
 };
 
-export const columnShowTiktokBmAccount: ColumnShowDatagrid<TiktokBmAccountType> = {
-  columnWidths: columnShowAccountDefault.columnWidths,
-  columnsShowHeader: [
-    {
-      name: "created",
-      title: "Ngày tạo",
-      isShow: true,
-    },
-    {
-      name: "display_name",
-      title: "Tài khoản",
-      isShow: true,
-    },
-    {
-      name: "email",
-      title: "Email",
-      isShow: true,
-    },
-    {
-      name: "is_activate",
-      title: "Active",
-      isShow: true,
-    },
-  ],
-  columnShowTable: [
-    {
-      name: "created",
-      column: "created",
-      isShowTitle: false,
-      title: "Ngày tạo",
-      isShow: true,
-    },
-    {
-      name: "display_name",
-      column: "display_name",
-      isShowTitle: false,
-      title: "Tài khoản",
-      isShow: true,
-    },
-    {
-      name: "email",
-      column: "email",
-      isShowTitle: false,
-      title: "Email",
-      isShow: true,
-    },
-    {
-      name: "is_activate",
-      column: "is_activate",
-      isShowTitle: false,
-      title: "Active",
-      isShow: true,
-    },
-  ],
-};
+export const columnShowTiktokBmAccount: ColumnShowDatagrid<TiktokBmAccountType> =
+  {
+    columnWidths: columnShowAccountDefault.columnWidths,
+    columnsShowHeader: [
+      {
+        name: "created",
+        title: "Ngày tạo",
+        isShow: true,
+      },
+      {
+        name: "display_name",
+        title: "Tài khoản",
+        isShow: true,
+      },
+      {
+        name: "email",
+        title: "Email",
+        isShow: true,
+      },
+      {
+        name: "is_activate",
+        title: "Active",
+        isShow: true,
+      },
+    ],
+    columnShowTable: [
+      {
+        name: "created",
+        column: "created",
+        isShowTitle: false,
+        title: "Ngày tạo",
+        isShow: true,
+      },
+      {
+        name: "display_name",
+        column: "display_name",
+        isShowTitle: false,
+        title: "Tài khoản",
+        isShow: true,
+      },
+      {
+        name: "email",
+        column: "email",
+        isShowTitle: false,
+        title: "Email",
+        isShow: true,
+      },
+      {
+        name: "is_activate",
+        column: "is_activate",
+        isShowTitle: false,
+        title: "Active",
+        isShow: true,
+      },
+    ],
+  };
 
-export const columnShowTiktokAdsAccount: ColumnShowDatagrid<TiktokAdsAccountType> = {
-  columnWidths: columnShowAccountDefault.columnWidths,
-  columnsShowHeader: [
-    {
-      name: "sync_is_active",
-      title: "Đồng bộ",
-      isShow: true,
-    },
-    {
-      name: "sync_habt",
-      title: "Đồng bộ HABT",
-      isShow: true,
-      tenantName: "habt",
-    },
-    {
-      name: "sync_jp24",
-      title: "Đồng bộ JP24",
-      isShow: true,
-      tenantName: "jp24",
-    },
-    {
-      name: "name",
-      title: "Tên",
-      isShow: true,
-    },
-    ...columnShowAccountDefault.columnsShowHeader,
-  ],
-  columnShowTable: [
-    {
-      name: "sync_habt",
-      column: "sync_habt",
-      isShowTitle: false,
-      title: "Đồng bộ HABT",
-      isShow: true,
-    },
-    {
-      name: "sync_jp24",
-      column: "sync_jp24",
-      isShowTitle: false,
-      title: "Đồng bộ JP24",
-      isShow: true,
-    },
-    {
-      name: "name",
-      column: "name",
-      isShowTitle: false,
-      title: "Tên",
-      isShow: true,
-    },
-    ...columnShowAccountDefault.columnShowTable,
-  ],
-};
+export const columnShowTiktokAdsAccount: ColumnShowDatagrid<TiktokAdsAccountType> =
+  {
+    columnWidths: columnShowAccountDefault.columnWidths,
+    columnsShowHeader: [
+      {
+        name: "sync_is_active",
+        title: "Đồng bộ",
+        isShow: true,
+      },
+      {
+        name: "sync_habt",
+        title: "Đồng bộ HABT",
+        isShow: true,
+        tenantName: "habt",
+      },
+      {
+        name: "sync_jp24",
+        title: "Đồng bộ JP24",
+        isShow: true,
+        tenantName: "jp24",
+      },
+      {
+        name: "name",
+        title: "Tên",
+        isShow: true,
+      },
+      ...columnShowAccountDefault.columnsShowHeader,
+    ],
+    columnShowTable: [
+      {
+        name: "sync_habt",
+        column: "sync_habt",
+        isShowTitle: false,
+        title: "Đồng bộ HABT",
+        isShow: true,
+      },
+      {
+        name: "sync_jp24",
+        column: "sync_jp24",
+        isShowTitle: false,
+        title: "Đồng bộ JP24",
+        isShow: true,
+      },
+      {
+        name: "name",
+        column: "name",
+        isShowTitle: false,
+        title: "Tên",
+        isShow: true,
+      },
+      ...columnShowAccountDefault.columnShowTable,
+    ],
+  };
 
 export const columnShowTiktokAccount: ColumnShowDatagrid<TiktokAccountType> = {
   columnWidths: [
@@ -1372,7 +1378,9 @@ export const checkLocalStorage = (key: string, time: number = 30) => {
   if (timeLocal) {
     const newDate: any = new Date();
     const newDate2: any = new Date(timeLocal);
-    const count = Math.round((((newDate - newDate2) % 86400000) % 3600000) / 60000);
+    const count = Math.round(
+      (((newDate - newDate2) % 86400000) % 3600000) / 60000
+    );
 
     if (count < time) {
       return true;
@@ -1543,7 +1551,9 @@ export const propsTableDefault: any = {
   arrColumnBool,
 };
 
-export const handleDataItem = (item: AccountType | AdAccountType | TiktokAdvertiserUserType) => {
+export const handleDataItem = (
+  item: AccountType | AdAccountType | TiktokAdvertiserUserType
+) => {
   return {
     status_sync_show: {
       value: STATUS_SYNC[item?.status_sync || ""],
@@ -1551,124 +1561,140 @@ export const handleDataItem = (item: AccountType | AdAccountType | TiktokAdverti
     },
     ad_account_status: {
       value: STATUS_SYNC[item?.status as keyof typeof STATUS_SYNC],
-      color: COLOR_STATUS_SYNC[item?.status as keyof typeof COLOR_STATUS_SYNC] as LabelColor,
+      color: COLOR_STATUS_SYNC[
+        item?.status as keyof typeof COLOR_STATUS_SYNC
+      ] as LabelColor,
     },
   };
 };
 
-export const TAB_HEADER_SETTING = (user: Partial<UserType> | null, roles: any) => [
+export const TAB_HEADER_SETTING = (
+  user: Partial<UserType> | null,
+  roles: any
+) => [
   {
     label: "Tài khoản nhân sự",
     icon: <SupervisedUserCircleIcon />,
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.SKYLINK_ACCOUNT]}`,
+    path: `/${
+      PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.SKYLINK_ACCOUNT]
+    }`,
     roles: isMatchRoles(
       user?.is_superuser,
       roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.SKYLINK_ACCOUNT]
     ),
   },
-  {
-    icon: <FacebookIcon />,
-    label: "Tài khoản Facebook BM",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.FACEBOOK_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.FACEBOOK_ACCOUNT]
-    ),
-  },
-  {
-    icon: <CampaignIcon />,
-    label: "Tài khoản Facebook quảng cáo",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.AD_FACEBOOK_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.AD_FACEBOOK_ACCOUNT]
-    ),
-  },
-  {
-    icon: <WebIcon />,
-    label: "Tài khoản Fanpage",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT]
-    ),
-  },
-  {
-    icon: <SupervisorAccountIcon />,
-    label: "Tài khoản Google BM",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.GOOGLE_ACCOUNT_BM]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.GOOGLE_ACCOUNT_BM]
-    ),
-  },
-  {
-    icon: <AccountBoxIcon />,
-    label: "Tài khoản Google CT",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.CUSTOMER_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.CUSTOMER_ACCOUNT]
-    ),
-  },
-  {
-    icon: <BallotIcon />,
-    label: "Tài khoản Tiktok BM",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.TIKTOK_BM_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.TIKTOK_BM_ACCOUNT]
-    ),
-  },
-  {
-    icon: <BallotIcon />,
-    label: "Tài khoản Tiktok Ads",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.TIKTOK_ADS_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.TIKTOK_ADS_ACCOUNT]
-    ),
-  },
-  {
-    icon: <GroupIcon />,
-    label: "Tài khoản Tiktok Shop",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.TIKTOK_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.TIKTOK_ACCOUNT]
-    ),
-  },
-  {
-    icon: <LoyaltyIcon />,
-    label: "Tài khoản Lazada",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.LAZADA_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.LAZADA_ACCOUNT]
-    ),
-  },
-  {
-    icon: <BallotIcon />,
-    label: "Tài khoản Shopee",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.SHOPEE_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.SHOPEE_ACCOUNT]
-    ),
-  },
-  {
-    icon: <EmojiEmotionsIcon />,
-    label: "Tài khoản Zalo",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.ZALO_ACCOUNT]}`,
-    roles: isMatchRoles(
-      user?.is_superuser,
-      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.ZALO_ACCOUNT]
-    ),
-  },
+  // {
+  //   icon: <FacebookIcon />,
+  //   label: "Tài khoản Facebook BM",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.FACEBOOK_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.FACEBOOK_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <CampaignIcon />,
+  //   label: "Tài khoản Facebook quảng cáo",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.AD_FACEBOOK_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.AD_FACEBOOK_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <WebIcon />,
+  //   label: "Tài khoản Fanpage",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.FANPAGE_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <SupervisorAccountIcon />,
+  //   label: "Tài khoản Google BM",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.GOOGLE_ACCOUNT_BM]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.GOOGLE_ACCOUNT_BM]
+  //   ),
+  // },
+  // {
+  //   icon: <AccountBoxIcon />,
+  //   label: "Tài khoản Google CT",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.CUSTOMER_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.CUSTOMER_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <BallotIcon />,
+  //   label: "Tài khoản Tiktok BM",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.TIKTOK_BM_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.TIKTOK_BM_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <BallotIcon />,
+  //   label: "Tài khoản Tiktok Ads",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.TIKTOK_ADS_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.TIKTOK_ADS_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <GroupIcon />,
+  //   label: "Tài khoản Tiktok Shop",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.TIKTOK_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.TIKTOK_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <LoyaltyIcon />,
+  //   label: "Tài khoản Lazada",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.LAZADA_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.LAZADA_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <BallotIcon />,
+  //   label: "Tài khoản Shopee",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.SHOPEE_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.SHOPEE_ACCOUNT]
+  //   ),
+  // },
+  // {
+  //   icon: <EmojiEmotionsIcon />,
+  //   label: "Tài khoản Zalo",
+  //   path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.ZALO_ACCOUNT]}`,
+  //   roles: isMatchRoles(
+  //     user?.is_superuser,
+  //     roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.ZALO_ACCOUNT]
+  //   ),
+  // },
   {
     icon: <ManageAccountsIcon />,
-    label: "Quyền",
+    label: "Phân quyền hệ thống",
     path: `/${PATH_DASHBOARD[ROLE_TAB.SETTINGS][STATUS_ROLE_SETTINGS.ROLE]}`,
+    roles: isMatchRoles(
+      user?.is_superuser,
+      roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.ROLE]
+    ),
+  },
+  {
+    icon: <PasswordIcon />,
+    label: "Đổi mật khẩu",
+    path: `/profile`,
     roles: isMatchRoles(
       user?.is_superuser,
       roles?.[ROLE_TAB.SETTINGS]?.[STATUS_ROLE_SETTINGS.ROLE]

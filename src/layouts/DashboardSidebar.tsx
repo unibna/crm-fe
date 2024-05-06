@@ -211,9 +211,9 @@ const DashboardSidebar = ({
       />
       <Box
         sx={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
+          // position: "fixed",
+          // bottom: 0,
+          // left: 0,
           width: !isCollapse ? "280px" : "90px",
         }}
       >

@@ -520,6 +520,7 @@ const SidebarConfig = ({
             },
           ],
         },
+
         // {
         //   title: TITLE_PAGE.SHIPPING,
         //   path: PATH_DASHBOARD[ROLE_TAB.SHIPPING][ROOT],
@@ -641,6 +642,63 @@ const SidebarConfig = ({
           code: "document",
         },
         // {
+        //   title: "Cấu hình",
+        //   path: PATH_DASHBOARD[ROLE_TAB.SYSTEM][ROOT],
+        //   icon: <SettingsIcon />,
+        //   roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.SYSTEM]),
+        //   code: "config",
+        //   children: [
+        //     {
+        //       title: "Phân quyền hệ thống",
+        //       path: PATH_DASHBOARD[ROLE_TAB.SYSTEM][
+        //         STATUS_ROLE_SYSTEM.SYSTEM_PERMISSION
+        //       ],
+        //       roles: isMatchRoles(
+        //         user?.is_superuser,
+        //         roles?.[ROLE_TAB.SYSTEM]?.[STATUS_ROLE_SYSTEM.SYSTEM_PERMISSION]
+        //       ),
+        //       code: "system-permission",
+        //     },
+        //     {
+        //       title: "Lịch sử hệ thống",
+        //       path: PATH_DASHBOARD[ROLE_TAB.SYSTEM][
+        //         STATUS_ROLE_SYSTEM.SYSTEM_HISTORY
+        //       ],
+        //       roles: isMatchRoles(
+        //         user?.is_superuser,
+        //         roles?.[ROLE_TAB.SYSTEM]?.[STATUS_ROLE_SYSTEM.SYSTEM_HISTORY]
+        //       ),
+        //       code: "system-history",
+        //     },
+        //     {
+        //       title: "Lịch sử truy cập",
+        //       path: PATH_DASHBOARD[ROLE_TAB.SYSTEM][
+        //         STATUS_ROLE_SYSTEM.SYSTEM_ACCESS_HISTORY
+        //       ],
+        //       roles: isMatchRoles(
+        //         user?.is_superuser,
+        //         roles?.[ROLE_TAB.SYSTEM]?.[
+        //           STATUS_ROLE_SYSTEM.SYSTEM_ACCESS_HISTORY
+        //         ]
+        //       ),
+        //       code: "system-access-history",
+        //     },
+        //     {
+        //       title: "Đổi mật khẩu",
+        //       path: PATH_DASHBOARD[ROLE_TAB.SYSTEM][
+        //         STATUS_ROLE_SYSTEM.SYSTEM_CHANGE_PASSWORD
+        //       ],
+        //       roles: isMatchRoles(
+        //         user?.is_superuser,
+        //         roles?.[ROLE_TAB.SYSTEM]?.[
+        //           STATUS_ROLE_SYSTEM.SYSTEM_CHANGE_PASSWORD
+        //         ]
+        //       ),
+        //       code: "system-change-password",
+        //     },
+        //   ],
+        // },
+        // {
         //   title: "SkyTable",
         //   path: PATH_DASHBOARD[ROLE_TAB.SKYCOM_TABLE][ROOT],
         //   icon: <ViewTimelineIcon />,
@@ -682,41 +740,21 @@ const SidebarConfig = ({
         //     },
         //   ],
         // },
+        {
+          title: TITLE_PAGE.SETTING,
+          path: PATH_DASHBOARD[ROLE_TAB.SETTINGS][ROOT],
+          icon: <SettingsIcon />,
+          roles: isMatchRoles(
+            user?.is_superuser,
+            map(
+              Object.values(STATUS_ROLE_SETTINGS),
+              (item: string) => roles?.[ROLE_TAB.SETTINGS]?.[item]
+            )
+          ),
+          code: "setting",
+        },
       ],
     },
-    // {
-    //   subheader: "System",
-    //   items: [
-    //     {
-    //       title: "Thuộc tính",
-    //       path: PATH_DASHBOARD[ROLE_TAB.ATTRIBUTE][ROOT],
-    //       icon: <ListAltIcon />,
-    //       roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.ATTRIBUTE]),
-    //       code: "attribute",
-    //     },
-    //     // {
-    //     //   title: "Hướng dẫn & Trợ giúp",
-    //     //   path: PATH_DASHBOARD[ROLE_TAB.SUPPORT][ROOT],
-    //     //   icon: <TipsAndUpdatesIcon />,
-    //     //   roles: true,
-    //     //   code: 'support'
-    //     // },
-    //     {
-    //       title: THEME_TITLE,
-    //       path: pathname,
-    //       onClick: handleShowThemeModal,
-    //       icon: <Icon icon={options2Fill} width={25} height={25} />,
-    //       roles: true,
-    //       code: "theme",
-    //     },
-    //     // {
-    //     //   title: "Media",
-    //     //   path: PATH_DASHBOARD.system.media,
-    //     //   icon: <PermMediaIcon />,
-    //     //   roles: isMatchRoles(user?.is_superuser,[roles?.[ROLE_TAB.MEDIA]?.[STATUS_ROLE_MEDIA.HANDLE]]),
-    //     // },
-    //   ],
-    // },
   ];
 };
 

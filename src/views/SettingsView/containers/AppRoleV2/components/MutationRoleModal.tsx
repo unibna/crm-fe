@@ -88,7 +88,8 @@ const MutationRoleModal = (props: Props) => {
       const optionDefault = optionRole.find(
         (item) =>
           item.label ===
-          (getObjectPropSafely(() => user?.group_permission?.name) || LABEL_ROLE.ADMIN)
+          (getObjectPropSafely(() => user?.group_permission?.name) ||
+            LABEL_ROLE.ADMIN)
       );
 
       if (optionDefault) {
@@ -99,7 +100,10 @@ const MutationRoleModal = (props: Props) => {
         });
       }
 
-      setValue("route", rolesContent?.[user?.group_permission?.id || ""]?.route);
+      setValue(
+        "route",
+        rolesContent?.[user?.group_permission?.id || ""]?.route
+      );
     }
 
     clearErrors();
@@ -112,17 +116,14 @@ const MutationRoleModal = (props: Props) => {
       buttonText={buttonText}
       maxWidth="lg"
       onClose={handleClose}
-      onSubmit={handleSubmit((form: FormInput) =>
-      {
+      onSubmit={handleSubmit((form: FormInput) => {
         hanldeSubmit({
           name: form.name,
           role: roleItem.data,
           route: form.route,
           code: form.code,
-        })
-      }
-        
-      )}
+        });
+      })}
       isLoadingButton={isLoadingButton}
       open={isOpen}
     >
@@ -142,9 +143,13 @@ const MutationRoleModal = (props: Props) => {
               defaultValue=""
               onChange={(e) => {
                 setValue("name", e.target.value, { shouldValidate: true });
-                setValue("code", standardString(e.target.value).split(" ").join("-"), {
-                  shouldValidate: true,
-                });
+                setValue(
+                  "code",
+                  standardString(e.target.value).split(" ").join("-"),
+                  {
+                    shouldValidate: true,
+                  }
+                );
               }}
               InputLabelProps={{ shrink: true }}
               placeholder="Nhập tên quyền"
@@ -158,7 +163,9 @@ const MutationRoleModal = (props: Props) => {
               required
               defaultValue=""
               value={values.code}
-              onChange={(e) => setValue("code", e.target.value, { shouldValidate: true })}
+              onChange={(e) =>
+                setValue("code", e.target.value, { shouldValidate: true })
+              }
               InputLabelProps={{ shrink: true }}
               placeholder="Nhập mã nhóm"
               fullWidth
@@ -167,19 +174,34 @@ const MutationRoleModal = (props: Props) => {
               disablePortal
               id="route-autocomplete"
               options={DIRECTION_ROUTE_OPTIONS}
-              renderInput={(params) => <TextField {...params} label="Đường dẫn mặc định" />}
-              value={DIRECTION_ROUTE_OPTIONS.find((item) => item.value === roleItem?.route) || null}
-              onChange={(e, route) =>
-                setValue("route", route?.value?.toString() || "", { shouldValidate: true })
+              renderInput={(params) => (
+                <TextField {...params} label="Đường dẫn mặc định" />
+              )}
+              value={
+                DIRECTION_ROUTE_OPTIONS.find(
+                  (item) => item.value === roleItem?.route
+                ) || null
               }
-              isOptionEqualToValue={(option, value) => option.value === value.value}
+              onChange={(e, route) =>
+                setValue("route", route?.value?.toString() || "", {
+                  shouldValidate: true,
+                })
+              }
+              isOptionEqualToValue={(option, value) =>
+                option.value === value.value
+              }
               fullWidth
             />
           </Stack>
         </Box>
 
         <Box p={2}>
-          <ControlPanel roles={roles} roleItem={roleItem} setRoleItem={setRoleItem} isCreate />
+          <ControlPanel
+            roles={roles}
+            roleItem={roleItem}
+            setRoleItem={setRoleItem}
+            isCreate
+          />
         </Box>
       </FormGroup>
     </FormDialog>
