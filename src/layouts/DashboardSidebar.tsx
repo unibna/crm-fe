@@ -135,83 +135,89 @@ const DashboardSidebar = ({
         },
       }}
     >
-      <Stack
-        spacing={3}
-        sx={{
-          px: 2.5,
-          pt: 3,
-          pb: 2,
-          ...(isCollapse && {
-            alignItems: "center",
-          }),
+      <Box
+        style={{
+          flexGrow: 1,
         }}
       >
         <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
+          spacing={3}
+          sx={{
+            px: 2.5,
+            pt: 3,
+            pb: 2,
+            ...(isCollapse && {
+              alignItems: "center",
+            }),
+          }}
         >
-          <Box
-            component={RouterLink}
-            // to={`${getObjectPropSafely(() => user?.group_permission?.route)}`}
-            to={"/dashboard"}
-            sx={{
-              display: "inline-flex",
-              width: "100%",
-            }}
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
           >
-            <Logo isCollapse={isCollapse} isShowDecoration />
-          </Box>
-        </Stack>
-
-        <MenuPopover
-          open={open}
-          onClose={handleClose}
-          anchorEl={anchorRef.current}
-          sx={{ width: 240 }}
-        >
-          <Stack direction="row" alignItems="center">
-            <Box sx={{ my: 1.5, px: 2.5 }}>
-              <Typography variant="subtitle1" noWrap>
-                {user?.name}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: "text.secondary" }}
-                noWrap
-              >
-                {user?.email}
-              </Typography>
+            <Box
+              component={RouterLink}
+              // to={`${getObjectPropSafely(() => user?.group_permission?.route)}`}
+              to={"/dashboard"}
+              sx={{
+                display: "inline-flex",
+                width: "100%",
+              }}
+            >
+              <Logo isCollapse={isCollapse} isShowDecoration />
             </Box>
           </Stack>
 
-          <Divider sx={{ my: 1 }} />
+          <MenuPopover
+            open={open}
+            onClose={handleClose}
+            anchorEl={anchorRef.current}
+            sx={{ width: 240 }}
+          >
+            <Stack direction="row" alignItems="center">
+              <Box sx={{ my: 1.5, px: 2.5 }}>
+                <Typography variant="subtitle1" noWrap>
+                  {user?.name}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "text.secondary" }}
+                  noWrap
+                >
+                  {user?.email}
+                </Typography>
+              </Box>
+            </Stack>
 
-          <Box sx={{ p: 2, pt: 1.5 }}>
-            <Button
-              fullWidth
-              color="inherit"
-              variant="outlined"
-              onClick={(e: any) => handleLogout(e)}
-            >
-              Logout
-            </Button>
-          </Box>
-        </MenuPopover>
-      </Stack>
+            <Divider sx={{ my: 1 }} />
 
-      <NavSection
-        navConfig={sidebarConfig({
-          roles: user?.group_permission?.data,
-          userGroupId: user?.group_permission?.id || "",
-          pathname,
-          handleShowThemeModal: () => onShowModal(!isOpenModal),
-        })}
-        isShow={!isCollapse}
-      />
+            <Box sx={{ p: 2, pt: 1.5 }}>
+              <Button
+                fullWidth
+                color="inherit"
+                variant="outlined"
+                onClick={(e: any) => handleLogout(e)}
+              >
+                Logout
+              </Button>
+            </Box>
+          </MenuPopover>
+        </Stack>
+
+        <NavSection
+          navConfig={sidebarConfig({
+            roles: user?.group_permission?.data,
+            userGroupId: user?.group_permission?.id || "",
+            pathname,
+            handleShowThemeModal: () => onShowModal(!isOpenModal),
+          })}
+          isShow={!isCollapse}
+        />
+      </Box>
       <Box
         sx={{
-          // position: "fixed",
+          // position: "absolute",
           // bottom: 0,
           // left: 0,
           width: !isCollapse ? "280px" : "90px",
