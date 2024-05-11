@@ -149,8 +149,8 @@ function ControlPanel({
             disablePortal
             id="roles-autocomplete"
             options={roles.map((role: any) => ({
-              label: role.name.value,
-              value: role.id,
+              label: role?.name,
+              value: role?.id,
             }))}
             renderInput={(params) => <TextField {...params} label="Roles" />}
             value={{ ...roleItem, value: roleItem?.id }}
@@ -160,7 +160,7 @@ function ControlPanel({
               );
               temp &&
                 setRoleItem({
-                  label: temp?.name?.value,
+                  label: temp?.name,
                   code: temp?.code,
                   data: temp?.data,
                   route: temp?.route?.value,

@@ -119,35 +119,35 @@ export const DIRECTION_ROUTE_OPTIONS: SelectOptionType[] = [
     label: vi.cdp_customer,
     value: path(
       ROOT_PATH,
-      PATH_DASHBOARD[ROLE_TAB.CDP][STATUS_ROLE_CDP.USERS][ROOT]
+      PATH_DASHBOARD[ROLE_TAB.CDP][STATUS_ROLE_CDP.USERS][STATUS_ROLE_CDP.LIST]
     ),
   },
-  // {
-  //   label: vi.order_status,
-  //   value: path(
-  //     ROOT_PATH,
-  //     PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ROOT]
-  //   ),
-  // },
-  // {
-  //   label: vi.order_report_revenue,
-  //   value: PATH_DASHBOARD[ROLE_TAB.REPORT_REVENUE][ROOT],
-  // },
-  // {
-  //   label: vi.shipping_status,
-  //   value: PATH_DASHBOARD[ROLE_TAB.SHIPPING][ROOT],
-  // },
-  // {
-  //   label: vi.shipping_report,
-  //   value: path(
-  //     ROOT_PATH,
-  //     PATH_DASHBOARD[ROLE_TAB.SHIPPING][STATUS_ROLE_SHIPPING.REPORT]
-  //   ),
-  // },
-  // {
-  //   label: vi.report_revenue,
-  //   value: PATH_DASHBOARD[ROLE_TAB.REPORT_REVENUE][ROOT],
-  // },
+  {
+    label: vi.order_status,
+    value: path(
+      ROOT_PATH,
+      PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ROOT]
+    ),
+  },
+  {
+    label: vi.order_report_revenue,
+    value: PATH_DASHBOARD[ROLE_TAB.REPORT_REVENUE][ROOT],
+  },
+  {
+    label: vi.shipping_status,
+    value: PATH_DASHBOARD[ROLE_TAB.SHIPPING][ROOT],
+  },
+  {
+    label: vi.shipping_report,
+    value: path(
+      ROOT_PATH,
+      PATH_DASHBOARD[ROLE_TAB.SHIPPING][STATUS_ROLE_SHIPPING.REPORT]
+    ),
+  },
+  {
+    label: vi.report_revenue,
+    value: PATH_DASHBOARD[ROLE_TAB.REPORT_REVENUE][ROOT],
+  },
   // {
   //   label: vi.customer_care,
   //   value: PATH_DASHBOARD[ROLE_TAB.CSKH][ROOT],
@@ -160,20 +160,20 @@ export const DIRECTION_ROUTE_OPTIONS: SelectOptionType[] = [
     label: vi.warehouse_overview,
     value: PATH_DASHBOARD[ROLE_TAB.WAREHOUSE][ROOT],
   },
-  // {
-  //   label: vi.warehouse_scan,
-  //   value: path(
-  //     ROOT_PATH,
-  //     PATH_DASHBOARD[ROLE_TAB.WAREHOUSE][STATUS_ROLE_WAREHOUSE.SCAN_EXPORT]
-  //   ),
-  // },
-  // {
-  //   label: vi.warehouse_report,
-  //   value: path(
-  //     ROOT_PATH,
-  //     PATH_DASHBOARD[ROLE_TAB.WAREHOUSE][STATUS_ROLE_WAREHOUSE.REPORT_INVENTORY]
-  //   ),
-  // },
+  {
+    label: vi.warehouse_scan,
+    value: path(
+      ROOT_PATH,
+      PATH_DASHBOARD[ROLE_TAB.WAREHOUSE][STATUS_ROLE_WAREHOUSE.SCAN_EXPORT]
+    ),
+  },
+  {
+    label: vi.warehouse_report,
+    value: path(
+      ROOT_PATH,
+      PATH_DASHBOARD[ROLE_TAB.WAREHOUSE][STATUS_ROLE_WAREHOUSE.REPORT_INVENTORY]
+    ),
+  },
   // {
   //   label: vi.skytable,
   //   value: path(ROOT_PATH, PATH_DASHBOARD[ROLE_TAB.SKYCOM_TABLE][ROOT]),
