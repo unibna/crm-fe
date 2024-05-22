@@ -122,7 +122,10 @@ const OrderPage = () => {
 
   return (
     <>
-      <Paper sx={{ mt: 4, mb: 1, position: "relative" }} variant="outlined">
+      <Paper
+        sx={{ mt: 4, mb: 1, position: "relative", borderRadius: 0 }}
+        variant="outlined"
+      >
         {isHandleOrder && <AmountStatusOrderDetail />}
         <Stack
           direction="row"
@@ -133,7 +136,12 @@ const OrderPage = () => {
               sx={{ borderStyle: "dashed" }}
             />
           }
-          sx={{ py: 2, overflowX: "auto" }}
+          sx={{
+            py: 2,
+            overflowX: "auto",
+            backgroundColor: "white",
+            borderRadius: 0,
+          }}
         >
           <OrderAnalytic
             title="Tất cả"

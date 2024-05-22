@@ -150,7 +150,7 @@ const PromotionContainer = ({
 
   return (
     <Page title={TITLE_PAGE.PROMOTION}>
-      <WrapPage style={{ borderRadius: 0 }}>
+      <WrapPage style={{ borderRadius: 0, backgroundColor: "white" }}>
         <PromotionDialog
           onApplyChanges={handleCreatePromotion}
           onClose={() => setOpenModal(false)}

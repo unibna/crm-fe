@@ -52,7 +52,11 @@ function PaymentDetailPopup(props: PaymentPopupProps) {
       isShowFooter={false}
       enableCloseByDropClick
     >
-      <PaymentDetailTable payments={payments} orderID={orderID} setIsUpdated={setIsUpdated} />
+      <PaymentDetailTable
+        payments={payments}
+        orderID={orderID}
+        setIsUpdated={setIsUpdated}
+      />
     </FormDialog>
   );
 }
@@ -85,8 +89,11 @@ export const PaymentDetailTable = ({
   const renderFalseOption = "---";
 
   const isAlternativePaymentRole =
-    isReadAndWriteRole(user?.is_superuser,
-      user?.group_permission?.data?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.PAYMENT]
+    isReadAndWriteRole(
+      user?.is_superuser,
+      user?.group_permission?.data?.[ROLE_TAB.ORDERS]?.[
+        STATUS_ROLE_ORDERS.PAYMENT
+      ]
     ) && !disabled;
 
   const updateSingleMethod = useCallback(
@@ -101,7 +108,9 @@ export const PaymentDetailTable = ({
             confirmed_by: user?.id,
             confirmed_date: format(new Date(), yyyy_MM_dd_HH_mm_ss),
             receive_time:
-              payment.receive_time && isValid(receiveTime) ? payment.receive_time : null,
+              payment.receive_time && isValid(receiveTime)
+                ? payment.receive_time
+                : null,
             actual_amount: payment.actual_amount || 0,
           },
           [
@@ -122,7 +131,11 @@ export const PaymentDetailTable = ({
   );
 
   const handleUpdatePayment = useCallback(
-    async (payment: OrderPaymentTypeV2, onUpdateSuccess?: any, setLoading?: any) => {
+    async (
+      payment: OrderPaymentTypeV2,
+      onUpdateSuccess?: any,
+      setLoading?: any
+    ) => {
       setLoading && setLoading(true);
       const result = await updateSingleMethod(payment);
       if (result?.data) {
@@ -148,7 +161,8 @@ export const PaymentDetailTable = ({
       const newItem = {
         ...current,
         type: {
-          content: ORDER_PAYMENT_TYPE[current.type as OrderPaymentTypeValue].value,
+          content:
+            ORDER_PAYMENT_TYPE[current.type as OrderPaymentTypeValue].value,
         },
         amount: {
           content: `${fValueVnd(current.amount)}`,
@@ -176,13 +190,19 @@ export const PaymentDetailTable = ({
           ),
         },
         third_party_paid_status: {
-          content: current?.third_party_paid_status ? renderTrueOption : renderFalseOption,
+          content: current?.third_party_paid_status
+            ? renderTrueOption
+            : renderFalseOption,
         },
         internal_paid_status: {
-          content: current?.internal_paid_status ? renderTrueOption : renderFalseOption,
+          content: current?.internal_paid_status
+            ? renderTrueOption
+            : renderFalseOption,
         },
         final_paid_status: {
-          content: current?.final_paid_status ? renderTrueOption : renderFalseOption,
+          content: current?.final_paid_status
+            ? renderTrueOption
+            : renderFalseOption,
         },
         is_confirmed: {
           content: (
@@ -194,7 +214,11 @@ export const PaymentDetailTable = ({
                 !isEdit
               }
               defaultValue={data?.[currentIndex]}
-              handleUpdatePayment={(payment: any, onUpdateSuccess: any, setLoading: any) =>
+              handleUpdatePayment={(
+                payment: any,
+                onUpdateSuccess: any,
+                setLoading: any
+              ) =>
                 handleUpdatePayment(
                   {
                     ...data?.[currentIndex],
@@ -232,7 +256,10 @@ export const PaymentDetailTable = ({
           content: (
             <Stack direction="column" spacing={2}>
               <MTextLine label="Người up:" value={current.upload_by?.name} />
-              <MTextLine label="Thời gian up:" value={fDateTime(current.upload_at)} />
+              <MTextLine
+                label="Thời gian up:"
+                value={fDateTime(current.upload_at)}
+              />
             </Stack>
           ),
         },
@@ -251,9 +278,18 @@ export const PaymentDetailTable = ({
         collation_info: {
           content: (
             <Stack direction="column" spacing={2}>
-              <MTextLine label="Ngày đối soát:" value={fDateTime(current.upload_at)} />
-              <MTextLine label="Tổng tiền nhận (Excel):" value={fNumber(current.file_amount)} />
-              <MTextLine label="Mã giao dịch:" value={current.transaction_code} />
+              <MTextLine
+                label="Ngày đối soát:"
+                value={fDateTime(current.upload_at)}
+              />
+              <MTextLine
+                label="Tổng tiền nhận (Excel):"
+                value={fNumber(current.file_amount)}
+              />
+              <MTextLine
+                label="Mã giao dịch:"
+                value={current.transaction_code}
+              />
             </Stack>
           ),
         },
@@ -261,7 +297,13 @@ export const PaymentDetailTable = ({
           content: (
             <Stack direction="row">
               {map(current.images, (image, idx) => (
-                <MImage src={image.image} height={80} width={80} preview key={idx} />
+                <MImage
+                  src={image.image}
+                  height={80}
+                  width={80}
+                  preview
+                  key={idx}
+                />
               ))}
             </Stack>
           ),

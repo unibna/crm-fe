@@ -14,7 +14,9 @@ export interface RouteType {
   path: string;
   label: React.ReactNode;
   roles: boolean;
-  icon?: string | React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+  icon?:
+    | string
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 }
 
 interface Props {

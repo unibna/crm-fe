@@ -17,7 +17,11 @@ import CollationHeader from "../components/CollationHeader";
 import { DGridDataType } from "_types_/DGridType";
 
 const Collation = () => {
-  const [params, setParams] = useState<any>({ limit: 30, page: 1, ordering: "-upload_at" });
+  const [params, setParams] = useState<any>({
+    limit: 30,
+    page: 1,
+    ordering: "-upload_at",
+  });
   const [hiddenColumnNames, setHiddenColumnNames] = useState<string[]>([]);
   const [isFullRow, setFullRow] = useState(false);
   const [data, setData] = useState<DGridDataType<OrderPaymentTypeV2>>({
@@ -28,7 +32,10 @@ const Collation = () => {
 
   const getData = useCallback(async () => {
     setData((prev) => ({ ...prev, loading: true }));
-    const result = await orderApi.get<CollationType>({ endpoint: "payment/files/", params });
+    const result = await orderApi.get<CollationType>({
+      endpoint: "payment/files/",
+      params,
+    });
     if (result?.data) {
       const { count = 0, results } = result.data;
       const formatData: OrderPaymentTypeV2[] = map(results, (item) => ({
@@ -55,7 +62,7 @@ const Collation = () => {
   );
 
   return (
-    <WrapPage>
+    <WrapPage style={{ backgroundColor: "white" }}>
       <CollationHeader
         isImportFile
         setParams={(payload) => setParams({ ...payload, page: 1 })}
@@ -81,8 +88,12 @@ const Collation = () => {
         params={params}
         pageSize={params.limit}
         dataTotal={data.count}
-        handleChangePage={(page) => setParams((prev: any) => ({ ...prev, page }))}
-        handleChangeRowsPerPage={(limit) => setParams((prev: any) => ({ ...prev, limit }))}
+        handleChangePage={(page) =>
+          setParams((prev: any) => ({ ...prev, page }))
+        }
+        handleChangeRowsPerPage={(limit) =>
+          setParams((prev: any) => ({ ...prev, limit }))
+        }
         isFullTable={isFullRow}
       />
     </WrapPage>

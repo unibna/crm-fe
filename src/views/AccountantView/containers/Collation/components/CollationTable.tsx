@@ -10,10 +10,17 @@ const CollationTable = (props: Partial<DGridType>) => {
   return (
     <TableWrapper {...props}>
       <DateTimeColumn
-        for={["ReceivedDate", "upload_at", "receive_time", "3rd_cod_transfer_date"]}
+        for={[
+          "ReceivedDate",
+          "upload_at",
+          "receive_time",
+          "3rd_cod_transfer_date",
+        ]}
         editColumnNames={["ReceivedDate"]}
       />
-      <NumberColumn for={["Amount", "amount", "file_amount", "payment", "3rd_cod_amount"]} />
+      <NumberColumn
+        for={["Amount", "amount", "file_amount", "payment", "3rd_cod_amount"]}
+      />
       <BooleanColumn for={["is_confirm"]} />
       <UserColumn for={["upload_by"]} />
       <ListImageColumn for={["Images", "images"]} />

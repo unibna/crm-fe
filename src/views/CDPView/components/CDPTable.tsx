@@ -62,7 +62,7 @@ interface Props extends Partial<DGridType> {
 
 const CDPTable = ({ arrLinkAirtableColumn = [], ...props }: Props) => {
   return (
-    <StyleCard>
+    <StyleCard style={{ backgroundColor: "white" }}>
       <Stack direction="row" alignItems="center">
         {props.label && (
           <Typography

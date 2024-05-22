@@ -26,7 +26,10 @@ import compact from "lodash/compact";
 import flatMap from "lodash/flatMap";
 import map from "lodash/map";
 import React, { useMemo } from "react";
-import { detectSortLabelUtil, handleCheckKeyParamsActive } from "utils/formatParamsUtil";
+import {
+  detectSortLabelUtil,
+  handleCheckKeyParamsActive,
+} from "utils/formatParamsUtil";
 import { cloneData } from "utils/helpers";
 import { MExportFileButton } from "../Buttons";
 import AttributeChips from "../Chips/FilterChip/AttributeChips";
@@ -104,7 +107,10 @@ type RightHeaderProps = Partial<
   user?: Partial<UserType> | null;
 } & Omit<SortProps, "sortKey" | "direction" | "label" | "setParams">;
 
-export const RightHeaderColumn = ({ exportFileToEmailProps, ...props }: RightHeaderProps) => {
+export const RightHeaderColumn = ({
+  exportFileToEmailProps,
+  ...props
+}: RightHeaderProps) => {
   const theme = useTheme();
   const { user } = useAuth();
 
@@ -125,9 +131,12 @@ export const RightHeaderColumn = ({ exportFileToEmailProps, ...props }: RightHea
     );
   }, [props.filterOptions]);
 
-  const isReallyFilterOptionsExist = !!filterGrouping.reduce((prev: any, cur: any) => {
-    return compact(cur.values).length ? [...prev, cur] : prev;
-  }, []).length;
+  const isReallyFilterOptionsExist = !!filterGrouping.reduce(
+    (prev: any, cur: any) => {
+      return compact(cur.values).length ? [...prev, cur] : prev;
+    },
+    []
+  ).length;
 
   const renderGroup = (group: any) => (
     <>
@@ -163,7 +172,10 @@ export const RightHeaderColumn = ({ exportFileToEmailProps, ...props }: RightHea
     </>
   );
 
-  const sortValue = detectSortLabelUtil(props?.params?.ordering, props.sortFields);
+  const sortValue = detectSortLabelUtil(
+    props?.params?.ordering,
+    props.sortFields
+  );
 
   return (
     <Grid
@@ -209,7 +221,11 @@ export const RightHeaderColumn = ({ exportFileToEmailProps, ...props }: RightHea
           <WrapFilterPopup filterCount={props.filterChipCount}>
             {filterGrouping.map((group: any, index: number) =>
               group.values.length ? (
-                <FilterGroupItem key={index} group={group} renderValues={renderGroup} />
+                <FilterGroupItem
+                  key={index}
+                  group={group}
+                  renderValues={renderGroup}
+                />
               ) : null
             )}
           </WrapFilterPopup>
@@ -237,7 +253,9 @@ export const RightHeaderColumn = ({ exportFileToEmailProps, ...props }: RightHea
       {props.setFullRow && (
         <Grid item>
           <ToggleModeTable
-            onToggleModeTable={() => props.setFullRow && props.setFullRow((prev) => !prev)}
+            onToggleModeTable={() =>
+              props.setFullRow && props.setFullRow((prev) => !prev)
+            }
             isFullTable={props.isFullRow}
           />
         </Grid>
@@ -376,7 +394,7 @@ const GridWrapHeaderPage = ({
   ...props
 }: GridWrapHeaderProps) => {
   return (
-    <Box py={2} px={2} component={Paper}>
+    <Box py={2} px={2} component={Paper} style={{ backgroundColor: "white" }}>
       {/* basic of header */}
       <Grid container pt={1} spacing={1.5} alignItems="flex-start">
         <LeftHeaderColumn {...props}>{leftChildren}</LeftHeaderColumn>
@@ -465,7 +483,9 @@ const SortButton = ({
   direction,
   sortKey,
 }: SortProps) => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
 
   const open = Boolean(anchorEl);
   const id = open ? "sort-list-popover" : undefined;
@@ -483,27 +503,43 @@ const SortButton = ({
     e.stopPropagation();
     setParams?.({
       ...params,
-      ordering: `${direction === DIRECTION_SORT_TYPE.DESC ? "" : "-"}${sortKey}`,
+      ordering: `${
+        direction === DIRECTION_SORT_TYPE.DESC ? "" : "-"
+      }${sortKey}`,
     });
   };
 
   const handleToggleSorting = (field: string) => {
     const newDirection =
-      direction === DIRECTION_SORT_TYPE.ASC ? DIRECTION_SORT_TYPE.DESC : DIRECTION_SORT_TYPE.ASC;
+      direction === DIRECTION_SORT_TYPE.ASC
+        ? DIRECTION_SORT_TYPE.DESC
+        : DIRECTION_SORT_TYPE.ASC;
 
     setParams?.({
       ...params,
-      ordering: `${newDirection === DIRECTION_SORT_TYPE.DESC ? "-" : ""}${field}`,
+      ordering: `${
+        newDirection === DIRECTION_SORT_TYPE.DESC ? "-" : ""
+      }${field}`,
     });
   };
 
   return (
     <>
-      <Button variant="contained" style={{ paddingLeft: 6, paddingRight: 6 }} onClick={handleClick}>
+      <Button
+        variant="contained"
+        style={{ paddingLeft: 6, paddingRight: 6 }}
+        onClick={handleClick}
+      >
         {direction === DIRECTION_SORT_TYPE.DESC ? (
-          <ArrowDownwardIcon style={{ padding: 2, marginRight: 8 }} onClick={handleToggleSort} />
+          <ArrowDownwardIcon
+            style={{ padding: 2, marginRight: 8 }}
+            onClick={handleToggleSort}
+          />
         ) : (
-          <ArrowUpwardIcon style={{ padding: 2, marginRight: 8 }} onClick={handleToggleSort} />
+          <ArrowUpwardIcon
+            style={{ padding: 2, marginRight: 8 }}
+            onClick={handleToggleSort}
+          />
         )}
         {label}
       </Button>
@@ -528,11 +564,20 @@ const SortButton = ({
             key={field}
             sx={{ py: 0.25, px: 1 }}
           >
-            <Stack direction="column" display="flex" justifyContent="center" alignItems="center">
+            <Stack
+              direction="column"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
               <ArrowVerticalIcon
                 direction={sortKey === field ? direction : undefined}
-                handleClickUp={() => setParams?.({ ...params, ordering: `${field}` })}
-                handleClickDown={() => setParams?.({ ...params, ordering: `-${field}` })}
+                handleClickUp={() =>
+                  setParams?.({ ...params, ordering: `${field}` })
+                }
+                handleClickDown={() =>
+                  setParams?.({ ...params, ordering: `-${field}` })
+                }
               />
             </Stack>
             <Typography

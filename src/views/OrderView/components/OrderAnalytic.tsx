@@ -27,10 +27,17 @@ function OrderAnalytic({ title, total, icon, color, percent, price }: Props) {
       direction="row"
       alignItems="center"
       justifyContent="center"
-      sx={{ width: 1, minWidth: 200 }}
+      sx={{ width: 1, minWidth: 200, backgroundColor: "white" }}
     >
-      <Stack alignItems="center" justifyContent="center" sx={{ position: "relative" }}>
-        <Iconify icon={icon} sx={{ color, width: 24, height: 24, position: "absolute" }} />
+      <Stack
+        alignItems="center"
+        justifyContent="center"
+        sx={{ position: "relative" }}
+      >
+        <Iconify
+          icon={icon}
+          sx={{ color, width: 24, height: 24, position: "absolute" }}
+        />
 
         <CircularProgress
           variant="determinate"
@@ -45,7 +52,13 @@ function OrderAnalytic({ title, total, icon, color, percent, price }: Props) {
           value={100}
           size={56}
           thickness={4}
-          sx={{ color: "grey.50016", position: "absolute", top: 0, left: 0, opacity: 0.48 }}
+          sx={{
+            color: "grey.50016",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            opacity: 0.48,
+          }}
         />
       </Stack>
 
@@ -54,7 +67,10 @@ function OrderAnalytic({ title, total, icon, color, percent, price }: Props) {
 
         <Typography variant="subtitle2">
           {fNumber(total)}{" "}
-          <Box component="span" sx={{ color: "text.secondary", typography: "body2" }}>
+          <Box
+            component="span"
+            sx={{ color: "text.secondary", typography: "body2" }}
+          >
             Đơn
           </Box>
         </Typography>

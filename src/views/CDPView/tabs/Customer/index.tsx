@@ -177,6 +177,7 @@ const CustomerView = (props: CDPProps) => {
         sx={{
           "&> .MuiCard-root": { padding: 0, boxShadow: "none" },
           borderRadius: 0,
+          backgroundColor: "white",
         }}
       >
         <Header

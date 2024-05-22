@@ -25,7 +25,9 @@ import {
 } from "./columns";
 import { OrderShippingDetailColumnProps } from "./columns/OrderShippingDetailColumn";
 
-export interface OrderTableType extends Partial<DGridType>, OrderShippingDetailColumnProps {
+export interface OrderTableType
+  extends Partial<DGridType>,
+    OrderShippingDetailColumnProps {
   tabName?: OrderStatusValue | "shipping";
   onRefresh?: () => void;
 }
@@ -66,7 +68,10 @@ const OrderTable = (props: OrderTableType) => {
       <CDPOrderColumn />
       <OrderGeneralColumn for={["general"]} />
       <CancelReasonColumn />
-      <OrderPaymentStatusColumn for={["payment_status"]} onRefresh={onRefresh} />
+      <OrderPaymentStatusColumn
+        for={["payment_status"]}
+        onRefresh={onRefresh}
+      />
       <OrderColumn tabName={tabName} params={params} />
       <OrderPaymentColumn />
       <NumberColumn for={["total"]} />

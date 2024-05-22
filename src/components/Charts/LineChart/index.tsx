@@ -159,11 +159,12 @@ const LineChart = (props: Props) => {
   });
 
   return (
-    <Grid style={{ ...containerStyle }}>
+    <Grid style={{ ...containerStyle, backgroundColor: "white" }}>
       {isLoading && <LoadingModal />}
       <Card
         style={{
           borderRadius: 0,
+          backgroundColor: "white",
         }}
       >
         <CardHeader

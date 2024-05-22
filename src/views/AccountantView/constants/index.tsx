@@ -49,7 +49,12 @@ export const arrDate = [
   "shipping__modified",
   "shipping__finish_date",
 ];
-export const arrDateTime = ["completed_time", "created", "printed_at", "shipping__created"];
+export const arrDateTime = [
+  "completed_time",
+  "created",
+  "printed_at",
+  "shipping__created",
+];
 export const arrColumnPhone = ["customer_phone"];
 export const arrColumnEditLabel = [
   "exported",
@@ -66,7 +71,9 @@ export const arrValueTitle = ["line_items__variant__name", "customer_name"];
 export const TAB_HEADER_REPORT_ORDER_DETAIL = (roles: any) => [
   {
     path: `/${
-      PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ACCOUNTANT_PATH.REPORT][ACCOUNTANT_PATH.REPORT_ORDER]
+      PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ACCOUNTANT_PATH.REPORT][
+        ACCOUNTANT_PATH.REPORT_ORDER
+      ]
     }`,
     label: "Báo cáo tổng quan đơn hàng",
     roles: true,
@@ -74,7 +81,9 @@ export const TAB_HEADER_REPORT_ORDER_DETAIL = (roles: any) => [
   },
   {
     path: `/${
-      PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ACCOUNTANT_PATH.REPORT][ACCOUNTANT_PATH.REPORT_ORDER_ITEM]
+      PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ACCOUNTANT_PATH.REPORT][
+        ACCOUNTANT_PATH.REPORT_ORDER_ITEM
+      ]
     }`,
     label: "Báo cáo chi tiết đơn hàng",
     roles: true,
@@ -82,7 +91,9 @@ export const TAB_HEADER_REPORT_ORDER_DETAIL = (roles: any) => [
   },
   {
     path: `/${
-      PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ACCOUNTANT_PATH.REPORT][ACCOUNTANT_PATH.REPORT_KPI]
+      PATH_DASHBOARD[ROLE_TAB.ACCOUNTANT][ACCOUNTANT_PATH.REPORT][
+        ACCOUNTANT_PATH.REPORT_KPI
+      ]
     }`,
     label: "Báo cáo KPI",
     roles: true,

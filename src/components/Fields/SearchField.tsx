@@ -101,8 +101,12 @@ export const SearchField = ({
       if (type) {
         const searchRecent = getStorage(`search-recent-${type}`);
         if (value) {
-          let recentClone: string[] = searchRecent ? [...JSON.parse(searchRecent)] : [];
-          const findRecentInLocal = recentClone.findIndex((item) => item === value);
+          let recentClone: string[] = searchRecent
+            ? [...JSON.parse(searchRecent)]
+            : [];
+          const findRecentInLocal = recentClone.findIndex(
+            (item) => item === value
+          );
           if (findRecentInLocal !== 0) {
             if (findRecentInLocal > 0) {
               recentClone.splice(findRecentInLocal, 1);
@@ -120,7 +124,12 @@ export const SearchField = ({
   );
 
   const handleSearch = useCallback(() => {
-    if (prevValue !== value && value === "" && prevValue !== "prev" && !isDebounce) {
+    if (
+      prevValue !== value &&
+      value === "" &&
+      prevValue !== "prev" &&
+      !isDebounce
+    ) {
       onSearch && (value.length >= minLength || !value) && onSearch(value);
       handleSaveSearch(value);
       setPrevValue(value);
@@ -147,11 +156,14 @@ export const SearchField = ({
   return (
     <Box position="relative" width={"100%"}>
       <ClickAwayListener onClickAway={() => setShowRecent(false)}>
-        <Paper elevation={showRecent && type ? 3 : 0} onFocus={(e) => setShowRecent(true)}>
+        <Paper
+          elevation={showRecent && type ? 3 : 0}
+          onFocus={(e) => setShowRecent(true)}
+        >
           <TextField
             label={label}
             size={props.size || "small"}
-            style={props.style}
+            style={{ ...props.style, backgroundColor: "white" }}
             sx={{ width: props.fullWidth ? undefined : 300, ...props.sx }}
             variant={roadster ? "standard" : "outlined"}
             value={value}
@@ -168,7 +180,10 @@ export const SearchField = ({
               autoComplete: "off",
               startAdornment:
                 props.loading && adornmentPosition === "start" ? (
-                  <CircularProgress size={20} style={loadingAdornmentIconStyle} />
+                  <CircularProgress
+                    size={20}
+                    style={loadingAdornmentIconStyle}
+                  />
                 ) : (
                   renderIcon && (
                     <InputAdornment position="start" style={adornmentIconStyle}>
@@ -179,7 +194,10 @@ export const SearchField = ({
               endAdornment:
                 //check show button search
                 props.loading && adornmentPosition === "end" ? (
-                  <CircularProgress size={20} style={loadingAdornmentIconStyle} />
+                  <CircularProgress
+                    size={20}
+                    style={loadingAdornmentIconStyle}
+                  />
                 ) : (props.isShowEndAdornment ||
                     (prevValue === "prev" && value !== "") ||
                     (prevValue !== "prev" && prevValue !== value)) &&

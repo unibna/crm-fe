@@ -191,7 +191,7 @@ const BarChart = (props: Props) => {
   return (
     <Grid style={containerStyle}>
       {isLoading && <LoadingModal />}
-      <Card style={{ borderRadius: 0 }}>
+      <Card style={{ borderRadius: 0, backgroundColor: "white" }}>
         <CardHeader
           title={title}
           subheader={subTitle}

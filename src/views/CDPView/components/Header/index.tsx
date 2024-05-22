@@ -117,7 +117,11 @@ const Header = ({
         <>
           <Grid item>
             {isMatchAddRole ? (
-              <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setOpen(true)}
+              >
                 <AddIcon />
                 {vi.button.add}
               </Button>

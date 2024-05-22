@@ -231,7 +231,7 @@ const OrderContainer = (props: Omit<Props, Provided>) => {
     : undefined;
 
   return (
-    <WrapPage style={{ borderRadius: 0 }}>
+    <WrapPage style={{ borderRadius: 0, backgroundColor: "white" }}>
       <FormOrderModal
         open={openModal === "create"}
         onClose={handleCloseOrderDrawer}

@@ -137,7 +137,9 @@ const TableWrapper = ({
 
   return (
     <TableWrap container heightTable={heightTable}>
-      <StyledTableContainer style={tableWrapStyles}>
+      <StyledTableContainer
+        style={{ ...tableWrapStyles, backgroundColor: "white" }}
+      >
         <TableGrid rows={data.data} columns={columns}>
           {data.loading && <LinearProgress />}
           {children}
@@ -540,7 +542,7 @@ const TableHeader = styled(TableHeaderRow.Row)``;
 
 const SummaryCellComponent = styled(TableGroupRow.Cell)(() => ({
   ".Container-wrapper": {
-    backgroundColor: "unset !important",
+    backgroundColor: "white !important",
     zIndex: "1 !important",
   },
 }));
