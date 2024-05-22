@@ -7,12 +7,22 @@ import { useAppDispatch } from "hooks/reduxHook";
 import useAuth from "hooks/useAuth";
 import { useCancelToken } from "hooks/useCancelToken";
 import useIsMountedRef from "hooks/useIsMountedRef";
-import { memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { toastError } from "store/redux/toast/slice";
 import { fDateTime } from "utils/dateUtil";
 import { isMatchRoles } from "utils/roleUtils";
 import { OrderContext } from "views/OrderView";
-import { ORDER_SORTING_STATE_EXTENSIONS, ORDER_SORT_FIELDS } from "../constants/columns";
+import {
+  ORDER_SORTING_STATE_EXTENSIONS,
+  ORDER_SORT_FIELDS,
+} from "../constants/columns";
 import FormOrderModal from "./FormOrderModal";
 import Header, { HeaderOrderProps } from "./Header";
 import OrderPrintModal from "./OrderPrintModal";
@@ -81,7 +91,10 @@ const OrderContainer = (props: Omit<Props, Provided>) => {
     loading: false,
     count: 0,
   });
-  const [dataAll, setDataAll] = useState<{ orders: OrderType[]; total: number }>({
+  const [dataAll, setDataAll] = useState<{
+    orders: OrderType[];
+    total: number;
+  }>({
     orders: [],
     total: 0,
   });
@@ -210,13 +223,15 @@ const OrderContainer = (props: Omit<Props, Provided>) => {
     ? ({ row }: any) => (
         <OrderRowDetail
           row={row}
-          defaultTab={tabName === "shipping" ? "SHIPPING_HISTORY" : "ORDER_HISTORY"}
+          defaultTab={
+            tabName === "shipping" ? "SHIPPING_HISTORY" : "ORDER_HISTORY"
+          }
         />
       )
     : undefined;
 
   return (
-    <WrapPage>
+    <WrapPage style={{ borderRadius: 0 }}>
       <FormOrderModal
         open={openModal === "create"}
         onClose={handleCloseOrderDrawer}
@@ -237,13 +252,17 @@ const OrderContainer = (props: Omit<Props, Provided>) => {
         <Header
           tagOptions={tagOptions || orderContext?.tags}
           setOpen={isCreate ? () => setOpenModal("create") : undefined}
-          setParams={(newParams) => props?.setParams?.({ ...params, ...newParams })}
+          setParams={(newParams) =>
+            props?.setParams?.({ ...params, ...newParams })
+          }
           onRefresh={() => props?.setParams?.({ ...params })}
           exportData={data.data}
           formatExportFunc={formatExportOrder}
           exportFileName={`Danh-sach-don-hang-${fDateTime(Date.now())}`}
           loading={data.loading}
-          onSearch={isSearch ? (value) => handleSetParams("search", value) : undefined}
+          onSearch={
+            isSearch ? (value) => handleSetParams("search", value) : undefined
+          }
           handlePrintOrder={handlePrintOrder}
           onToggleUploadPaymentCheckFile={onOpenPopup}
           sortFields={ORDER_SORT_FIELDS}

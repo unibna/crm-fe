@@ -30,7 +30,14 @@ import {
   TableSummaryRow,
   VirtualTable,
 } from "@devexpress/dx-react-grid-material-ui";
-import { Theme, Tooltip, alpha, styled, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Theme,
+  Tooltip,
+  alpha,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -87,7 +94,9 @@ const TableWrapper = ({
   defaultColumnOrders,
   showSelectAll,
   cellStyle,
-  headerCellComponent = ({ ...cellProps }) => <TableHeaderRow.Cell {...cellProps} />,
+  headerCellComponent = ({ ...cellProps }) => (
+    <TableHeaderRow.Cell {...cellProps} />
+  ),
   setColumnShowSort,
   editRowChangeForInline = () => {},
   isShowPrintStatus,
@@ -117,7 +126,11 @@ const TableWrapper = ({
     fieldName: string,
     direction: DIRECTION_SORT_TYPE
   ) => {
-    const { ordering, orderingParent } = handleChangeOrderingUtil(columnName, fieldName, direction);
+    const { ordering, orderingParent } = handleChangeOrderingUtil(
+      columnName,
+      fieldName,
+      direction
+    );
 
     setParams?.({ ...params, ordering, orderingParent });
   };
@@ -130,7 +143,9 @@ const TableWrapper = ({
           {children}
           <DragDropProvider />
           <SortingState
-            sorting={handleChangeParamsToSortingTable(params.orderingParent || params.ordering)}
+            sorting={handleChangeParamsToSortingTable(
+              params.orderingParent || params.ordering
+            )}
             onSortingChange={(value: SortType[]) => {
               if (columnShowSort) {
                 const columnSortIndex = columnShowSort.findIndex((column) => {
@@ -158,7 +173,9 @@ const TableWrapper = ({
           {!hiddenPagination && (
             <PagingState
               currentPage={params.page}
-              onPageSizeChange={(pageSize: number) => handleChangeRowsPerPage(pageSize)}
+              onPageSizeChange={(pageSize: number) =>
+                handleChangeRowsPerPage(pageSize)
+              }
               onCurrentPageChange={(page) => handleChangePage(page)}
               pageSize={params.limit}
             />
@@ -171,11 +188,19 @@ const TableWrapper = ({
               columnExtensions={columnEditExtensions}
             />
           )}
-          {selection && <SelectionState selection={selection} onSelectionChange={setSelection} />}
+          {selection && (
+            <SelectionState
+              selection={selection}
+              onSelectionChange={setSelection}
+            />
+          )}
 
           {grouping && <GroupingState grouping={grouping} />}
           {summaryColumns && (
-            <SummaryState totalItems={summaryColumns} groupItems={groupSummaryItems} />
+            <SummaryState
+              totalItems={summaryColumns}
+              groupItems={groupSummaryItems}
+            />
           )}
           <IntegratedSorting />
           {selection && <IntegratedSelection />}
@@ -194,16 +219,23 @@ const TableWrapper = ({
             )}
             messages={{ noData: vi.no_data }}
             height={
-              heightTable ? heightTable : isFullRow ? "auto" : handleSizeTable(isTablet).height
+              heightTable
+                ? heightTable
+                : isFullRow
+                ? "auto"
+                : handleSizeTable(isTablet).height
             }
             cellComponent={(cellProps) => {
-              const blankGroupingSubCell = cellProps.column.name === grouping?.[0].columnName;
+              const blankGroupingSubCell =
+                cellProps.column.name === grouping?.[0].columnName;
               const {
                 tableRow: { rowId },
                 column: { name: columnName },
               } = cellProps;
               const columnStatus =
-                typeof rowId === "number" ? props.validationCellStatus?.[rowId]?.[columnName] : "";
+                typeof rowId === "number"
+                  ? props.validationCellStatus?.[rowId]?.[columnName]
+                  : "";
               const valid = !columnStatus || columnStatus.isValid;
               const style = {
                 ...(!valid ? { border: "1px solid red", marginTop: 2 } : null),
@@ -231,7 +263,9 @@ const TableWrapper = ({
                         ...cellStyle,
                       }}
                     >
-                      <Box display="block">{cellProps.children || cellProps.value}</Box>
+                      <Box display="block">
+                        {cellProps.children || cellProps.value}
+                      </Box>
                     </Box>
                   )}
                 </VirtualTable.Cell>
@@ -305,7 +339,9 @@ const TableWrapper = ({
                       columnSortIndex={columnSortIndex}
                       columnShowSort={columnShowSort}
                       setSortInstance={handleChangeOrdering}
-                      sortInstance={handleChangeParamsToSortingTable(params?.ordering)}
+                      sortInstance={handleChangeParamsToSortingTable(
+                        params?.ordering
+                      )}
                     />
                   ) : (
                     headerCellComponent(cellProps)
@@ -316,7 +352,10 @@ const TableWrapper = ({
           />
           {editInline && <TableEditRow />}
           {editInline && (
-            <TableInlineCellEditing startEditAction="doubleClick" selectTextOnEditStart={false} />
+            <TableInlineCellEditing
+              startEditAction="doubleClick"
+              selectTextOnEditStart={false}
+            />
           )}
           {editComponent && (
             <TableEditColumn
@@ -326,7 +365,8 @@ const TableWrapper = ({
                 if (disableExcuteRowPath) {
                   let children = [...(cellProps.children || ([] as any))];
 
-                  const isDisableExcute = (get(cellProps.row, disableExcuteRowPath) ?? "") !== "";
+                  const isDisableExcute =
+                    (get(cellProps.row, disableExcuteRowPath) ?? "") !== "";
                   const firstChild = children.shift();
                   children = [
                     {
@@ -341,7 +381,11 @@ const TableWrapper = ({
                   return (
                     <TableEditColumn.Cell
                       {...cellProps}
-                      style={isDisableExcute ? { opacity: 0.2, pointerEvents: "none" } : undefined}
+                      style={
+                        isDisableExcute
+                          ? { opacity: 0.2, pointerEvents: "none" }
+                          : undefined
+                      }
                     >
                       {children}
                     </TableEditColumn.Cell>
@@ -362,7 +406,9 @@ const TableWrapper = ({
               )}
             />
           )}
-          {selection && <TableSelection showSelectAll={showSelectAll} showSelectionColumn />}
+          {selection && (
+            <TableSelection showSelectAll={showSelectAll} showSelectionColumn />
+          )}
           <TableColumnVisibility
             hiddenColumnNames={hiddenColumnNames}
             defaultHiddenColumnNames={defaultHiddenColumnNames}
@@ -417,7 +463,8 @@ const TableWrapper = ({
                 const children = cellProps.children as any;
                 const columnName = children?.props?.column.name;
                 const row: any = {
-                  [children?.props?.column.name]: children.props.columnSummaries[0].value,
+                  [children?.props?.column.name]:
+                    children.props.columnSummaries[0].value,
                 };
                 const value = children.props.columnSummaries[0].value;
 
@@ -426,7 +473,8 @@ const TableWrapper = ({
                     <SummaryLabel>
                       {formatGroupingItem
                         ? formatGroupingItem({ columnName, value, row })
-                        : (cellProps.children as any).props.columnSummaries[0].value}
+                        : (cellProps.children as any).props.columnSummaries[0]
+                            .value}
                     </SummaryLabel>
                   </TableGroupRow.SummaryCell>
                 );
@@ -461,7 +509,10 @@ const TableWrapper = ({
   );
 };
 
-const areEqual = (prevProps: Partial<DGridType>, nextProps: Partial<DGridType>) => {
+const areEqual = (
+  prevProps: Partial<DGridType>,
+  nextProps: Partial<DGridType>
+) => {
   if (
     !isEqual(prevProps.columnOrders, nextProps.columnOrders) ||
     !isEqual(prevProps.columnShowSort, nextProps.columnShowSort) ||
@@ -500,29 +551,33 @@ const TableRow = styled(VirtualTable.Row, {
   ...styleComponent,
 }));
 
-const StyledTableContainer = styled(TableContainer)(({ theme }: { theme: Theme }) => ({
-  padding: 2,
-  border: "none",
-  "& .TableContainer-root": {
-    "::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb": {
-      background: "transparent",
-      borderRadius: 10,
-      transition: "all 1s ease",
-    },
-    "&:hover": {
-      "::-webkit-scrollbar-thumb": {
-        background: theme.palette.mode === "light" ? "#B4BCC2" : "#404E5A",
+const StyledTableContainer = styled(TableContainer)(
+  ({ theme }: { theme: Theme }) => ({
+    padding: 2,
+    border: "none",
+    "& .TableContainer-root": {
+      "::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb": {
+        background: "transparent",
+        borderRadius: 10,
+        transition: "all 1s ease",
+      },
+      "&:hover": {
+        "::-webkit-scrollbar-thumb": {
+          background: theme.palette.mode === "light" ? "#B4BCC2" : "#404E5A",
+        },
+      },
+      "::-webkit-scrollbar-corner": {
+        background: "transparent",
+      },
+      ".MuiTableCell-head": {
+        backgroundColor:
+          theme.palette.mode === "light"
+            ? theme.palette.grey[200]
+            : theme.palette.grey[700],
       },
     },
-    "::-webkit-scrollbar-corner": {
-      background: "transparent",
-    },
-    ".MuiTableCell-head": {
-      backgroundColor:
-        theme.palette.mode === "light" ? theme.palette.grey[200] : theme.palette.grey[700],
-    },
-  },
-}));
+  })
+);
 
 const TableWrap: any = styled(Grid, {
   shouldForwardProp: (prop) => prop !== "heightTable",

@@ -84,7 +84,10 @@ const TabContainer = ({ status }: { status: STATUS_ROLE_REPORT_REVENUE }) => {
       dimension: DIMENSION_VALUE[status],
     };
 
-    const newParams = chooseParams(objParams, ["dimension", ...valueGetParamsDefault]);
+    const newParams = chooseParams(objParams, [
+      "dimension",
+      ...valueGetParamsDefault,
+    ]);
 
     getListReport(newParams);
   };
@@ -111,7 +114,9 @@ const TabContainer = ({ status }: { status: STATUS_ROLE_REPORT_REVENUE }) => {
             variant_name: {
               value: item.variant_name,
               props: {
-                href: `/${ROLE_TAB.PRODUCT}/${getObjectPropSafely(() => item.variant)}`,
+                href: `/${ROLE_TAB.PRODUCT}/${getObjectPropSafely(
+                  () => item.variant
+                )}`,
               },
             },
             created_by_name: getObjectPropSafely(() => item.created_by),
@@ -138,7 +143,10 @@ const TabContainer = ({ status }: { status: STATUS_ROLE_REPORT_REVENUE }) => {
       const newData = getObjectPropSafely(() => result.data.results.length)
         ? reduce(
             result.data.results,
-            (prevArr, current: { is_shown: boolean; name: string; id: number }) => {
+            (
+              prevArr,
+              current: { is_shown: boolean; name: string; id: number }
+            ) => {
               return current.is_shown
                 ? [
                     ...prevArr,
@@ -158,7 +166,10 @@ const TabContainer = ({ status }: { status: STATUS_ROLE_REPORT_REVENUE }) => {
   };
 
   const handleChangeSorting = (value: SortType[]) => {
-    const ordering = value[0].direction === "asc" ? value[0].columnName : "-" + value[0].columnName;
+    const ordering =
+      value[0].direction === "asc"
+        ? value[0].columnName
+        : "-" + value[0].columnName;
 
     setParams({
       ...params,
@@ -206,7 +217,10 @@ const TabContainer = ({ status }: { status: STATUS_ROLE_REPORT_REVENUE }) => {
         }}
         params={newParamsStore}
         paramsDefault={paramsDefault}
-        arrNoneRenderSliderFilter={["completed_time_dateValue", "created_dateValue"]}
+        arrNoneRenderSliderFilter={[
+          "completed_time_dateValue",
+          "created_dateValue",
+        ]}
         arrAttachUnitVnd={arrAttachUnitVndDefault}
         arrDate={["completed_date"]}
         onChangeColumn={(columns) => updateCell(status, columns)}
@@ -266,11 +280,14 @@ const TabContainer = ({ status }: { status: STATUS_ROLE_REPORT_REVENUE }) => {
             keyFilter={KEY_FILTER_CHART[status]}
             isLoading={isLoading}
             optionsFilter={FILTER_CHART_REPORT_BY_DATE}
-            defaultFilter={{ filterOne: "Tổng đơn hàng", filterTwo: "Doanh thu thực" }}
+            defaultFilter={{
+              filterOne: "Tổng đơn hàng",
+              filterTwo: "Doanh thu thực",
+            }}
           />
         )}
       </Grid>
-      <Grid item xs={12} md={12} lg={12}>
+      <Grid item xs={12} md={12} lg={12} style={{ borderRadius: 0 }}>
         <DataGrid
           isFullTable={isShowFullTable}
           data={data}

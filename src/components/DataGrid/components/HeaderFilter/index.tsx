@@ -42,14 +42,21 @@ import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 
 // @Types
-import { ColumnTypeDefault, ItemColumnsDatagrid, MColumnType } from "_types_/ColumnType";
+import {
+  ColumnTypeDefault,
+  ItemColumnsDatagrid,
+  MColumnType,
+} from "_types_/ColumnType";
 import { ColorSchema } from "_types_/ThemeColorType";
 import { SelectOptionType } from "_types_/SelectOptionType";
 
 // Utils
 import { fNumber, fPercent } from "utils/formatNumber";
 import { fDateTime, fDate } from "utils/dateUtil";
-import { arrStatusDefault, arrAttachUnitVndDefault } from "components/DDataGrid/constants";
+import {
+  arrStatusDefault,
+  arrAttachUnitVndDefault,
+} from "components/DDataGrid/constants";
 import { STATUS_SYNC, TYPE_FORM_FIELD, FILTER_GROUPS } from "constants/index";
 import { arrDateTimeDefault, yyyy_MM_dd } from "constants/time";
 import { cloneData } from "utils/helpers";
@@ -148,7 +155,12 @@ interface Props {
 
 const Header = (props: Props) => {
   const {
-    columns: { countShowColumn, columnsShow, resultColumnsShow, columnShowExport = [] },
+    columns: {
+      countShowColumn,
+      columnsShow,
+      resultColumnsShow,
+      columnShowExport = [],
+    },
     params = {},
     searchInput = [],
     contentArrButtonGroup = [],
@@ -211,10 +223,16 @@ const Header = (props: Props) => {
   const newColumnExport = useMemo(() => {
     return reduce(
       resultColumnsShow,
-      (prevArr: { name: string; title: string; column?: string }[], current) => {
+      (
+        prevArr: { name: string; title: string; column?: string }[],
+        current
+      ) => {
         return [
           ...prevArr,
-          ...(filter(columnShowExport, (item) => item.column === current.name) || []),
+          ...(filter(
+            columnShowExport,
+            (item) => item.column === current.name
+          ) || []),
         ];
       },
       []
@@ -372,7 +390,9 @@ const Header = (props: Props) => {
           ? providerFilter(
               component,
               type,
-              type === TYPE_FORM_FIELD ? { key: label } : { keyDateTo, keyDateFrom, keyDateValue }
+              type === TYPE_FORM_FIELD
+                ? { key: label }
+                : { keyDateTo, keyDateFrom, keyDateValue }
             )
           : component;
       });
@@ -392,12 +412,17 @@ const Header = (props: Props) => {
     });
   };
 
-  const convertValue = (keyFilter: string, valueFilter: string | string[] | any, params?: any) => {
+  const convertValue = (
+    keyFilter: string,
+    valueFilter: string | string[] | any,
+    params?: any
+  ) => {
     let value = null;
 
     const objValue = find(
       dataHeader,
-      (item: DataHeader) => item.label === keyFilter || item.keyDateFrom === keyFilter
+      (item: DataHeader) =>
+        item.label === keyFilter || item.keyDateFrom === keyFilter
     );
 
     const funcDisableRemove = (func: any) => {
@@ -418,7 +443,9 @@ const Header = (props: Props) => {
                       ...prevArr,
                       {
                         label: current.label,
-                        onRemove: funcDisableRemove(() => onRemoveFilter(keyFilter, current.value)),
+                        onRemove: funcDisableRemove(() =>
+                          onRemoveFilter(keyFilter, current.value)
+                        ),
                       },
                     ]
                   : prevArr;
@@ -428,8 +455,12 @@ const Header = (props: Props) => {
           } else {
             value = {
               label:
-                options.find((item: SelectOptionType) => item.value === valueFilter)?.label || "",
-              onRemove: funcDisableRemove(() => onRemoveFilter(keyFilter, valueFilter)),
+                options.find(
+                  (item: SelectOptionType) => item.value === valueFilter
+                )?.label || "",
+              onRemove: funcDisableRemove(() =>
+                onRemoveFilter(keyFilter, valueFilter)
+              ),
             };
           }
           break;
@@ -497,7 +528,9 @@ const Header = (props: Props) => {
 
   const dataRenderSliderFilter = useMemo(() => {
     const tempData = Object.keys(params).reduce((prevArr, current) => {
-      return [...arrNoneRenderSliderFilter, ...arrKeySearchInput].includes(current) ||
+      return [...arrNoneRenderSliderFilter, ...arrKeySearchInput].includes(
+        current
+      ) ||
         params[current] === "all" ||
         (isArray(params[current]) && !params[current].length) ||
         (isString(params[current]) && !params[current])
@@ -508,17 +541,20 @@ const Header = (props: Props) => {
   }, [params, dataHeader]);
 
   const isDisabledClearAll = useMemo(() => {
-    const newParams = Object.keys(params).reduce((prevObj: any, current: string) => {
-      return arrKeySearchInput.includes(current) ||
-        params[current] === "all" ||
-        (isArray(params[current]) && !params[current].length) ||
-        (isString(params[current]) && !params[current])
-        ? prevObj
-        : {
-            ...prevObj,
-            [current]: params[current],
-          };
-    }, {});
+    const newParams = Object.keys(params).reduce(
+      (prevObj: any, current: string) => {
+        return arrKeySearchInput.includes(current) ||
+          params[current] === "all" ||
+          (isArray(params[current]) && !params[current].length) ||
+          (isString(params[current]) && !params[current])
+          ? prevObj
+          : {
+              ...prevObj,
+              [current]: params[current],
+            };
+      },
+      {}
+    );
 
     return isEqual(newParams, paramsDefault ? paramsDefault : params);
   }, [params]);
@@ -527,7 +563,9 @@ const Header = (props: Props) => {
     const newParams = reduce(
       Object.keys(params),
       (prevObj: any, current: string) => {
-        return [...arrNoneRenderSliderFilter, ...arrKeySearchInput].includes(current) ||
+        return [...arrNoneRenderSliderFilter, ...arrKeySearchInput].includes(
+          current
+        ) ||
           params[current] === "all" ||
           (isArray(params[current]) && !params[current].length) ||
           (isString(params[current]) && !params[current])
@@ -544,9 +582,20 @@ const Header = (props: Props) => {
   }, [params]);
 
   return (
-    <Grid container alignItems="center" sx={{ pt: 3, pb: 2, ...style, ...headerContainerStyles }}>
+    <Grid
+      container
+      alignItems="center"
+      sx={{ pt: 3, pb: 2, ...style, ...headerContainerStyles }}
+    >
       {isShowContentLeft && (
-        <Grid item xs={12} container direction="row" alignItems="center" spacing={1}>
+        <Grid
+          item
+          xs={12}
+          container
+          direction="row"
+          alignItems="center"
+          spacing={1}
+        >
           <Grid
             item
             container
@@ -566,7 +615,9 @@ const Header = (props: Props) => {
                         label={item.label}
                         defaultValue={params[item?.keySearch]}
                         renderIcon={<SearchIcon />}
-                        onSearch={(value: string) => handleFilter({ [item?.keySearch]: value })}
+                        onSearch={(value: string) =>
+                          handleFilter({ [item?.keySearch]: value })
+                        }
                         delay={item.delay}
                         style={item.style}
                       />
@@ -630,7 +681,9 @@ const Header = (props: Props) => {
               <Box>
                 <ExportExcelBE
                   {...dataExportExcel}
-                  keysMap={getObjectPropSafely(() => dataExportExcel.params.keys_map)}
+                  keysMap={getObjectPropSafely(
+                    () => dataExportExcel.params.keys_map
+                  )}
                 />
               </Box>
             ) : null}
@@ -657,7 +710,10 @@ const Header = (props: Props) => {
               />
             ) : null}
             {onToggleModeTable && (
-              <ToggleModeTable isFullTable={isFullTable} onToggleModeTable={onToggleModeTable} />
+              <ToggleModeTable
+                isFullTable={isFullTable}
+                onToggleModeTable={onToggleModeTable}
+              />
             )}
             {handleChangeView ? (
               <Stack
@@ -709,11 +765,18 @@ const Header = (props: Props) => {
       {isShowContentRight && (
         <Grid item container xs={12} direction="row" alignItems="center">
           {!isShowPopupFilter && (
-            <Grid item xs={12} container sx={{ columnGap: 2, rowGap: 1, mt: 4 }}>
+            <Grid
+              item
+              xs={12}
+              container
+              sx={{ columnGap: 2, rowGap: 1, mt: 4 }}
+            >
               {renderDataHeaderShare(dataHeader)}
             </Grid>
           )}
-          {!!dataRenderSliderFilter.length && isShowPopupFilter && isShowSlideFilter ? (
+          {!!dataRenderSliderFilter.length &&
+          isShowPopupFilter &&
+          isShowSlideFilter ? (
             <Grid item xs={12} sx={{ mt: 2 }}>
               <SliderFilter
                 params={params}
@@ -734,8 +797,14 @@ const areEqual = (prevProps: Props, nextProps: Props) => {
     !isEqual(prevProps.height, nextProps.height) ||
     !isEqual(prevProps.columns, nextProps.columns) ||
     !isEqual(prevProps.params, nextProps.params) ||
-    !isEqual(prevProps.contentArrButtonOptional, nextProps.contentArrButtonOptional) ||
-    !isEqual(prevProps.contentArrButtonGroup, nextProps.contentArrButtonGroup) ||
+    !isEqual(
+      prevProps.contentArrButtonOptional,
+      nextProps.contentArrButtonOptional
+    ) ||
+    !isEqual(
+      prevProps.contentArrButtonGroup,
+      nextProps.contentArrButtonGroup
+    ) ||
     !isEqual(prevProps.searchInput, nextProps.searchInput) ||
     !isEqual(prevProps.columnSelected, nextProps.columnSelected) ||
     !isEqual(prevProps.dataRenderHeader, nextProps.dataRenderHeader) ||
@@ -754,7 +823,10 @@ const areEqual = (prevProps: Props, nextProps: Props) => {
     !isEqual(prevProps.arrDate, nextProps.arrDate) ||
     !isEqual(prevProps.arrDateTime, nextProps.arrDateTime) ||
     !isEqual(prevProps.arrHandleList, nextProps.arrHandleList) ||
-    !isEqual(prevProps.arrNoneRenderSliderFilter, nextProps.arrNoneRenderSliderFilter) ||
+    !isEqual(
+      prevProps.arrNoneRenderSliderFilter,
+      nextProps.arrNoneRenderSliderFilter
+    ) ||
     !isEqual(prevProps.toggleColumnsDisable, nextProps.toggleColumnsDisable) ||
     !isEqual(prevProps.isFullTable, nextProps.isFullTable)
   ) {

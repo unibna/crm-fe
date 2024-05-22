@@ -20,7 +20,8 @@ function RankingBoardV2(props: {
   propertyOrdering: string;
   total?: any;
 }) {
-  const { titleBoard, loading, data, tableIndex, propertyOrdering, total } = props;
+  const { titleBoard, loading, data, tableIndex, propertyOrdering, total } =
+    props;
   const theme = useTheme();
   const isMobile = useResponsive("down", "sm");
 
@@ -45,7 +46,12 @@ function RankingBoardV2(props: {
   }, []);
 
   return (
-    <Box sx={{ ...styles.container, height: isFullScreen ? "100vh" : "calc(100vh - 80px)" }}>
+    <Box
+      sx={{
+        ...styles.container,
+        height: isFullScreen ? "100vh" : "calc(100vh - 80px)",
+      }}
+    >
       <Typography
         sx={{
           ...styles.title,
@@ -93,7 +99,11 @@ function RankingBoardV2(props: {
                 <Box>
                   <Typography sx={styles.name}>{item.created_by}</Typography>
                   <Typography
-                    sx={{ ...styles.revenue, justifyContent: "flex-start", fontSize: 13 }}
+                    sx={{
+                      ...styles.revenue,
+                      justifyContent: "flex-start",
+                      fontSize: 13,
+                    }}
                     component="div"
                   >
                     <Box sx={styles.coin}>
@@ -101,7 +111,11 @@ function RankingBoardV2(props: {
                     </Box>
                     {item[propertyOrdering as keyof typeof item] ? (
                       <>
-                        <span>{fValueVnd(item[propertyOrdering as keyof typeof item] || 0)}</span>
+                        <span>
+                          {fValueVnd(
+                            item[propertyOrdering as keyof typeof item] || 0
+                          )}
+                        </span>
                       </>
                     ) : (
                       "---"
@@ -139,12 +153,19 @@ from { transform: translateX(-300px) }
 to { transform: translateX(0) }
 `;
 
-const styleFunc: any = ({ theme, loading }: { theme: Theme; loading: boolean }) => ({
+const styleFunc: any = ({
+  theme,
+  loading,
+}: {
+  theme: Theme;
+  loading: boolean;
+}) => ({
   container: {
     cursor: "pointer",
     transition: "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-    boxShadow: "0 0 0 0 rgb(145 158 171 / 24%), 0 16px 32px -4px rgb(145 158 171 / 24%)",
-    borderRadius: "16px",
+    boxShadow:
+      "0 0 0 0 rgb(145 158 171 / 24%), 0 16px 32px -4px rgb(145 158 171 / 24%)",
+    borderRadius: "0px",
     padding: "24px",
     filter: loading ? "blur(24px)" : "none",
     height: "100vh",
@@ -152,7 +173,7 @@ const styleFunc: any = ({ theme, loading }: { theme: Theme; loading: boolean }) 
     width: "100%",
     background: theme.palette.common.black,
     ...(theme.palette.mode === "light" && {
-      backgroundImage: gradients[random(0, 6, false)],
+      // backgroundImage: gradients[random(0, 6, false)],
       background: "#fdfefe",
     }),
   },

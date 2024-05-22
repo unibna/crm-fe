@@ -47,7 +47,10 @@ import { ColorSchema } from "_types_/ThemeColorType";
 
 // Utils
 import Typography from "@mui/material/Typography";
-import { arrAttachUnitVndDefault, arrStatusDefault } from "components/DDataGrid/constants";
+import {
+  arrAttachUnitVndDefault,
+  arrStatusDefault,
+} from "components/DDataGrid/constants";
 import { FILTER_GROUPS, STATUS_SYNC, TYPE_FORM_FIELD } from "constants/index";
 import { arrDateTimeDefault, yyyy_MM_dd } from "constants/time";
 import { fDate, fDateTime } from "utils/dateUtil";
@@ -368,12 +371,17 @@ const Header = (props: Props) => {
     });
   };
 
-  const convertValue = (keyFilter: string, valueFilter: string | string[] | any, params?: any) => {
+  const convertValue = (
+    keyFilter: string,
+    valueFilter: string | string[] | any,
+    params?: any
+  ) => {
     let value = null;
 
     const objValue = find(
       dataHeader,
-      (item: DataHeader) => item.label === keyFilter || item.keyDateFrom === keyFilter
+      (item: DataHeader) =>
+        item.label === keyFilter || item.keyDateFrom === keyFilter
     );
 
     const funcDisableRemove = (func: any) => {
@@ -394,7 +402,9 @@ const Header = (props: Props) => {
                       ...prevArr,
                       {
                         label: current.label,
-                        onRemove: funcDisableRemove(() => onRemoveFilter(keyFilter, current.value)),
+                        onRemove: funcDisableRemove(() =>
+                          onRemoveFilter(keyFilter, current.value)
+                        ),
                       },
                     ]
                   : prevArr;
@@ -404,8 +414,12 @@ const Header = (props: Props) => {
           } else {
             value = {
               label:
-                options.find((item: SelectOptionType) => item.value === valueFilter)?.label || "",
-              onRemove: funcDisableRemove(() => onRemoveFilter(keyFilter, valueFilter)),
+                options.find(
+                  (item: SelectOptionType) => item.value === valueFilter
+                )?.label || "",
+              onRemove: funcDisableRemove(() =>
+                onRemoveFilter(keyFilter, valueFilter)
+              ),
             };
           }
           break;
@@ -473,7 +487,9 @@ const Header = (props: Props) => {
 
   const dataRenderSliderFilter = useMemo(() => {
     const tempData = Object.keys(params).reduce((prevArr, current) => {
-      return [...arrNoneRenderSliderFilter, ...arrKeySearchInput].includes(current) ||
+      return [...arrNoneRenderSliderFilter, ...arrKeySearchInput].includes(
+        current
+      ) ||
         params[current] === "all" ||
         (isArray(params[current]) && !params[current].length) ||
         (isString(params[current]) && !params[current])
@@ -484,17 +500,20 @@ const Header = (props: Props) => {
   }, [params, dataHeader]);
 
   const isDisabledClearAll = useMemo(() => {
-    const newParams = Object.keys(params).reduce((prevObj: any, current: string) => {
-      return arrKeySearchInput.includes(current) ||
-        params[current] === "all" ||
-        (isArray(params[current]) && !params[current].length) ||
-        (isString(params[current]) && !params[current])
-        ? prevObj
-        : {
-            ...prevObj,
-            [current]: params[current],
-          };
-    }, {});
+    const newParams = Object.keys(params).reduce(
+      (prevObj: any, current: string) => {
+        return arrKeySearchInput.includes(current) ||
+          params[current] === "all" ||
+          (isArray(params[current]) && !params[current].length) ||
+          (isString(params[current]) && !params[current])
+          ? prevObj
+          : {
+              ...prevObj,
+              [current]: params[current],
+            };
+      },
+      {}
+    );
 
     return isEqual(newParams, paramsDefault ? paramsDefault : params);
   }, [params]);
@@ -503,7 +522,9 @@ const Header = (props: Props) => {
     const newParams = reduce(
       Object.keys(params),
       (prevObj: any, current: string) => {
-        return [...arrNoneRenderSliderFilter, ...arrKeySearchInput].includes(current) ||
+        return [...arrNoneRenderSliderFilter, ...arrKeySearchInput].includes(
+          current
+        ) ||
           params[current] === "all" ||
           (isArray(params[current]) && !params[current].length) ||
           (isString(params[current]) && !params[current])
@@ -520,8 +541,19 @@ const Header = (props: Props) => {
   }, [params]);
 
   return (
-    <Grid container alignItems="center" sx={{ pt: 3, pb: 2, ...style, ...headerContainerStyles }}>
-      <Grid item xs={12} container direction="row" alignItems="center" spacing={1}>
+    <Grid
+      container
+      alignItems="center"
+      sx={{ pt: 3, pb: 2, ...style, ...headerContainerStyles }}
+    >
+      <Grid
+        item
+        xs={12}
+        container
+        direction="row"
+        alignItems="center"
+        spacing={1}
+      >
         <Grid
           item
           container
@@ -543,7 +575,9 @@ const Header = (props: Props) => {
                       defaultValue={params[item?.keySearch]}
                       renderIcon={<SearchIcon />}
                       style={searchInput.style}
-                      onSearch={(value: string) => handleFilter({ [item?.keySearch]: value })}
+                      onSearch={(value: string) =>
+                        handleFilter({ [item?.keySearch]: value })
+                      }
                     />
                   );
                 })
@@ -610,11 +644,14 @@ const Header = (props: Props) => {
               <ExportFile defaultData={dataExportFile} />
             </Box>
           ) : null}
-          {Object.values(dataExportExcel.params).length && Object.values(dataExportFile).length ? (
+          {Object.values(dataExportExcel.params).length &&
+          Object.values(dataExportFile).length ? (
             <Box>
               <ExportExcelBE
                 {...dataExportExcel}
-                keysMap={getObjectPropSafely(() => dataExportExcel.params.keys_map)}
+                keysMap={getObjectPropSafely(
+                  () => dataExportExcel.params.keys_map
+                )}
               />
             </Box>
           ) : null}
@@ -641,7 +678,10 @@ const Header = (props: Props) => {
             />
           ) : null}
           {onToggleModeTable && (
-            <ToggleModeTable isFullTable={isFullTable} onToggleModeTable={onToggleModeTable} />
+            <ToggleModeTable
+              isFullTable={isFullTable}
+              onToggleModeTable={onToggleModeTable}
+            />
           )}
           {handleChangeView ? (
             <Stack
@@ -713,8 +753,14 @@ const areEqual = (prevProps: Props, nextProps: Props) => {
   if (
     !isEqual(prevProps.height, nextProps.height) ||
     !isEqual(prevProps.params, nextProps.params) ||
-    !isEqual(prevProps.contentArrButtonOptional, nextProps.contentArrButtonOptional) ||
-    !isEqual(prevProps.contentArrButtonGroup, nextProps.contentArrButtonGroup) ||
+    !isEqual(
+      prevProps.contentArrButtonOptional,
+      nextProps.contentArrButtonOptional
+    ) ||
+    !isEqual(
+      prevProps.contentArrButtonGroup,
+      nextProps.contentArrButtonGroup
+    ) ||
     !isEqual(prevProps.searchInput, nextProps.searchInput) ||
     !isEqual(prevProps.columnsCount, nextProps.columnsCount) ||
     !isEqual(prevProps.columnSelected, nextProps.columnSelected) ||
@@ -736,7 +782,10 @@ const areEqual = (prevProps: Props, nextProps: Props) => {
     !isEqual(prevProps.arrDate, nextProps.arrDate) ||
     !isEqual(prevProps.arrDateTime, nextProps.arrDateTime) ||
     !isEqual(prevProps.arrHandleList, nextProps.arrHandleList) ||
-    !isEqual(prevProps.arrNoneRenderSliderFilter, nextProps.arrNoneRenderSliderFilter) ||
+    !isEqual(
+      prevProps.arrNoneRenderSliderFilter,
+      nextProps.arrNoneRenderSliderFilter
+    ) ||
     !isEqual(prevProps.toggleColumnsDisable, nextProps.toggleColumnsDisable) ||
     !isEqual(prevProps.isFullTable, nextProps.isFullTable)
   ) {

@@ -47,7 +47,8 @@ export const REQUIREMENT_DEFAULT: PromotionRequireType[] = [
   },
 ];
 
-export const [TOTAL_BILL, QUANTITY_MIN, TOTAL_MAX, QUANTITY_MAX] = REQUIREMENT_DEFAULT;
+export const [TOTAL_BILL, QUANTITY_MIN, TOTAL_MAX, QUANTITY_MAX] =
+  REQUIREMENT_DEFAULT;
 
 export const PROMOTION_FORM_DEFAULT: Partial<PromotionType> = {
   type: PROMOTION_TYPE.ORDER,
@@ -59,7 +60,9 @@ export const PROMOTION_FORM_DEFAULT: Partial<PromotionType> = {
   is_cumulative: true,
 };
 
-interface PromotionProps extends Partial<DGridType>, Partial<PromotionHeaderProps> {
+interface PromotionProps
+  extends Partial<DGridType>,
+    Partial<PromotionHeaderProps> {
   params: any;
   setParams: (params: any) => void;
   isFilterType?: boolean;
@@ -90,7 +93,9 @@ const PromotionContainer = ({
   const [columnOrders, _setColumnOrders] = useState(
     map(PROMOTION_COLUMN_WIDTHS, (item) => item.columnName)
   );
-  const [hiddenColumnNames, setHiddenColumnNames] = useState(PROMOTION_HIDDEN_COLUMN_NAMES);
+  const [hiddenColumnNames, setHiddenColumnNames] = useState(
+    PROMOTION_HIDDEN_COLUMN_NAMES
+  );
   const [isFullRow, setFullRow] = useState(false);
   const { newCancelToken } = useCancelToken([params]);
 
@@ -114,7 +119,11 @@ const PromotionContainer = ({
       params: { ...params, cancelToken: newCancelToken() },
     });
     if (result.data) {
-      setData({ data: result.data.results, loading: false, total: result.data.count || 0 });
+      setData({
+        data: result.data.results,
+        loading: false,
+        total: result.data.count || 0,
+      });
     } else {
       if (result?.error?.name === "CANCEL_REQUEST") {
         return;
@@ -141,12 +150,15 @@ const PromotionContainer = ({
 
   return (
     <Page title={TITLE_PAGE.PROMOTION}>
-      <WrapPage>
+      <WrapPage style={{ borderRadius: 0 }}>
         <PromotionDialog
           onApplyChanges={handleCreatePromotion}
           onClose={() => setOpenModal(false)}
           open={openModal}
-          row={{ ...PROMOTION_FORM_DEFAULT, status: tabName === "ALL" ? "INACTIVED" : tabName }}
+          row={{
+            ...PROMOTION_FORM_DEFAULT,
+            status: tabName === "ALL" ? "INACTIVED" : tabName,
+          }}
           tabName={tabName}
         />
         <Header
@@ -164,7 +176,9 @@ const PromotionContainer = ({
           onSearch={(value) => handleSetParams("search", value)}
           onRefresh={getData}
           params={params}
-          setParams={(newParams) => setParams((prev: any) => ({ ...prev, ...newParams }))}
+          setParams={(newParams) =>
+            setParams((prev: any) => ({ ...prev, ...newParams }))
+          }
           tabName={tabName}
           setFullRow={() => setFullRow((prev) => !prev)}
           isFullRow={isFullRow}

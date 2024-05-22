@@ -82,7 +82,10 @@ const DVisibleColumns = ({
                   onChange={(e) => onChange(e.target.checked, column.name)}
                 />
               </ListItemIcon>
-              <ListItemText primary={column.title} sx={{ span: { fontSize: 14 } }} />
+              <ListItemText
+                primary={column.title}
+                sx={{ span: { fontSize: 14 } }}
+              />
             </ListItemButton>
           ))}
         </List>

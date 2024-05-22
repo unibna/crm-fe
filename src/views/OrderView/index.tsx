@@ -2,7 +2,13 @@
 import { useTheme } from "@mui/material";
 import useAuth from "hooks/useAuth";
 import { useCancelToken } from "hooks/useCancelToken";
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 //utils
 import { ROLE_TAB, ROLE_TYPE, STATUS_ROLE_ORDERS } from "constants/rolesTab";
@@ -32,8 +38,14 @@ import { orderApi } from "_apis_/order.api";
 import { DeliveryType } from "_types_/ShippingType";
 import { UserType } from "_types_/UserType";
 import { TITLE_PAGE } from "constants/index";
-import { CancelReducerType, useCanceledReducer } from "./reducers/CancelReducer";
-import { CompletedReducerType, useCompletedReducer } from "./reducers/CompletedReducer";
+import {
+  CancelReducerType,
+  useCanceledReducer,
+} from "./reducers/CancelReducer";
+import {
+  CompletedReducerType,
+  useCompletedReducer,
+} from "./reducers/CompletedReducer";
 import { DraftReducerType, useDraftReducer } from "./reducers/DraftReducer";
 import { TabAllReducerType, useTabAllReducer } from "./reducers/TabAllReducer";
 
@@ -47,26 +59,46 @@ export const ORDER_TABS = (
 ) => [
   {
     label: "Tất cả",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ORDER_PATH.ALL]}`,
-    roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]),
+    path: `/${
+      PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ORDER_PATH.ALL]
+    }`,
+    roles: isMatchRoles(
+      user?.is_superuser,
+      roles?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]
+    ),
     icon: <BallotIcon />,
   },
   {
     label: "Đơn chưa xác nhận",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ORDER_PATH.DRAFT]}`,
-    roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]),
+    path: `/${
+      PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ORDER_PATH.DRAFT]
+    }`,
+    roles: isMatchRoles(
+      user?.is_superuser,
+      roles?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]
+    ),
     icon: <WatchLaterIcon />,
   },
   {
     label: "Đơn xác nhận",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ORDER_PATH.COMPLETED]}`,
-    roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]),
+    path: `/${
+      PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ORDER_PATH.COMPLETED]
+    }`,
+    roles: isMatchRoles(
+      user?.is_superuser,
+      roles?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]
+    ),
     icon: <CheckCircleIcon />,
   },
   {
     label: "Đơn huỷ",
-    path: `/${PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ORDER_PATH.CANCEL]}`,
-    roles: isMatchRoles(user?.is_superuser, roles?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]),
+    path: `/${
+      PATH_DASHBOARD[ROLE_TAB.ORDERS][ORDER_PATH.LIST][ORDER_PATH.CANCEL]
+    }`,
+    roles: isMatchRoles(
+      user?.is_superuser,
+      roles?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]
+    ),
     icon: <CancelIcon />,
   },
 ];
@@ -77,7 +109,12 @@ const OrderPage = () => {
 
   const orderContext = useContext(OrderContext);
 
-  const { all = 0, draft = 0, completed = 0, cancel = 0 } = orderContext?.statusAmount.value || {};
+  const {
+    all = 0,
+    draft = 0,
+    completed = 0,
+    cancel = 0,
+  } = orderContext?.statusAmount.value || {};
   const isHandleOrder = isMatchRoles(
     user?.is_superuser,
     user?.group_permission?.data?.[ROLE_TAB.ORDERS]?.[STATUS_ROLE_ORDERS.HANDLE]
@@ -89,7 +126,13 @@ const OrderPage = () => {
         {isHandleOrder && <AmountStatusOrderDetail />}
         <Stack
           direction="row"
-          divider={<Divider orientation="vertical" flexItem sx={{ borderStyle: "dashed" }} />}
+          divider={
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{ borderStyle: "dashed" }}
+            />
+          }
           sx={{ py: 2, overflowX: "auto" }}
         >
           <OrderAnalytic
@@ -138,7 +181,12 @@ const OrderPage = () => {
 };
 
 export type OrderContextType =
-  | (Partial<TabAllReducerType & DraftReducerType & CompletedReducerType & CancelReducerType> & {
+  | (Partial<
+      TabAllReducerType &
+        DraftReducerType &
+        CompletedReducerType &
+        CancelReducerType
+    > & {
       tags: { id: number; name: string; is_shown?: boolean }[];
       getTags: () => Promise<void>;
       cancelReasons: { id: number; name: string; is_shown?: boolean }[];
@@ -163,7 +211,9 @@ export const OrderContext = createContext<OrderContextType>(null);
 
 const OrderView = () => {
   const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
-  const [cancelReasons, setCancelReasons] = useState<{ id: number; name: string }[]>([]);
+  const [cancelReasons, setCancelReasons] = useState<
+    { id: number; name: string }[]
+  >([]);
   const [deliveryCompany, setDeliveryCompany] = useState<DeliveryType[]>([]);
   const [pageParams, setPageParams] = useState<any>({});
   const { newCancelToken } = useCancelToken([pageParams]);
@@ -211,14 +261,18 @@ const OrderView = () => {
     setStatusAmount((prev) => ({ ...prev, loading: true }));
     const result = await orderApi.get<any>({
       endpoint: "status/count/",
-      params: { ...omit(pageParams, ["limit", "page", "status"]), cancelToken: newCancelToken() },
+      params: {
+        ...omit(pageParams, ["limit", "page", "status"]),
+        cancelToken: newCancelToken(),
+      },
     });
     if (result?.data) {
       const data: any = result.data;
       setStatusAmount({ value: data, loading: false });
       return;
     }
-    !isCancelRequest(result) && setStatusAmount((prev) => ({ ...prev, loading: false }));
+    !isCancelRequest(result) &&
+      setStatusAmount((prev) => ({ ...prev, loading: false }));
   }, [newCancelToken, pageParams]);
 
   useEffect(() => {

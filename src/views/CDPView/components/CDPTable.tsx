@@ -82,7 +82,10 @@ const CDPTable = ({ arrLinkAirtableColumn = [], ...props }: Props) => {
       <TableWrapper {...props}>
         <DetailCDPColumn for={["detail"]} pickCustomer={props.pickCustomer} />
         <PostColumn for={["fb_post"]} />
-        <DPhoneColumn onRefresh={props.onRefresh} onRefreshCDPRow={props.onRefreshCDPRow} />
+        <DPhoneColumn
+          onRefresh={props.onRefresh}
+          onRefreshCDPRow={props.onRefreshCDPRow}
+        />
         <GenderColumn for={["gender"]} />
         <GiftColumn
           for={["gifts"]}

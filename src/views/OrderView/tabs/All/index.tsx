@@ -14,7 +14,7 @@ const All = () => {
   const context = useContext(OrderContext);
 
   return (
-    <div className="relative">
+    <div className="relative" style={{ borderRadius: 0 }}>
       <OrderContainer
         tabName="all"
         isFilterTag
@@ -23,7 +23,10 @@ const All = () => {
         isFilterOrderStatus
         isFullRow={context?.tabAllIsFullRow}
         setFullRow={() => context?.setFullTabAll?.((prev) => !prev)}
-        columns={[{ name: "status", title: "Trạng thái đơn hàng" }, ...ORDER_COLUMNS]}
+        columns={[
+          { name: "status", title: "Trạng thái đơn hàng" },
+          ...ORDER_COLUMNS,
+        ]}
         columnWidths={context?.tabAllCW}
         setColumnWidths={context?.setTabAllCW}
         isFilterCreator

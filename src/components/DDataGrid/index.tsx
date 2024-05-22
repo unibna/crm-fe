@@ -80,7 +80,11 @@ import { SortType } from "_types_/SortType";
 import vi from "locales/vi.json";
 import { COMMAS_REGEX, PAGE_SIZES } from "constants/index";
 import { arrDateTimeDefault } from "constants/time";
-import { fDateTime, fMinutesToTimeString, fSecondsToTimeString } from "utils/dateUtil";
+import {
+  fDateTime,
+  fMinutesToTimeString,
+  fSecondsToTimeString,
+} from "utils/dateUtil";
 import { getObjectPropSafely } from "utils/getObjectPropsSafelyUtil";
 import { handleSizeTable } from "utils/tableUtil";
 import LeadStatusColumn from "views/LeadCenterView/components/columns/LeadStatusColumn";
@@ -208,14 +212,18 @@ const StyleCard = styled(Card)(({ theme }) => ({
 }));
 
 const TableWrap: any = styled(Grid, {
-  shouldForwardProp: (prop) => prop !== "isHeightCustom" && prop !== "isTableDetail",
+  shouldForwardProp: (prop) =>
+    prop !== "isHeightCustom" && prop !== "isTableDetail",
 })(({ isHeightCustom, theme, isTableDetail }: any) => ({
   "table:nth-child(2)": {
     marginBottom: isHeightCustom === "true" && "0px !important",
   },
   "& .MuiTableCell-head": {
     ...(isTableDetail === "true" && {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity
+      ),
     }),
   },
 }));
@@ -398,7 +406,11 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
   const renderTabDetail = useMemo(() => {
     return ({ row }: { row: any }): any => {
       return (
-        <TabDetail row={row} renderTableDetail={renderTableDetail} listTabDetail={listTabDetail} />
+        <TabDetail
+          row={row}
+          renderTableDetail={renderTableDetail}
+          listTabDetail={listTabDetail}
+        />
       );
     };
   }, [isLoadingTable]);
@@ -425,6 +437,8 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
     <StyleCard
       sx={{
         ...cardContainerStyles,
+        borderRadius: "0px",
+        backgroundColor: "white",
       }}
     >
       <Box
@@ -435,8 +449,12 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
           ...headerContainerStyles,
         }}
       >
-        {titleHeaderTable ? <CardHeader title={titleHeaderTable} sx={{ mb: 2 }} /> : null}
-        {isShowListToolbar ? <ListToolbar numSelected={0} renderContent={renderHeader} /> : null}
+        {titleHeaderTable ? (
+          <CardHeader title={titleHeaderTable} sx={{ mb: 2 }} />
+        ) : null}
+        {isShowListToolbar ? (
+          <ListToolbar numSelected={0} renderContent={renderHeader} />
+        ) : null}
         {handleWatchDetail ? (
           <Box sx={{ p: 2, textAlign: "right" }}>
             <Button
@@ -453,7 +471,9 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
       </Box>
       <Box display="flex" justifyContent="flex-end" sx={{ pr: 4 }}>
         {props.lastUpdatedAt && (
-          <Typography sx={{ fontWeight: 600, fontSize: "0.8125rem" }}>{`Cập nhật lần cuối: ${
+          <Typography
+            sx={{ fontWeight: 600, fontSize: "0.8125rem" }}
+          >{`Cập nhật lần cuối: ${
             props?.lastUpdatedAt ? fDateTime(props?.lastUpdatedAt) : "---"
           }`}</Typography>
         )}
@@ -467,8 +487,14 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
         <StyledTableContainer {...tableContainerProps}>
           {isLoadingTable && <LinearProgress />}
           <TableGrid rows={data} columns={columns}>
-            <ColumnSwitch for={contentColumnSwitch.arrColumnSwitch} {...contentColumnSwitch} />
-            <ColumnHandleLink for={arrColumnHandleLink} isCallApi={isCallApiColumnHandleLink} />
+            <ColumnSwitch
+              for={contentColumnSwitch.arrColumnSwitch}
+              {...contentColumnSwitch}
+            />
+            <ColumnHandleLink
+              for={arrColumnHandleLink}
+              isCallApi={isCallApiColumnHandleLink}
+            />
             <ColumnEditLabel for={arrColumnEditLabel} />
             <HistoryTypeColumn for={arrColumnHistory} />
             <ColumnHandlePhone for={arrColumnPhone} params={params} />
@@ -501,7 +527,10 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
             <LeadStatusColumn for={arrLeadStatus} />
             <ColumnCellShowPopup for={arrColumnCellShowPopup} />
             <ColumnThumbImg for={arrColumnThumbImg} />
-            <ColumnHandleCheckBox for={arrColumnCheckbox} onChangeCheckColumn={handleCheckColumn} />
+            <ColumnHandleCheckBox
+              for={arrColumnCheckbox}
+              onChangeCheckColumn={handleCheckColumn}
+            />
             <ColumnHandleList for={arrHandleList} />
             <ColumnHandleButton
               for={contentColumnHandleButton.arrColumnHandleButton}
@@ -585,18 +614,28 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
               cellComponent={(cellProps) => (
                 <VirtualTable.Cell
                   {...cellProps}
-                  style={{ height: cellHeight ? cellHeight : arrColumnThumbImg.length ? 70 : 50 }}
+                  style={{
+                    height: cellHeight
+                      ? cellHeight
+                      : arrColumnThumbImg.length
+                      ? 70
+                      : 50,
+                  }}
                 />
               )}
               rowComponent={
-                rowComponent ? rowComponent : (rowProps) => <VirtualTable.Row {...rowProps} />
+                rowComponent
+                  ? rowComponent
+                  : (rowProps) => <VirtualTable.Row {...rowProps} />
               }
               columnExtensions={columnExtensions || []}
             />
 
             {showGroupingControls && (
               <TableGroupRow
-                cellComponent={({ ...props }: any) => <StyledTableGroupRowCell {...props} />}
+                cellComponent={({ ...props }: any) => (
+                  <StyledTableGroupRowCell {...props} />
+                )}
               />
             )}
 
@@ -606,24 +645,34 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
               onColumnWidthsChange={setColumnWidths}
               defaultColumnWidths={columnWidthsDefault}
             />
-            <TableColumnReordering order={columnOrders} onOrderChange={handleChangeColumnOrder} />
+            <TableColumnReordering
+              order={columnOrders}
+              onOrderChange={handleChangeColumnOrder}
+            />
             <TableHeaderRow
               showSortingControls
               showGroupingControls={showGroupingControls}
-              rowComponent={(restProps) => <TableHeader {...restProps} sx={headerStyle} />}
+              rowComponent={(restProps) => (
+                <TableHeader {...restProps} sx={headerStyle} />
+              )}
               cellComponent={({ ...props }: any) => {
                 return (
                   <>
-                    {props.column.name === "isCheck" && isShowContentCheckAll ? (
+                    {props.column.name === "isCheck" &&
+                    isShowContentCheckAll ? (
                       <HeaderCheckbox
                         tableCellProps={props}
                         isCheckAll={isCheckAll}
                         onChangeCheckBoxAll={handleCheckedAll}
                         isTableDetail={isTableDetail}
                       />
-                    ) : contentSortOptional.arrSortOptional?.includes(props.column.name) &&
-                      contentSortOptional.isShowSortOptional ? (
-                      <HeaderOptional tableCellProps={props} isTableDetail={isTableDetail}>
+                    ) : contentSortOptional.arrSortOptional?.includes(
+                        props.column.name
+                      ) && contentSortOptional.isShowSortOptional ? (
+                      <HeaderOptional
+                        tableCellProps={props}
+                        isTableDetail={isTableDetail}
+                      >
                         <SortOptional
                           {...contentSortOptional}
                           column={props.column}
@@ -651,13 +700,17 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
               }}
             />
 
-            {arrColumnBand.length ? <TableBandHeader columnBands={arrColumnBand} /> : null}
+            {arrColumnBand.length ? (
+              <TableBandHeader columnBands={arrColumnBand} />
+            ) : null}
 
             {handleEditCell ? (
               <TableInlineCellEditing
                 selectTextOnEditStart
                 cellComponent={({ ...props }) => {
-                  return contentOptional.arrColumnOptional.includes(props.column.name) ? (
+                  return contentOptional.arrColumnOptional.includes(
+                    props.column.name
+                  ) ? (
                     <TableInlineEdit
                       {...props}
                       value={
@@ -692,9 +745,14 @@ const DDataGrid: FunctionComponent<DDataGridProps> = (props) => {
               />
             ) : null}
 
-            {renderTableDetail && <TableRowDetail contentComponent={renderTabDetail} />}
+            {renderTableDetail && (
+              <TableRowDetail contentComponent={renderTabDetail} />
+            )}
 
-            <TableFixedColumns leftColumns={leftColumns} rightColumns={rightColumns} />
+            <TableFixedColumns
+              leftColumns={leftColumns}
+              rightColumns={rightColumns}
+            />
 
             <Toolbar rootComponent={renderToolBar} />
 
@@ -792,22 +850,24 @@ const StyledTableGroupRowCell = styled(TableGroupRow.Cell)(() => ({
   },
 }));
 
-const StyledTableContainer = styled(TableContainer)(({ theme }: { theme: Theme }) => ({
-  padding: 2,
-  border: "none",
-  "& .TableContainer-root": {
-    "::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb": {
-      background: "transparent",
-      borderRadius: 10,
-      transition: "all 1s ease",
-    },
-    "&:hover": {
-      "::-webkit-scrollbar-thumb": {
-        background: theme.palette.mode === "light" ? "#B4BCC2" : "#404E5A",
+const StyledTableContainer = styled(TableContainer)(
+  ({ theme }: { theme: Theme }) => ({
+    padding: 2,
+    border: "none",
+    "& .TableContainer-root": {
+      "::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb": {
+        background: "transparent",
+        borderRadius: 10,
+        transition: "all 1s ease",
+      },
+      "&:hover": {
+        "::-webkit-scrollbar-thumb": {
+          background: theme.palette.mode === "light" ? "#B4BCC2" : "#404E5A",
+        },
+      },
+      "::-webkit-scrollbar-corner": {
+        background: "transparent",
       },
     },
-    "::-webkit-scrollbar-corner": {
-      background: "transparent",
-    },
-  },
-}));
+  })
+);

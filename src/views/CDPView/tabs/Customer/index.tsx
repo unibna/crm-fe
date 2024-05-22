@@ -4,7 +4,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { CustomerType } from "_types_/CustomerType";
 import { CommentType, MessageType } from "_types_/FacebookType";
 import compact from "lodash/compact";
-import { CDP_COLUMNS, CDP_COLUMNS_WIDTH } from "views/CDPView/constants/columns";
+import {
+  CDP_COLUMNS,
+  CDP_COLUMNS_WIDTH,
+} from "views/CDPView/constants/columns";
 import map from "lodash/map";
 import filter from "lodash/filter";
 import { customerApi } from "_apis_/customer.api";
@@ -40,7 +43,9 @@ const CustomerView = (props: CDPProps) => {
   const { user } = useAuth();
 
   const [isFullRow, setFullRow] = useState(false);
-  const [tags, setTags] = useState<{ id: number; name: string }[] | undefined>([]);
+  const [tags, setTags] = useState<{ id: number; name: string }[] | undefined>(
+    []
+  );
 
   const [phoneInfo, setPhoneInfo] = useState<Partial<CustomerType>>();
   const [selection, setSelection] = useState<(string | number)[]>([]);
@@ -99,7 +104,9 @@ const CustomerView = (props: CDPProps) => {
     }[]
   ) => {
     const tagsBody = map(tags, (tag) => tag.id);
-    const customerBody = filter(data.data, (cdp, idx) => selection.includes(idx));
+    const customerBody = filter(data.data, (cdp, idx) =>
+      selection.includes(idx)
+    );
     const result = await customerApi.update({
       endpoint: "bulk_update_tags/",
       params: {
@@ -166,9 +173,16 @@ const CustomerView = (props: CDPProps) => {
 
   return (
     <Page title={TITLE_PAGE.CDP}>
-      <WrapPage sx={{ "&> .MuiCard-root": { padding: 0, boxShadow: "none" } }}>
+      <WrapPage
+        sx={{
+          "&> .MuiCard-root": { padding: 0, boxShadow: "none" },
+          borderRadius: 0,
+        }}
+      >
         <Header
-          onSearch={(value) => setParams((prev: any) => ({ ...prev, search: value }))}
+          onSearch={(value) =>
+            setParams((prev: any) => ({ ...prev, search: value }))
+          }
           goToDetail={goToDetail}
           customer={phoneInfo}
           selection={selection}
@@ -200,7 +214,9 @@ const CustomerView = (props: CDPProps) => {
           isFullRow={isFullRow}
           showEditCommand={isMatchRoles(
             user?.is_superuser,
-            user?.group_permission?.data?.[ROLE_TAB.CDP]?.[STATUS_ROLE_CDP.HANDLE]
+            user?.group_permission?.data?.[ROLE_TAB.CDP]?.[
+              STATUS_ROLE_CDP.HANDLE
+            ]
           )}
           columns={CDP_COLUMNS}
           defaultColumnWidths={CDP_COLUMNS_WIDTH}

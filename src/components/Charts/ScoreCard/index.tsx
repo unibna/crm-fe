@@ -1,4 +1,11 @@
-import { Box, Card, CircularProgress, Stack, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CircularProgress,
+  Stack,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { fPercentOmitDecimal } from "utils/formatNumber";
 interface Props {
   title: string;
@@ -24,26 +31,47 @@ const ScoreCard = (props: Props) => {
   } = props;
 
   return (
-    <Card sx={{ display: "flex", alignItems: "center", p: 3 }}>
+    <Card
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        p: 2,
+        borderRadius: "0px",
+        backgroundColor: "white",
+        height: "100%",
+      }}
+    >
       <Box sx={{ flexGrow: 1 }}>
         <Tooltip title={description || title} placement="top">
-          <Typography style={titleStyle} variant="subtitle2" noWrap>
+          <Typography
+            style={{
+              ...titleStyle,
+              overflow: "hidden",
+            }}
+            variant="subtitle2"
+            noWrap
+          >
             {title}
           </Typography>
         </Tooltip>
-        {isLoading ? (
+        {/* {isLoading ? (
           <Box sx={{ mt: 2 }}>
             <CircularProgress size={20} />
           </Box>
-        ) : (
-          <Typography variant="h3">{value}</Typography>
-        )}
+        ) : ( */}
+        <Typography variant="h4">{value}</Typography>
+        {/* )} */}
         {!!subTitle && (
           <Stack direction="row" alignItems="center">
             <Typography variant="subtitle2" component="span">
               {fPercentOmitDecimal(subPercent)}
             </Typography>
-            <Typography variant="body2" component="span" noWrap sx={{ color: "text.secondary" }}>
+            <Typography
+              variant="body2"
+              component="span"
+              noWrap
+              sx={{ color: "text.secondary" }}
+            >
               &nbsp;{subTitle}
             </Typography>
           </Stack>
@@ -56,4 +84,9 @@ const ScoreCard = (props: Props) => {
 
 export default ScoreCard;
 
-const titleStyleDefault = { maxWidth: 150 };
+const titleStyleDefault = {
+  width: "fit-content",
+  maxWidth: "350px",
+  overflow: "hidden",
+  color: "#6c6c6c",
+};

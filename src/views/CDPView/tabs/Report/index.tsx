@@ -17,7 +17,9 @@ export interface ReportRankType {
 }
 
 const ReportView = () => {
-  const [data, setData] = useState<{ label: string; value: number; rank_range?: number }[]>([]);
+  const [data, setData] = useState<
+    { label: string; value: number; rank_range?: number }[]
+  >([]);
   const [loading, setLoading] = useState(false);
 
   const getData = useCallback(async () => {
@@ -97,4 +99,4 @@ const ReportView = () => {
 
 export default ReportView;
 
-const containerStyle = { marginTop: 16, marginBottom: 16 };
+const containerStyle = { marginTop: 16, marginBottom: 16, borderRadius: 0 };

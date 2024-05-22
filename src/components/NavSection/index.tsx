@@ -125,7 +125,7 @@ function NavItem({ item }: { item: NavItemProps }) {
   const activeSubStyle = {
     color: "text.primary",
     fontWeight: "fontWeightMedium",
-    backgroundColor: isActiveRoot ? "white" : "inherit",
+    backgroundColor: isActiveRoot ? "#f3fbff" : "inherit",
   };
 
   if (children) {
@@ -138,7 +138,7 @@ function NavItem({ item }: { item: NavItemProps }) {
           }}
           style={{
             display: item.roles ? undefined : "none",
-            backgroundColor: isActiveRoot ? "white" : "inherit",
+            backgroundColor: isActiveRoot ? "#f3fbff" : "inherit",
           }}
         >
           <ListItemIconStyle>{icon}</ListItemIconStyle>
@@ -146,7 +146,7 @@ function NavItem({ item }: { item: NavItemProps }) {
             disableTypography
             primary={title}
             sx={{
-              color: isActiveRoot ? "black" : "white",
+              color: isActiveRoot ? "#1890ff" : "black",
             }}
           />
           {info}
@@ -157,7 +157,7 @@ function NavItem({ item }: { item: NavItemProps }) {
               width: 16,
               height: 16,
               ml: 1,
-              color: isActiveRoot ? "black" : "white",
+              color: isActiveRoot ? "#1890ff" : "black",
             }}
           />
         </ListItemStyle>
@@ -184,7 +184,7 @@ function NavItem({ item }: { item: NavItemProps }) {
                   sx={{
                     ...(isActiveSub && activeSubStyle),
                     "&:hover": {
-                      backgroundColor: isActiveSub ? "white" : "inherit",
+                      backgroundColor: isActiveSub ? "#f3fbff" : "inherit",
                       // opacity: 0.8,
                     },
                   }}
@@ -221,7 +221,7 @@ function NavItem({ item }: { item: NavItemProps }) {
                     disableTypography
                     primary={title}
                     sx={{
-                      color: isActiveSub ? "black" : "white",
+                      color: isActiveSub ? "#1890ff" : "black",
                     }}
                   />
                 </ListItemStyle>
@@ -240,7 +240,7 @@ function NavItem({ item }: { item: NavItemProps }) {
       to={path}
       sx={{
         ...(isActiveRoot && title !== THEME_TITLE && activeRootStyle),
-        backgroundColor: isActiveRoot ? "white" : "inherit",
+        backgroundColor: isActiveRoot ? "#f3fbff" : "inherit",
       }}
     >
       <ListItemIconStyle>{icon}</ListItemIconStyle>
@@ -248,7 +248,7 @@ function NavItem({ item }: { item: NavItemProps }) {
         disableTypography
         primary={title}
         sx={{
-          color: isActiveRoot ? "black" : "white",
+          color: isActiveRoot ? "#1890ff" : "black",
         }}
       />
       {info}

@@ -21,7 +21,7 @@ export function fNumber(number: string | number = 0) {
 }
 
 export function fShortenNumber(number: string | number) {
-  return replace(numeral(number).format("0.00a"), ".00", "");
+  return replace(replace(numeral(number).format("0.00a"), ".00", ""), "m", "M");
 }
 
 export function fData(number: string | number) {

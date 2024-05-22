@@ -56,6 +56,7 @@ import subDays from "date-fns/subDays";
 import { excludeContentAdsStartWith } from "./constants";
 import TopContentIdMessageTiktok from "views/DashboardView/containers/TopContentIdMessageTiktok";
 import TopContentIdConversationTiktok from "views/DashboardView/containers/TopContentIdConversationTiktok";
+import { Typography } from "@mui/material";
 
 const DRAWER_WIDTH = 280;
 const COLLAPSE_WIDTH = 70;
@@ -146,10 +147,28 @@ const DashboardMKT: FunctionComponent = () => {
   const renderHtml = () => {
     return (
       <Grid container spacing={3} sx={{ mt: 1, p: 1 }}>
-        <Grid item xs={12} md={12}>
+        <Grid
+          item
+          style={{
+            border: "1px solid #f0f0f0",
+            backgroundColor: "#ffffff",
+          }}
+          padding={2}
+          marginY={2}
+        >
           <MotionInView
             setInView={() => setInView({ ...isInView, isViewOverview: true })}
           >
+            <Typography
+              style={{
+                overflow: "hidden",
+              }}
+              variant="h6"
+              paddingBottom={1}
+              noWrap
+            >
+              Các chỉ số quan trọng
+            </Typography>
             <Overview
               isInView={isInView.isViewOverview}
               isRefresh={isRefresh}
@@ -157,6 +176,7 @@ const DashboardMKT: FunctionComponent = () => {
             />
           </MotionInView>
         </Grid>
+
         {/* <Grid item xl={4} lg={6} sm={12} xs={12}>
           <MotionInView
             setInView={() =>

@@ -140,7 +140,10 @@ const TableReportByDate = (props: Props) => {
   };
 
   const handleChangeSorting = (value: SortType[]) => {
-    const ordering = value[0].direction === "asc" ? value[0].columnName : "-" + value[0].columnName;
+    const ordering =
+      value[0].direction === "asc"
+        ? value[0].columnName
+        : "-" + value[0].columnName;
 
     setParams({
       ...params,
@@ -149,7 +152,12 @@ const TableReportByDate = (props: Props) => {
   };
 
   const renderHeader = () => {
-    return <HeaderFilter columns={reportByDate} onChangeColumn={handleChangeColumn} />;
+    return (
+      <HeaderFilter
+        columns={reportByDate}
+        onChangeColumn={handleChangeColumn}
+      />
+    );
   };
 
   const newResultColumnsShow = useMemo(() => {
@@ -176,13 +184,16 @@ const TableReportByDate = (props: Props) => {
       tableContainerProps={{
         sx: {
           px: 2,
+          backgroundColor: "#ffffff",
           border: "none",
           "& .MuiTableCell-root.TableFixedCell-fixedCell": {
             left: 0,
             zIndex: 3,
+            backgroundColor: "#ffffff",
           },
           "& .MuiTableCell-head.TableFixedCell-fixedCell": {
-            background: theme.palette.mode === "light" ? "#F4F6F8" : "#919eab29",
+            background:
+              theme.palette.mode === "light" ? "#F4F6F8" : "#919eab29",
           },
         },
       }}
@@ -243,6 +254,14 @@ const TableReportByDate = (props: Props) => {
       }
       handleChangePage={(page: number) => setParams({ ...params, page })}
       handleSorting={handleChangeSorting}
+      cardContainerStyles={{
+        borderRadius: "0px",
+        padding: "0px",
+        backgroundColor: "#ffffff",
+      }}
+      headerContainerStyles={{
+        padding: " 0px 0px 0px 16px !important",
+      }}
     />
   );
 };

@@ -26,7 +26,9 @@ const ChangeShowColumn = ({
   onChangeColumn: (column: MColumnType) => void;
   toggleColumnsDisable?: string[];
 }) => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -42,7 +44,14 @@ const ChangeShowColumn = ({
   return (
     <>
       <Badge badgeContent={columnsCount} color="error">
-        <Button variant="outlined" color="primary" onClick={handleClick}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleClick}
+          style={{
+            borderRadius: "4px",
+          }}
+        >
           {vi.button.column_filter}
         </Button>
       </Badge>
@@ -61,7 +70,12 @@ const ChangeShowColumn = ({
           horizontal: "center",
         }}
       >
-        <List component="nav">
+        <List
+          component="nav"
+          sx={{
+            backgroundColor: "white !important",
+          }}
+        >
           {map(columns, (column) => (
             <ListItemButton
               key={column.title}
@@ -76,7 +90,10 @@ const ChangeShowColumn = ({
                   disabled={toggleColumnsDisable.includes(column.name)}
                 />
               </ListItemIcon>
-              <ListItemText primary={column.title} sx={{ span: { fontSize: 14 } }} />
+              <ListItemText
+                primary={column.title}
+                sx={{ span: { fontSize: 14 } }}
+              />
             </ListItemButton>
           ))}
         </List>

@@ -10,6 +10,7 @@ export default function Logo({
   sx,
   isCollapse = true,
   isShowDecoration = false,
+  isLightLogo = false,
 }: any) {
   const theme = useTheme();
   return (
@@ -22,22 +23,36 @@ export default function Logo({
         ...sx,
       }}
     >
-      <img
-        src={
-          isCollapse
-            ? icon
-            : theme.palette.mode === "light"
-            ? darkLogo
-            : darkLogo
-        }
-        alt="logo"
-        style={{
-          height: "100%",
-          width: "100%",
-          objectFit: "contain",
-          objectPosition: "center",
-        }}
-      />
+      {isLightLogo ? (
+        <img
+          src={isCollapse ? icon : lightLogo}
+          alt="logo"
+          style={{
+            height: "100%",
+            width: "100%",
+            objectFit: "contain",
+            objectPosition: "center",
+            fill: "white",
+          }}
+        />
+      ) : (
+        <img
+          src={
+            isCollapse
+              ? icon
+              : theme.palette.mode === "light"
+              ? darkLogo
+              : darkLogo
+          }
+          alt="logo"
+          style={{
+            height: "100%",
+            width: "100%",
+            objectFit: "contain",
+            objectPosition: "center",
+          }}
+        />
+      )}
     </Box>
   );
 }

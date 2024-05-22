@@ -77,7 +77,11 @@ const ChartReportTotalByDate = (props: Props) => {
       assigned_to: params.date_to,
     };
 
-    const newParams = chooseParams(objParams, ["assigned_from", "assigned_to", "dimension"]);
+    const newParams = chooseParams(objParams, [
+      "assigned_from",
+      "assigned_to",
+      "dimension",
+    ]);
 
     const result = await saleApi.get<MultiResponseType<SaleReportTelesaleUser>>(
       {

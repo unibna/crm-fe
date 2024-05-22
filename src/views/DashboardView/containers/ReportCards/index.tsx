@@ -242,9 +242,16 @@ const ReportCards = (props: Props) => {
         width: "100%",
         display: "grid",
         gridTemplateColumns: `repeat(auto-fit, minmax(260px, 1fr))`,
+        marginX: "auto",
       }}
     >
-      <Grid container spacing={[1, 2]}>
+      <Grid
+        container
+        // spacing={[1, 2]}
+        style={{
+          border: "1px solid #f0f0f0",
+        }}
+      >
         {dataOverview.map((item) => {
           const { label, value, id, icon, isLoading, description } = item;
           const newValue = formatValue(id, value);
@@ -260,12 +267,15 @@ const ReportCards = (props: Props) => {
               lg={isCollapse ? 3 : 4}
               xl={isCollapse ? 2.4 : 3}
               key={id}
+              style={{
+                border: "1px solid #f0f0f0",
+              }}
             >
               <ScoreCard
                 title={newTitle}
                 value={newValue}
                 isLoading={isLoading}
-                icon={icon}
+                // icon={icon}
                 description={newDescription}
               />
             </Grid>

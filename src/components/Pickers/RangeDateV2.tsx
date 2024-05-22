@@ -39,7 +39,11 @@ import useResponsive from "hooks/useResponsive";
 const dd_mm_yyyy = "dd/MM/yyyy";
 
 export interface RangeDateV2Props {
-  handleSubmit: (created_from: string, created_to: string, dateValue: string | number) => void;
+  handleSubmit: (
+    created_from: string,
+    created_to: string,
+    dateValue: string | number
+  ) => void;
   defaultDateValue?: number | string;
   created_from?: string;
   created_to?: string;
@@ -57,7 +61,10 @@ export interface RangeDateV2Props {
   };
   showCompareDate?: boolean;
   inputFormat?: string;
-  handleSubmitCompare?: (rangeStart: RangeInput<Date>, rangeEnd: RangeInput<Date>) => void;
+  handleSubmitCompare?: (
+    rangeStart: RangeInput<Date>,
+    rangeEnd: RangeInput<Date>
+  ) => void;
 }
 
 const RangeDateV2 = ({
@@ -130,21 +137,35 @@ const RangeDateV2 = ({
         default: {
           const checkOption = filter(
             RANGE_DATE_OPTIONS,
-            (day) => parseInt(getObjectPropSafely(() => objData.value.toString())) === day.value
+            (day) =>
+              parseInt(getObjectPropSafely(() => objData.value.toString())) ===
+              day.value
           );
 
-          const haveToday = getObjectPropSafely(() => checkOption[0]?.haveToday) ? true : false;
+          const haveToday = getObjectPropSafely(() => checkOption[0]?.haveToday)
+            ? true
+            : false;
 
           setDate({
             ...date,
             dateValue: objData.value,
-            created_from: transformDateFilter(objData.value, dd_mm_yyyy, haveToday).created_from,
-            created_to: transformDateFilter(objData.value, dd_mm_yyyy, haveToday).created_to,
+            created_from: transformDateFilter(
+              objData.value,
+              dd_mm_yyyy,
+              haveToday
+            ).created_from,
+            created_to: transformDateFilter(
+              objData.value,
+              dd_mm_yyyy,
+              haveToday
+            ).created_to,
           });
 
           handleSubmit(
-            transformDateFilter(objData.value, inputFormat, haveToday).created_from,
-            transformDateFilter(objData.value, inputFormat, haveToday).created_to,
+            transformDateFilter(objData.value, inputFormat, haveToday)
+              .created_from,
+            transformDateFilter(objData.value, inputFormat, haveToday)
+              .created_to,
             objData.value
           );
 
@@ -153,23 +174,40 @@ const RangeDateV2 = ({
               objData.value,
               formatString,
               haveToday,
-              new Date(transformDateFilter(objData.value, inputFormat, haveToday).created_from)
+              new Date(
+                transformDateFilter(
+                  objData.value,
+                  inputFormat,
+                  haveToday
+                ).created_from
+              )
             ).created_from,
             transformDateFilter(
               objData.value,
               formatString,
               haveToday,
-              new Date(transformDateFilter(objData.value, inputFormat, haveToday).created_from)
+              new Date(
+                transformDateFilter(
+                  objData.value,
+                  inputFormat,
+                  haveToday
+                ).created_from
+              )
             ).created_to,
           ];
 
           const dateRangeEnd: any = (formatString: string) => [
-            transformDateFilter(objData.value, formatString, haveToday).created_from,
-            transformDateFilter(objData.value, formatString, haveToday).created_to,
+            transformDateFilter(objData.value, formatString, haveToday)
+              .created_from,
+            transformDateFilter(objData.value, formatString, haveToday)
+              .created_to,
           ];
 
           handleSubmitCompare &&
-            handleSubmitCompare(dateRangeStart(inputFormat), dateRangeEnd(inputFormat));
+            handleSubmitCompare(
+              dateRangeStart(inputFormat),
+              dateRangeEnd(inputFormat)
+            );
           toggle();
         }
       }
@@ -199,8 +237,14 @@ const RangeDateV2 = ({
     handleSubmitCompare &&
       handleSubmitCompare(
         [
-          format(subDays(new Date(date.valueDateRange[0].toString()), duration), inputFormat),
-          format(subDays(new Date(date.valueDateRange[1].toString()), duration), inputFormat),
+          format(
+            subDays(new Date(date.valueDateRange[0].toString()), duration),
+            inputFormat
+          ),
+          format(
+            subDays(new Date(date.valueDateRange[1].toString()), duration),
+            inputFormat
+          ),
         ],
         [
           format(new Date(date.valueDateRange[0].toString()), inputFormat),
@@ -215,13 +259,20 @@ const RangeDateV2 = ({
     if (date.dateValue === "custom_date") {
       return {
         value: "custom_date",
-        label: `${dateIsValid(date.valueDateRange[0]) ? fDate(date.valueDateRange[0]) : ""} - ${
-          dateIsValid(date.valueDateRange[1]) ? fDate(date.valueDateRange[1]) : ""
+        label: `${
+          dateIsValid(date.valueDateRange[0])
+            ? fDate(date.valueDateRange[0])
+            : ""
+        } - ${
+          dateIsValid(date.valueDateRange[1])
+            ? fDate(date.valueDateRange[1])
+            : ""
         }`,
       };
     }
     return (
-      RANGE_DATE_OPTIONS.find((item) => item.value === date.dateValue) || RANGE_DATE_OPTIONS[0]
+      RANGE_DATE_OPTIONS.find((item) => item.value === date.dateValue) ||
+      RANGE_DATE_OPTIONS[0]
     );
   }, [date.dateValue, date.valueDateRange]);
 
@@ -252,7 +303,12 @@ const RangeDateV2 = ({
           sx={tabComponentStyles?.tabs}
         >
           {map(RANGE_DATE_OPTIONS, (option, index) => (
-            <Tab value={option} label={option.label} key={index} sx={tabComponentStyles?.tab} />
+            <Tab
+              value={option}
+              label={option.label}
+              key={index}
+              sx={tabComponentStyles?.tab}
+            />
           ))}
         </Tabs>
       </Box>
@@ -273,6 +329,10 @@ const RangeDateV2 = ({
               {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
             </InputAdornment>
           ),
+        }}
+        style={{
+          backgroundColor: "white",
+          border: "1px solid #ced4da",
         }}
         sx={{
           cursor: "pointer",
@@ -310,25 +370,43 @@ const RangeDateV2 = ({
             <Stack direction="column" spacing={1}>
               {/* Nhập ngày */}
               <Stack direction="column" spacing={1}>
-                <Stack direction="row" spacing={1} display="flex" alignItems="center">
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  display="flex"
+                  alignItems="center"
+                >
                   <Point />
                   <TitleGroup>{"Ngày tuỳ chọn"}</TitleGroup>
                 </Stack>
-                <Stack direction="row" spacing={1} display="flex" alignItems="center">
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  display="flex"
+                  alignItems="center"
+                >
                   <DesktopDatePicker
                     label="Từ"
                     value={date.valueDateRange[0]}
-                    onChange={(value) => handleChangeRangePicker([value, date.valueDateRange[1]])}
+                    onChange={(value) =>
+                      handleChangeRangePicker([value, date.valueDateRange[1]])
+                    }
                     inputRef={startDateInputRef}
-                    renderInput={(params) => <TextField {...params} {...inputDateProps} />}
+                    renderInput={(params) => (
+                      <TextField {...params} {...inputDateProps} />
+                    )}
                     disableOpenPicker
                   />
                   <ArrowRightAltIcon sx={{ color: "text.secondary" }} />
                   <DesktopDatePicker
                     label="Đến"
                     value={date.valueDateRange[1]}
-                    onChange={(value) => handleChangeRangePicker([date.valueDateRange[0], value])}
-                    renderInput={(params) => <TextField {...params} {...inputDateProps} />}
+                    onChange={(value) =>
+                      handleChangeRangePicker([date.valueDateRange[0], value])
+                    }
+                    renderInput={(params) => (
+                      <TextField {...params} {...inputDateProps} />
+                    )}
                     disableOpenPicker
                   />
                 </Stack>
@@ -355,7 +433,12 @@ const RangeDateV2 = ({
 
             {/* Chọn ngày có sẵn */}
             <Stack direction="column" spacing={1}>
-              <Stack direction="row" spacing={1} display="flex" alignItems="center">
+              <Stack
+                direction="row"
+                spacing={1}
+                display="flex"
+                alignItems="center"
+              >
                 <Point />
                 <TitleGroup>{"Ngày mặc định"}</TitleGroup>
               </Stack>
@@ -373,7 +456,9 @@ const RangeDateV2 = ({
                     {option.label}
                     {date.dateValue === option.value && (
                       <Box sx={{ pl: 2 }}>
-                        <Point sx={{ width: 10, height: 10, borderRadius: "50%" }} />
+                        <Point
+                          sx={{ width: 10, height: 10, borderRadius: "50%" }}
+                        />
                       </Box>
                     )}
                   </StyledListItem>

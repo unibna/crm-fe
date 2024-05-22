@@ -29,7 +29,10 @@ export const FILTER_CHART_OPTIONS: SelectOptionType[] = [
   { value: "spend", label: "Chi phí" },
   { value: "comment", label: "Bình luận" },
   { value: "cost_per_comment", label: "Chi phí / bình luận" },
-  { value: "cost_per_messaging_conversation_started_7d", label: "Chi phí/ tin nhắn" },
+  {
+    value: "cost_per_messaging_conversation_started_7d",
+    label: "Chi phí/ tin nhắn",
+  },
   { value: "cost_per_fb_pixel_complete_registration", label: "Chi phí / form" },
 ];
 
@@ -100,7 +103,9 @@ const LineChart = (props: Props) => {
     return reduce(
       Object.values(filter),
       (prevObj, current, index) => {
-        const objData = optionsFilter.find((option) => option.label === current) || {
+        const objData = optionsFilter.find(
+          (option) => option.label === current
+        ) || {
           value: "",
           label: "",
         };
@@ -154,9 +159,13 @@ const LineChart = (props: Props) => {
   });
 
   return (
-    <Grid style={containerStyle}>
+    <Grid style={{ ...containerStyle }}>
       {isLoading && <LoadingModal />}
-      <Card>
+      <Card
+        style={{
+          borderRadius: 0,
+        }}
+      >
         <CardHeader
           sx={{
             ".MuiCardHeader-action": {
@@ -165,7 +174,14 @@ const LineChart = (props: Props) => {
           }}
           title={title}
           action={
-            <Stack direction="row" spacing={2} sx={{ justifyContent: "flex-end", pr: 2 }}>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{
+                justifyContent: "flex-end",
+                pr: 2,
+              }}
+            >
               <TextField
                 id="filled-select-linechart-column-first"
                 select
@@ -176,7 +192,11 @@ const LineChart = (props: Props) => {
                     filterOne: event.target.value,
                   });
 
-                  getFilter && getFilter((prev: string[]) => [...prev, event.target.value]);
+                  getFilter &&
+                    getFilter((prev: string[]) => [
+                      ...prev,
+                      event.target.value,
+                    ]);
                 }}
                 variant="filled"
                 sx={{
@@ -210,7 +230,10 @@ const LineChart = (props: Props) => {
                     fontSize: 14,
                     ".MuiFilledInput-root": {
                       borderRadius: 1,
-                      "&:before, &:after": { borderBottom: 0, content: "unset" },
+                      "&:before, &:after": {
+                        borderBottom: 0,
+                        content: "unset",
+                      },
                       ".MuiSelect-filled": { padding: "4px 8px" },
                     },
                   }}
@@ -229,7 +252,11 @@ const LineChart = (props: Props) => {
           <ReactApexChart
             type="line"
             series={dataChart}
-            options={singleLine ? { ...chartOptions, yaxis: chartOptions.yaxis[0] } : chartOptions}
+            options={
+              singleLine
+                ? { ...chartOptions, yaxis: chartOptions.yaxis[0] }
+                : chartOptions
+            }
             height={364}
           />
         </Box>
@@ -240,4 +267,6 @@ const LineChart = (props: Props) => {
 
 export default LineChart;
 
-const containerStyle: React.CSSProperties = { position: "relative" };
+const containerStyle: React.CSSProperties = {
+  position: "relative",
+};

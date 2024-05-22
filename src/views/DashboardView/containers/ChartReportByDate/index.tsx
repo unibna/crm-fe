@@ -82,8 +82,12 @@ const ChartReportByDate = (props: Props) => {
         lead_qualified_rate: fNumber((item?.lead_qualified_rate || 0) * 100),
         ads_qualified_rate: fNumber((item?.ads_qualified_rate || 0) * 100),
         ads_buy_rate: fNumber((item?.ads_buy_rate || 0) * 100),
-        total_spend_per_revenue_ads: fNumber((item?.total_spend_per_revenue_ads || 0) * 100),
-        total_spend_per_revenue: fNumber((item?.total_spend_per_revenue || 0) * 100),
+        total_spend_per_revenue_ads: fNumber(
+          (item?.total_spend_per_revenue_ads || 0) * 100
+        ),
+        total_spend_per_revenue: fNumber(
+          (item?.total_spend_per_revenue || 0) * 100
+        ),
         return_rate: fNumber((item?.return_rate || 0) * 100),
       }));
       setData(newData || []);

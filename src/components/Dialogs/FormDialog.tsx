@@ -77,7 +77,10 @@ const FormDialog = ({
       fullScreen={fullScreen}
       TransitionComponent={transition ? SlideTransition : undefined}
       style={{ zIndex }}
-      sx={sx}
+      sx={{
+        ...sx,
+        "& .MuiDialog-container .MuiDialog-paper": { borderRadius: 0 },
+      }}
     >
       {title && (
         <>
@@ -110,13 +113,21 @@ const FormDialog = ({
       {isShowFooter ? (
         <DialogBottom style={footerDialogStyle}>
           {onClose && (
-            <MButton variant="outlined" onClick={onClose} color="primary" sx={{ mr: 1 }}>
+            <MButton
+              variant="outlined"
+              onClick={onClose}
+              color="primary"
+              sx={{ mr: 1 }}
+            >
               Hủy
             </MButton>
           )}
           {buttonText && (
             <Stack direction="row" alignItems="center">
-              <MButton onClick={onSubmit} disabled={isLoadingButton || disabledSubmit}>
+              <MButton
+                onClick={onSubmit}
+                disabled={isLoadingButton || disabledSubmit}
+              >
                 {buttonText}
               </MButton>
               {isLoadingButton && <CircularProgress size={20} sx={{ ml: 1 }} />}

@@ -209,7 +209,7 @@ const ReportCards = (props: Props) => {
         return `${(value * 100).toFixed(1)}`;
       }
       case arrUnitVnd.includes(name): {
-        return `${fShortenNumber(value)} đ`;
+        return `${fShortenNumber(value)}`;
       }
       case arrUnitPercent.includes(name): {
         return `${fPercent(value)}`;
@@ -274,11 +274,19 @@ const ReportCards = (props: Props) => {
   return (
     <Box
       sx={{
+        width: "100%",
         display: "grid",
         gridTemplateColumns: `repeat(auto-fit, minmax(260px, 1fr))`,
+        marginX: "auto",
       }}
     >
-      <Grid container spacing={[1, 2]}>
+      <Grid
+        container
+        // spacing={[1, 2]}
+        style={{
+          border: "1px solid #f0f0f0",
+        }}
+      >
         {dataOverview.map((item) => {
           const { label, value, id, icon, isLoading, description, subPercent } =
             item;
@@ -300,7 +308,7 @@ const ReportCards = (props: Props) => {
                 title={newTitle}
                 value={newValue}
                 isLoading={isLoading}
-                icon={icon}
+                // icon={icon}
                 description={newDescription}
                 subTitle={id === "revenue_ads" ? "tổng doanh thu" : ""}
                 subPercent={subPercent}

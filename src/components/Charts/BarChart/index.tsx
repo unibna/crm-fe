@@ -31,7 +31,10 @@ export const FILTER_CHART_OPTIONS: SelectOptionType[] = [
   { value: "spend", label: "Chi phí" },
   { value: "comment", label: "Bình luận" },
   { value: "cost_per_comment", label: "Chi phi / bình luận" },
-  { value: "cost_per_messaging_conversation_started_7d", label: "Chi phí/ tin nhắn" },
+  {
+    value: "cost_per_messaging_conversation_started_7d",
+    label: "Chi phí/ tin nhắn",
+  },
   { value: "cost_per_fb_pixel_complete_registration", label: "Chi phí / form" },
 ];
 interface Props {
@@ -188,7 +191,7 @@ const BarChart = (props: Props) => {
   return (
     <Grid style={containerStyle}>
       {isLoading && <LoadingModal />}
-      <Card>
+      <Card style={{ borderRadius: 0 }}>
         <CardHeader
           title={title}
           subheader={subTitle}
@@ -238,7 +241,9 @@ const BarChart = (props: Props) => {
             type="bar"
             series={dataChart}
             options={
-              isSingleLine ? { ...chartOptions, yaxis: chartOptions.yaxis[0] } : chartOptions
+              isSingleLine
+                ? { ...chartOptions, yaxis: chartOptions.yaxis[0] }
+                : chartOptions
             }
             height={height}
           />
@@ -250,5 +255,8 @@ const BarChart = (props: Props) => {
 
 export default BarChart;
 
-const containerStyle: React.CSSProperties = { position: "relative" };
+const containerStyle: React.CSSProperties = {
+  position: "relative",
+  borderRadius: 0,
+};
 const selectorStyle: React.CSSProperties = { width: 170 };

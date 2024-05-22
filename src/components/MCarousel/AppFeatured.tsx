@@ -106,7 +106,7 @@ export default function AppFeatured({
           sx={{
             position: "absolute",
             top: 16,
-            right: 200,
+            right: 16,
             padding: "4px",
             fontSize: "0.675rem",
             width: "fit-content",
@@ -121,7 +121,7 @@ export default function AppFeatured({
       )}
 
       {document.fullscreenElement && rangeDate}
-      <Logo />
+      {/* <Logo /> */}
 
       <CarouselArrows
         onNext={handleNext}

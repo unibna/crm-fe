@@ -72,7 +72,14 @@ function MPagination({
         }}
       >
         <Stack direction="row" spacing={1} alignItems="center">
-          <span style={lineInPageStyle}>Số dòng/ trang</span>
+          <span
+            style={{
+              ...lineInPageStyle,
+              display: "none",
+            }}
+          >
+            Số dòng/ trang
+          </span>
           <FormControl>
             <Select
               style={pageOptionsStyle}

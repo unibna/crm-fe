@@ -16,7 +16,11 @@ import { SelectOptionType } from "_types_/SelectOptionType";
 import { SORT_TYPE } from "_types_/SortType";
 import { Span, LabelColor } from "components/Labels";
 import { INIT_ATTRIBUTE_OPTIONS, TYPE_FORM_FIELD } from "constants/index";
-import { ROLE_TAB, STATUS_ROLE_CONTENT_ID, STATUS_ROLE_REPORT_REVENUE } from "constants/rolesTab";
+import {
+  ROLE_TAB,
+  STATUS_ROLE_CONTENT_ID,
+  STATUS_ROLE_REPORT_REVENUE,
+} from "constants/rolesTab";
 import { yyyy_MM_dd } from "constants/time";
 import format from "date-fns/format";
 import { isArray } from "lodash";
@@ -104,7 +108,9 @@ export const TYPE_DATA = {
   [STATUS_ROLE_CONTENT_ID.GOOGLE_BY_CONTENT_ID]: `${
     import.meta.env.REACT_APP_REPORT_API
   }/api/marketing/google/content-id/`,
-  [ROLE_TAB.REPORT_REVENUE]: `${import.meta.env.REACT_APP_API_URL}/api/orders/report/revenue/`,
+  [ROLE_TAB.REPORT_REVENUE]: `${
+    import.meta.env.REACT_APP_API_URL
+  }/api/orders/report/revenue/`,
   [ROLE_TAB.LEAD]: `${import.meta.env.REACT_APP_API_URL}/api/lead/leads/`,
 };
 
@@ -261,7 +267,8 @@ export const OPTION_NODE_TYPE: {
   {
     label: "Node điều kiện",
     value: NODE_TYPE.SHORT_CIRCUIT,
-    description: "Nhận nguồn dữ liệu True hoặc False, kiểm tra nếu True tiếp tục, False dừng",
+    description:
+      "Nhận nguồn dữ liệu True hoặc False, kiểm tra nếu True tiếp tục, False dừng",
     color: "primary",
   },
   {
@@ -475,7 +482,15 @@ export const OPTION_FUNC_TYPE = ["any", "all"];
 // Node Datetime Caculate
 export const OPTION_OPERATION_DATETIME = ["add", "subtract"];
 
-export const OPTION_TIME_UNIT = ["years", "months", "weeks", "days", "hours", "minutes", "seconds"];
+export const OPTION_TIME_UNIT = [
+  "years",
+  "months",
+  "weeks",
+  "days",
+  "hours",
+  "minutes",
+  "seconds",
+];
 
 // Node Merge
 export const OPTION_HOW: {
@@ -712,13 +727,17 @@ export const convertSchema = (type: NODE_TYPE, yup: any) => {
   }
 };
 
-export const convertDefaultData = (type: NODE_TYPE, defaultValue: Partial<any>) => {
+export const convertDefaultData = (
+  type: NODE_TYPE,
+  defaultValue: Partial<any>
+) => {
   switch (type) {
     case NODE_TYPE.WORKPLACE_CHATBOT: {
       return {
         messages: getObjectPropSafely(() => defaultValue.data.messages) || "",
         recipient: getObjectPropSafely(() => defaultValue.data.recipient) || [],
-        credential: getObjectPropSafely(() => defaultValue.data.credential) || "",
+        credential:
+          getObjectPropSafely(() => defaultValue.data.credential) || "",
       };
     }
     case NODE_TYPE.SKY_FEATURE: {
@@ -729,22 +748,29 @@ export const convertDefaultData = (type: NODE_TYPE, defaultValue: Partial<any>) 
         },
         url: getObjectPropSafely(() => defaultValue.data.url) || "",
         get_fields:
-          getObjectPropSafely(() => defaultValue.data.get_fields) || OPTION_GET_FIELD[0].value,
-        credential: getObjectPropSafely(() => defaultValue.data.credential) || "",
+          getObjectPropSafely(() => defaultValue.data.get_fields) ||
+          OPTION_GET_FIELD[0].value,
+        credential:
+          getObjectPropSafely(() => defaultValue.data.credential) || "",
       };
     }
     case NODE_TYPE.TRANSFORM: {
       return {
-        entry_values: getObjectPropSafely(() => defaultValue.data.entry_values) || "",
-        expressions: getObjectPropSafely(() => defaultValue.data.expressions) || [],
+        entry_values:
+          getObjectPropSafely(() => defaultValue.data.entry_values) || "",
+        expressions:
+          getObjectPropSafely(() => defaultValue.data.expressions) || [],
       };
     }
     case NODE_TYPE.DATETIME_CALCULATE: {
       return {
-        date_values: getObjectPropSafely(() => defaultValue.data.date_values) || "",
-        operation: getObjectPropSafely(() => defaultValue.data.operation) || "add",
+        date_values:
+          getObjectPropSafely(() => defaultValue.data.date_values) || "",
+        operation:
+          getObjectPropSafely(() => defaultValue.data.operation) || "add",
         periods: getObjectPropSafely(() => defaultValue.data.periods) || 1,
-        time_unit: getObjectPropSafely(() => defaultValue.data.time_unit) || "days",
+        time_unit:
+          getObjectPropSafely(() => defaultValue.data.time_unit) || "days",
       };
     }
     case NODE_TYPE.DATETIME_RANGE: {
@@ -752,25 +778,32 @@ export const convertDefaultData = (type: NODE_TYPE, defaultValue: Partial<any>) 
         start: getObjectPropSafely(() => defaultValue.data.start) || "",
         end: getObjectPropSafely(() => defaultValue.data.end) || "",
         freq: getObjectPropSafely(() => defaultValue.data.freq) || "D",
-        inclusive: getObjectPropSafely(() => defaultValue.data.inclusive) || INCLUSIVE.BOTH,
+        inclusive:
+          getObjectPropSafely(() => defaultValue.data.inclusive) ||
+          INCLUSIVE.BOTH,
         unit: getObjectPropSafely(() => defaultValue.data.unit) || "",
         periods: getObjectPropSafely(() => defaultValue.data.periods) || 1,
       };
     }
     case NODE_TYPE.SHORT_CIRCUIT: {
       return {
-        entry_values: getObjectPropSafely(() => defaultValue.data.entry_values) || "",
-        func_type: getObjectPropSafely(() => defaultValue.data.func_type) || "all",
+        entry_values:
+          getObjectPropSafely(() => defaultValue.data.entry_values) || "",
+        func_type:
+          getObjectPropSafely(() => defaultValue.data.func_type) || "all",
       };
     }
     case NODE_TYPE.MERGE_PARAMETER: {
       return {
-        right_values: getObjectPropSafely(() => defaultValue.data.right_values) || "",
-        left_values: getObjectPropSafely(() => defaultValue.data.left_values) || "",
+        right_values:
+          getObjectPropSafely(() => defaultValue.data.right_values) || "",
+        left_values:
+          getObjectPropSafely(() => defaultValue.data.left_values) || "",
         how: getObjectPropSafely(() => defaultValue.data.how) || HOW_TYPE.INNER,
         on: getObjectPropSafely(() => defaultValue.data.on) || "",
         sort: getObjectPropSafely(() => defaultValue.data.sort) || false,
-        indicator: getObjectPropSafely(() => defaultValue.data.indicator) || false,
+        indicator:
+          getObjectPropSafely(() => defaultValue.data.indicator) || false,
       };
     }
     default: {
@@ -855,13 +888,15 @@ export const convertParamsApiNode = (
       return {
         start: !value?.start
           ? ""
-          : getObjectPropSafely(() => value?.static_data?.formatFilter.start) ===
-            FORMAT_DISPLAY.INPUT
+          : getObjectPropSafely(
+              () => value?.static_data?.formatFilter.start
+            ) === FORMAT_DISPLAY.INPUT
           ? value?.start
           : format(new Date(value?.start), yyyy_MM_dd),
         end: !value?.end
           ? ""
-          : getObjectPropSafely(() => value?.static_data?.formatFilter.end) === FORMAT_DISPLAY.INPUT
+          : getObjectPropSafely(() => value?.static_data?.formatFilter.end) ===
+            FORMAT_DISPLAY.INPUT
           ? value?.end
           : format(new Date(value?.end), yyyy_MM_dd),
         inclusive: getObjectPropSafely(() => value.inclusive),
@@ -1058,7 +1093,9 @@ export const convertFilterSkyFeature = (
                 <Span
                   variant="ghost"
                   color={
-                    colorLabelStatus[getObjectPropSafely(() => option.label.trim())] || "default"
+                    colorLabelStatus[
+                      getObjectPropSafely(() => option.label.trim())
+                    ] || "default"
                   }
                 >
                   {option.label}
@@ -1107,7 +1144,10 @@ export const convertFilterSkyFeature = (
             width: 200,
           },
           title: "Người được chia số",
-          options: [...INIT_ATTRIBUTE_OPTIONS, ...dataFilter.headerFilterTelesale],
+          options: [
+            ...INIT_ATTRIBUTE_OPTIONS,
+            ...dataFilter.headerFilterTelesale,
+          ],
           label: "handle_by",
           defaultValue: "all",
         },
@@ -1116,7 +1156,10 @@ export const convertFilterSkyFeature = (
             width: 200,
           },
           title: "Người tạo",
-          options: [...INIT_ATTRIBUTE_OPTIONS, ...dataFilter.headerFilterCreatedBy],
+          options: [
+            ...INIT_ATTRIBUTE_OPTIONS,
+            ...dataFilter.headerFilterCreatedBy,
+          ],
           label: "created_by",
           defaultValue: "all",
         },
@@ -1125,7 +1168,10 @@ export const convertFilterSkyFeature = (
             width: 200,
           },
           title: "Kênh bán hàng",
-          options: [...INIT_ATTRIBUTE_OPTIONS, ...dataFilter.headerFilterChannel],
+          options: [
+            ...INIT_ATTRIBUTE_OPTIONS,
+            ...dataFilter.headerFilterChannel,
+          ],
           label: "channel",
           defaultValue: "all",
         },
@@ -1134,7 +1180,10 @@ export const convertFilterSkyFeature = (
             width: 200,
           },
           title: "Sản phẩm",
-          options: [...INIT_ATTRIBUTE_OPTIONS, ...dataFilter.headerFilterProduct],
+          options: [
+            ...INIT_ATTRIBUTE_OPTIONS,
+            ...dataFilter.headerFilterProduct,
+          ],
           label: "product",
           defaultValue: "all",
         },
@@ -1143,7 +1192,10 @@ export const convertFilterSkyFeature = (
             width: 200,
           },
           title: "Fanpage",
-          options: [...INIT_ATTRIBUTE_OPTIONS, ...dataFilter.headerFilterFanpage],
+          options: [
+            ...INIT_ATTRIBUTE_OPTIONS,
+            ...dataFilter.headerFilterFanpage,
+          ],
           label: "fanpage",
           defaultValue: "all",
         },
@@ -1152,7 +1204,10 @@ export const convertFilterSkyFeature = (
             width: 200,
           },
           title: "Lý do dữ liệu KCL",
-          options: [...INIT_ATTRIBUTE_OPTIONS, ...dataFilter.headerFilterBadDataReason],
+          options: [
+            ...INIT_ATTRIBUTE_OPTIONS,
+            ...dataFilter.headerFilterBadDataReason,
+          ],
           label: "bad_data_reason",
           defaultValue: "all",
         },
@@ -1161,7 +1216,10 @@ export const convertFilterSkyFeature = (
             width: 200,
           },
           title: "Lý do không mua",
-          options: [...INIT_ATTRIBUTE_OPTIONS, ...dataFilter.headerFilterFailReason],
+          options: [
+            ...INIT_ATTRIBUTE_OPTIONS,
+            ...dataFilter.headerFilterFailReason,
+          ],
           label: "fail_reason",
           defaultValue: "all",
         },
@@ -1170,7 +1228,10 @@ export const convertFilterSkyFeature = (
             width: 200,
           },
           title: "Trạng thái dữ liệu",
-          options: [...INIT_ATTRIBUTE_OPTIONS, ...dataFilter.headerFilterDataStatus],
+          options: [
+            ...INIT_ATTRIBUTE_OPTIONS,
+            ...dataFilter.headerFilterDataStatus,
+          ],
           label: "data_status",
           defaultValue: "all",
         },
@@ -1219,8 +1280,13 @@ export const convertValueInputApi = (value: string = "") => {
   return `{{${value}}}`;
 };
 
-export const checkValueReg = (value: any, format: FORMAT_DISPLAY = FORMAT_DISPLAY.FIXED) => {
-  return format === FORMAT_DISPLAY.INPUT || /[{{}}]/gi.test(value.toString()) ? "" : value;
+export const checkValueReg = (
+  value: any,
+  format: FORMAT_DISPLAY = FORMAT_DISPLAY.FIXED
+) => {
+  return format === FORMAT_DISPLAY.INPUT || /[{{}}]/gi.test(value.toString())
+    ? ""
+    : value;
 };
 
 // Columns
@@ -1248,7 +1314,11 @@ export const columnShowLogs: ColumnShow = {
     { name: "logical_date", title: "Thời điểm chạy (lí thuyết)", isShow: true },
     { name: "run_type", title: "Loại kích hoạt", isShow: true },
     // { name: "last_scheduling_decision", title: "", isShow: true },
-    { name: "start_date", title: "Thời điểm bắt đầu chạy (thực tế)", isShow: true },
+    {
+      name: "start_date",
+      title: "Thời điểm bắt đầu chạy (thực tế)",
+      isShow: true,
+    },
     { name: "end_date", title: "Thời điểm kết thúc chạy", isShow: true },
     { name: "duration", title: "Tổng thời gian chạy", isShow: true },
     { name: "note", title: "Ghi chú", isShow: true },

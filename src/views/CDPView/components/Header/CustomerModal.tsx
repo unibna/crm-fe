@@ -18,14 +18,22 @@ import { useCallback, useEffect, useState } from "react";
 import useIsMountedRef from "hooks/useIsMountedRef";
 
 //types
-import { AddressType, DistrictType, ProvinceType, WardType } from "_types_/AddressType";
+import {
+  AddressType,
+  DistrictType,
+  ProvinceType,
+  WardType,
+} from "_types_/AddressType";
 import { CustomerType } from "_types_/CustomerType";
 
 //apis
 import { customerApi } from "_apis_/customer.api";
 import { addressApi } from "_apis_/address.api";
 
-export type OrderCustomerFormType = Omit<Partial<CustomerType>, "shipping_addresses"> & {
+export type OrderCustomerFormType = Omit<
+  Partial<CustomerType>,
+  "shipping_addresses"
+> & {
   address: {
     provinceId?: string;
     districtId?: string;
@@ -43,9 +51,13 @@ interface Props {
 
 const schema = yup.object().shape({
   full_name: yup.string().required(VALIDATION_MESSAGE.REQUIRE_NAME).trim(),
-  phone: yup.string().trim().required(VALIDATION_MESSAGE.REQUIRE_PHONE).matches(PHONE_REGEX, {
-    message: VALIDATION_MESSAGE.FORMAT_PHONE,
-  }),
+  phone: yup
+    .string()
+    .trim()
+    .required(VALIDATION_MESSAGE.REQUIRE_PHONE)
+    .matches(PHONE_REGEX, {
+      message: VALIDATION_MESSAGE.FORMAT_PHONE,
+    }),
   address: yup.object({
     provinceId: yup.string(),
     districtId: yup.string().when("provinceId", {
@@ -63,7 +75,12 @@ const schema = yup.object().shape({
   }),
 });
 
-const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => {
+const CustomerModal = ({
+  open,
+  setOpen,
+  onReloadCustomer,
+  customer,
+}: Props) => {
   const isMounted = useIsMountedRef();
   const [addresses, setAddresses] = useState<{
     provinces: ProvinceType[];
@@ -78,7 +95,8 @@ const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => 
     });
 
     if (result?.data) {
-      isMounted.current && setAddresses((prev) => ({ ...prev, provinces: result.data?.results }));
+      isMounted.current &&
+        setAddresses((prev) => ({ ...prev, provinces: result.data?.results }));
     }
   }, [isMounted]);
 
@@ -189,7 +207,9 @@ const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => 
     }
   };
 
-  const handleCreateLocation = async (form: OrderCustomerFormType & { is_default: boolean }) => {
+  const handleCreateLocation = async (
+    form: OrderCustomerFormType & { is_default: boolean }
+  ) => {
     const {
       address: { street, wardId: location },
       is_default,
@@ -233,7 +253,9 @@ const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => 
       buttonText={buttonSubmitLabel}
       isLoadingButton={isSubmitting}
       onClose={() => setOpen(false)}
-      onSubmit={handleSubmit(customer?.id ? handleUpdateCustomer : handleAddCustomer)}
+      onSubmit={handleSubmit(
+        customer?.id ? handleUpdateCustomer : handleAddCustomer
+      )}
       maxWidth="md"
     >
       <Grid container spacing={2}>
@@ -242,7 +264,9 @@ const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => 
             fullWidth
             label={vi.name}
             value={full_name || ""}
-            onChange={(e) => setValue("full_name", e.target.value, { shouldValidate: true })}
+            onChange={(e) =>
+              setValue("full_name", e.target.value, { shouldValidate: true })
+            }
             error={!!errors.full_name}
             helperText={errors.full_name?.message}
           />
@@ -252,7 +276,9 @@ const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => 
             fullWidth
             label={vi.phone}
             value={phone || ""}
-            onChange={(e) => setValue("phone", e.target.value, { shouldValidate: true })}
+            onChange={(e) =>
+              setValue("phone", e.target.value, { shouldValidate: true })
+            }
             error={!!errors.phone}
             helperText={errors.phone?.message}
           />
@@ -263,7 +289,11 @@ const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => 
             label={vi.address}
             value={address?.street || ""}
             onChange={(e) =>
-              setValue("address", { ...address, street: e.target.value }, { shouldValidate: true })
+              setValue(
+                "address",
+                { ...address, street: e.target.value },
+                { shouldValidate: true }
+              )
             }
             error={!!errors.address?.street}
             helperText={errors.address?.street?.message}
@@ -289,7 +319,10 @@ const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => 
         </Grid>
         <Grid item xs={12} md={4}>
           <MultiSelect
-            options={map(addresses.districts, (item) => ({ value: item.code, label: item.label }))}
+            options={map(addresses.districts, (item) => ({
+              value: item.code,
+              label: item.label,
+            }))}
             outlined
             size="medium"
             fullWidth
@@ -304,7 +337,10 @@ const CustomerModal = ({ open, setOpen, onReloadCustomer, customer }: Props) => 
         </Grid>
         <Grid item xs={12} md={4}>
           <MultiSelect
-            options={map(addresses.wards, (item) => ({ value: item.code, label: item.label }))}
+            options={map(addresses.wards, (item) => ({
+              value: item.code,
+              label: item.label,
+            }))}
             outlined
             size="medium"
             fullWidth

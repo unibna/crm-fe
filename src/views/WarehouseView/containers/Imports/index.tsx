@@ -177,7 +177,9 @@ const Imports = () => {
         const newData = map(results, (item: any) => {
           return {
             ...item,
-            ...handleDataApi(item, imports.columnSelected, { color: theme.palette.primary.main }),
+            ...handleDataApi(item, imports.columnSelected, {
+              color: theme.palette.primary.main,
+            }),
           };
         });
 
@@ -279,7 +281,10 @@ const Imports = () => {
   };
 
   const handleChangeSorting = (value: SortType[]) => {
-    const ordering = value[0].direction === "asc" ? value[0].columnName : "-" + value[0].columnName;
+    const ordering =
+      value[0].direction === "asc"
+        ? value[0].columnName
+        : "-" + value[0].columnName;
 
     dispatch({
       type: actionType.UPDATE_PARAMS,
@@ -303,7 +308,10 @@ const Imports = () => {
       id_list: imports.columnSelected,
     };
 
-    const result = await productApi.create(params, "warehouse-sheet/confirm/multi/");
+    const result = await productApi.create(
+      params,
+      "warehouse-sheet/confirm/multi/"
+    );
 
     if (result && result.data) {
       setNotifications({
@@ -364,7 +372,10 @@ const Imports = () => {
         title: "Lý do nhập kho",
         options: attributesWarehouse.importReason,
         label: "reason_imports",
-        defaultValue: getObjectPropSafely(() => attributesWarehouse.importReason[0].value) || "",
+        defaultValue:
+          getObjectPropSafely(
+            () => attributesWarehouse.importReason[0].value
+          ) || "",
       },
       {
         type: TYPE_FORM_FIELD.DATE,
@@ -406,7 +417,9 @@ const Imports = () => {
           </>
         ),
         handleClick: () =>
-          window.open(`/${STATUS_ROLE_WAREHOUSE.SHEET}/new/${STATUS_ROLE_WAREHOUSE.IMPORTS}`),
+          window.open(
+            `/${STATUS_ROLE_WAREHOUSE.SHEET}/new/${STATUS_ROLE_WAREHOUSE.IMPORTS}`
+          ),
       },
     ];
 
@@ -421,7 +434,10 @@ const Imports = () => {
         ]}
         dataExport={data}
         paramsDefault={paramsDefault}
-        arrNoneRenderSliderFilter={["confirmed_date_dateValue", "created_dateValue"]}
+        arrNoneRenderSliderFilter={[
+          "confirmed_date_dateValue",
+          "created_dateValue",
+        ]}
         columnShowExport={columnShowExport}
         contentGetValue={contentGetValueExport}
         dataRenderHeader={dataRenderHeader}
@@ -489,7 +505,9 @@ const Imports = () => {
         columnWidths={imports.columnsWidthResize}
         columnOrders={columnOrders}
         renderHeader={renderHeader}
-        isCheckAll={data.length && data.length === imports.columnSelected.length}
+        isCheckAll={
+          data.length && data.length === imports.columnSelected.length
+        }
         listTabDetail={["inventory"]}
         contentOptional={{
           arrColumnOptional: ["warehouse"],

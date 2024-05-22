@@ -77,9 +77,15 @@ import { getColumnsShow, handleSizeTable } from "utils/tableUtil";
 import vi from "locales/vi.json";
 import { arrDateTimeDefault } from "constants/time";
 import { COMMAS_REGEX, PAGE_SIZES } from "constants/index";
-import { fDateTime, fMinutesToTimeString, fSecondsToTimeString } from "utils/dateUtil";
+import {
+  fDateTime,
+  fMinutesToTimeString,
+  fSecondsToTimeString,
+} from "utils/dateUtil";
 import { fPercentOmitDecimal, fValueVnd } from "utils/formatNumber";
-import ColumnSyncTanentUrl, { ColumnSyncTanentUrlProps } from "./components/ColumnSyncTanentUrl";
+import ColumnSyncTanentUrl, {
+  ColumnSyncTanentUrlProps,
+} from "./components/ColumnSyncTanentUrl";
 
 export interface PropsDataGrid extends ColumnSyncTanentUrlProps {
   isFullTable?: boolean;
@@ -184,14 +190,18 @@ const StyleCard = styled(Card)(({ theme }) => ({
 }));
 
 const VirtualTableWrap: any = styled(Grid, {
-  shouldForwardProp: (prop) => prop !== "isHeightCustom" && prop !== "isTableDetail",
+  shouldForwardProp: (prop) =>
+    prop !== "isHeightCustom" && prop !== "isTableDetail",
 })(({ isHeightCustom, theme, isTableDetail }: any) => ({
   "table:nth-child(2)": {
     marginBottom: isHeightCustom === "true" && "0px !important",
   },
   "& .MuiTableCell-head": {
     ...(isTableDetail === "true" && {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity
+      ),
     }),
   },
 }));
@@ -321,7 +331,9 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
       handleSorting([
         {
           columnName: valueSort,
-          direction: isSort ? DIRECTION_SORT_TYPE.DESC : DIRECTION_SORT_TYPE.ASC,
+          direction: isSort
+            ? DIRECTION_SORT_TYPE.DESC
+            : DIRECTION_SORT_TYPE.ASC,
         },
       ]);
   };
@@ -366,7 +378,11 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
   const renderTabDetail = useMemo(() => {
     return ({ row }: { row: any }): any => {
       return (
-        <TabDetail row={row} renderTableDetail={renderTableDetail} listTabDetail={listTabDetail} />
+        <TabDetail
+          row={row}
+          renderTableDetail={renderTableDetail}
+          listTabDetail={listTabDetail}
+        />
       );
     };
   }, [isLoadingTable]);
@@ -395,7 +411,10 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
   };
 
   const infoCellTable = useMemo(() => {
-    const columnShow = filter(contentColumnShowInfo.infoCell, (item) => item.isShow);
+    const columnShow = filter(
+      contentColumnShowInfo.infoCell,
+      (item) => item.isShow
+    );
     return groupBy(columnShow, (item) => item.column);
   }, [contentColumnShowInfo.infoCell]);
 
@@ -404,7 +423,9 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
       columns,
       (item: { name: string }) =>
         !!infoCellTable[item.name] ||
-        contentColumnHandleOperation.arrColumnHandleOperation.includes(item.name) ||
+        contentColumnHandleOperation.arrColumnHandleOperation.includes(
+          item.name
+        ) ||
         contentColumnSwitch.arrColumnSwitch.includes(item.name) ||
         arrColumnCheckbox.includes(item.name)
     );
@@ -416,19 +437,32 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
   }, [columns, infoCellTable]);
 
   return (
-    <StyleCard sx={{ ...cardContainerStyles, mb: 3 }}>
+    <StyleCard
+      sx={{
+        ...cardContainerStyles,
+        mb: 3,
+        borderRadius: 0,
+        backgroundColor: "white",
+      }}
+    >
       <Box
         display="flex"
         sx={{
           alignItems: "center",
           justifyContent: "space-between",
           ...headerContainerStyles,
+          backgroundColor: "white",
         }}
       >
         {!!titleHeaderTable && (
-          <CardHeader title={titleHeaderTable} sx={{ mb: 2, width: "100%" }} />
+          <CardHeader
+            title={titleHeaderTable}
+            sx={{ mb: 2, width: "100%", padding: "0px" }}
+          />
         )}
-        {isShowListToolbar && <ListToolbar numSelected={0} renderContent={renderHeader} />}
+        {isShowListToolbar && (
+          <ListToolbar numSelected={0} renderContent={renderHeader} />
+        )}
         {handleWatchDetail ? (
           <Box sx={{ p: 2, textAlign: "right" }}>
             <Button
@@ -444,7 +478,9 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
       </Box>
       <Box display="flex" justifyContent="flex-end" sx={{ pr: 4 }}>
         {lastUpdatedAt && (
-          <Typography sx={{ fontWeight: 600, fontSize: "0.8125rem" }}>{`Cập nhật lần cuối: ${
+          <Typography
+            sx={{ fontWeight: 600, fontSize: "0.8125rem" }}
+          >{`Cập nhật lần cuối: ${
             lastUpdatedAt ? fDateTime(lastUpdatedAt) : "---"
           }`}</Typography>
         )}
@@ -458,10 +494,18 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
           isTableDetail={isTableDetail.toString()}
           id={tableId}
         >
-          <StyledTableContainer component={Paper} variant="outlined" {...tableContainerProps}>
+          <StyledTableContainer
+            component={Paper}
+            variant="outlined"
+            {...tableContainerProps}
+            style={{ backgroundColor: "white" }}
+          >
             {isLoadingTable && <LinearProgress />}
             <TableGrid rows={data} columns={objColumn.resultColumns}>
-              <ColumnSwitch for={contentColumnSwitch.arrColumnSwitch} {...contentColumnSwitch} />
+              <ColumnSwitch
+                for={contentColumnSwitch.arrColumnSwitch}
+                {...contentColumnSwitch}
+              />
               <ColumnHandleOperation
                 for={contentColumnHandleOperation.arrColumnHandleOperation}
                 columns={objColumn.resultColumns}
@@ -493,7 +537,10 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
                 for={["sync_habt", "sync_jp24"]}
               />
 
-              <ColumnCheckbox for={arrColumnCheckbox} onChangeCheckColumn={checkColumn} />
+              <ColumnCheckbox
+                for={arrColumnCheckbox}
+                onChangeCheckColumn={checkColumn}
+              />
               <ColumnOptional for={contentOptional.arrColumnOptional} />
 
               <PagingState
@@ -539,13 +586,17 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
                   />
                 )}
                 rowComponent={
-                  rowComponent ? rowComponent : (rowProps) => <VirtualTable.Row {...rowProps} />
+                  rowComponent
+                    ? rowComponent
+                    : (rowProps) => <VirtualTable.Row {...rowProps} />
                 }
                 columnExtensions={columnExtensions || []}
               />
               {showGroupingControls && (
                 <TableGroupRow
-                  cellComponent={({ ...props }: any) => <StyledTableGroupRowCell {...props} />}
+                  cellComponent={({ ...props }: any) => (
+                    <StyledTableGroupRowCell {...props} />
+                  )}
                 />
               )}
               <TableColumnReordering
@@ -565,15 +616,23 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
                 cellComponent={({ ...props }: any) => {
                   return (
                     <>
-                      {props.column.name === "isCheck" && isShowContentCheckAll ? (
+                      {props.column.name === "isCheck" &&
+                      isShowContentCheckAll ? (
                         <HeaderCheckbox
                           tableCellProps={props}
-                          isCheckAll={data.length && data.length === columnSelected.length}
+                          isCheckAll={
+                            data.length && data.length === columnSelected.length
+                          }
                           onChangeCheckBoxAll={checkAll}
                           isTableDetail={isTableDetail}
                         />
-                      ) : contentColumnShowInfo.arrColumnShowInfo?.includes(props.column.name) ? (
-                        <HeaderOptional tableCellProps={props} isTableDetail={isTableDetail}>
+                      ) : contentColumnShowInfo.arrColumnShowInfo?.includes(
+                          props.column.name
+                        ) ? (
+                        <HeaderOptional
+                          tableCellProps={props}
+                          isTableDetail={isTableDetail}
+                        >
                           <SortOptional
                             column={props.column}
                             isSort={isSort}
@@ -600,12 +659,16 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
                   );
                 }}
               />
-              {arrColumnBand.length ? <TableBandHeader columnBands={arrColumnBand} /> : null}
+              {arrColumnBand.length ? (
+                <TableBandHeader columnBands={arrColumnBand} />
+              ) : null}
               {handleEditCell ? (
                 <TableInlineCellEditing
                   selectTextOnEditStart
                   cellComponent={({ ...props }) => {
-                    return contentOptional.arrColumnOptional.includes(props.column.name) ? (
+                    return contentOptional.arrColumnOptional.includes(
+                      props.column.name
+                    ) ? (
                       <TableInlineEdit
                         {...props}
                         value={getObjectPropSafely(() => props.value)}
@@ -634,8 +697,13 @@ const DDataGrid: FunctionComponent<PropsDataGrid> = (props) => {
                   itemComponent={renderSummaryRow}
                 />
               ) : null}
-              {renderTableDetail && <TableRowDetail contentComponent={renderTabDetail} />}
-              <TableFixedColumns leftColumns={leftColumns} rightColumns={rightColumns} />
+              {renderTableDetail && (
+                <TableRowDetail contentComponent={renderTabDetail} />
+              )}
+              <TableFixedColumns
+                leftColumns={leftColumns}
+                rightColumns={rightColumns}
+              />
               <Toolbar rootComponent={renderToolBar} />
               {page ? (
                 <PagingPanel
@@ -718,20 +786,22 @@ const StyledTableGroupRowCell = styled(TableGroupRow.Cell)(() => ({
   },
 }));
 
-const StyledTableContainer = styled(TableContainer)(({ theme }: { theme: Theme }) => ({
-  "& .TableContainer-root": {
-    "::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb": {
-      background: "transparent",
-      borderRadius: 10,
-      transition: "all 1s ease",
-    },
-    "&:hover": {
-      "::-webkit-scrollbar-thumb": {
-        background: theme.palette.mode === "light" ? "#B4BCC2" : "#404E5A",
+const StyledTableContainer = styled(TableContainer)(
+  ({ theme }: { theme: Theme }) => ({
+    "& .TableContainer-root": {
+      "::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb": {
+        background: "transparent",
+        borderRadius: 10,
+        transition: "all 1s ease",
+      },
+      "&:hover": {
+        "::-webkit-scrollbar-thumb": {
+          background: theme.palette.mode === "light" ? "#B4BCC2" : "#404E5A",
+        },
+      },
+      "::-webkit-scrollbar-corner": {
+        background: "transparent",
       },
     },
-    "::-webkit-scrollbar-corner": {
-      background: "transparent",
-    },
-  },
-}));
+  })
+);

@@ -1,5 +1,11 @@
 // Libraries
-import React, { useEffect, useState, FunctionComponent, useReducer, useMemo } from "react";
+import React, {
+  useEffect,
+  useState,
+  FunctionComponent,
+  useReducer,
+  useMemo,
+} from "react";
 import { useTheme } from "@mui/material/styles";
 import { styled, Theme } from "@mui/material/styles";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
@@ -197,6 +203,7 @@ const Dashboard: FunctionComponent = () => {
         id="appFeatured"
         sx={{
           mt: "50px",
+          borderRadius: "0px",
         }}
         rangeDate={
           <Stack
@@ -228,7 +235,10 @@ const Dashboard: FunctionComponent = () => {
             />
             <MHidden width="smDown">
               <Tooltip title="Refresh">
-                <IconButton onClick={handleRefresh} sx={{ color: theme.palette.primary.main }}>
+                <IconButton
+                  onClick={handleRefresh}
+                  sx={{ color: theme.palette.primary.main }}
+                >
                   <Icon icon={refreshFill} width={20} height={20} />
                 </IconButton>
               </Tooltip>
@@ -285,7 +295,9 @@ const Dashboard: FunctionComponent = () => {
   );
 
   const renderChartReportTotalByDate = (
-    <MotionInView setInView={() => handleSetInView("chartReportTotalByDate", true)}>
+    <MotionInView
+      setInView={() => handleSetInView("chartReportTotalByDate", true)}
+    >
       <Section>
         <ChartReportTotalByDate
           params={params}
@@ -324,7 +336,8 @@ const styleFunc: (props: any) => any = ({ theme }: { theme: Theme }) => ({
       right: 0,
       bottom: 0,
       left: 0,
-      background: "linear-gradient(-45deg, #45caff 0%, #ff1b6b 100% )",
+      // background: "linear-gradient(-45deg, #45caff 0%, #ff1b6b 100% )",
+      background: "white",
       transform: "translate3d(0px, 20px, 0) scale(0.95)",
       filter: "blur(20px)",
       opacity: "0.7",

@@ -10,7 +10,14 @@ import { saleApi } from "_apis_/sale.api";
 
 // Components
 import DDataGrid from "components/DDataGrid";
-import { Autocomplete, CardHeader, Grid, Stack, TextField, useTheme } from "@mui/material";
+import {
+  Autocomplete,
+  CardHeader,
+  Grid,
+  Stack,
+  TextField,
+  useTheme,
+} from "@mui/material";
 import ChangeShowColumn from "components/DDataGrid/components/ChangeShowColumn";
 
 // Types
@@ -23,7 +30,11 @@ import { SaleReportTelesaleUser } from "_types_/SaleReportType";
 import { chooseParams } from "utils/formatParamsUtil";
 import { yyyy_MM_dd } from "constants/time";
 import { StoreDashboard } from "../../context";
-import { actionType, revenueDimensions, summaryColumnTotalReport } from "../../constants";
+import {
+  actionType,
+  revenueDimensions,
+  summaryColumnTotalReport,
+} from "../../constants";
 import { MultiSelect } from "components/Selectors";
 import { MExportFileButton } from "components/Buttons";
 import { fDateTime } from "utils/dateUtil";
@@ -113,10 +124,17 @@ const TableTotalReport = (props: Props) => {
   const { data, loading, params, dataTotal, totalRow } = state;
 
   const [groupingColumns, setGroupingColumns] = useState<Grouping[]>([]);
-  const [dimensions, setDimensions] = useState<{ value: string; label: string }[]>([]);
+  const [dimensions, setDimensions] = useState<
+    { value: string; label: string }[]
+  >([]);
   const [groupingStateColumnExtensions] = useState([
     ...totalReport.resultColumnsShow
-      .filter((column) => !revenueDimensions.find((dimension) => dimension.value === column.name))
+      .filter(
+        (column) =>
+          !revenueDimensions.find(
+            (dimension) => dimension.value === column.name
+          )
+      )
       .map((column) => ({ columnName: column.name, groupingEnabled: false })),
   ]);
 
@@ -129,14 +147,19 @@ const TableTotalReport = (props: Props) => {
       ...params,
       ...paramsAll,
       dimension:
-        dimensions.length === 0 || dimensions.some((item) => item.value === "all")
+        dimensions.length === 0 ||
+        dimensions.some((item) => item.value === "all")
           ? revenueDimensions.slice(1).map((dimension) => dimension.value)
           : dimensions.map((dimension) => dimension.value),
       assigned_from: paramsAll.date_from,
       assigned_to: paramsAll.date_to,
     };
 
-    const newParams = chooseParams(objParams, ["assigned_from", "assigned_to", "dimension"]);
+    const newParams = chooseParams(objParams, [
+      "assigned_from",
+      "assigned_to",
+      "dimension",
+    ]);
 
     if (isInView) {
       getData(newParams);
@@ -158,7 +181,9 @@ const TableTotalReport = (props: Props) => {
 
       cancelRequest = axios.CancelToken.source();
 
-      const result = await saleApi.get<MultiResponseType<SaleReportTelesaleUser>>(
+      const result = await saleApi.get<
+        MultiResponseType<SaleReportTelesaleUser>
+      >(
         {
           ...params,
           cancelToken: cancelRequest.token,
@@ -265,7 +290,10 @@ const TableTotalReport = (props: Props) => {
   };
 
   const handleChangeSorting = (value: SortType[]) => {
-    const ordering = value[0].direction === "asc" ? value[0].columnName : "-" + value[0].columnName;
+    const ordering =
+      value[0].direction === "asc"
+        ? value[0].columnName
+        : "-" + value[0].columnName;
 
     dispatch({
       type: actionType.UPDATE_PARAMS,
@@ -301,7 +329,8 @@ const TableTotalReport = (props: Props) => {
             style={{ maxWidth: 200 }}
             outlined
             defaultValue={
-              dimensions.length === 0 || dimensions.length === revenueDimensions.slice(1).length
+              dimensions.length === 0 ||
+              dimensions.length === revenueDimensions.slice(1).length
                 ? "all"
                 : dimensions.map((item) => item.value)
             }
@@ -312,7 +341,9 @@ const TableTotalReport = (props: Props) => {
               const newValues =
                 values === "all"
                   ? revenueDimensions.slice(1)
-                  : revenueDimensions.filter((item) => values.includes(item.value));
+                  : revenueDimensions.filter((item) =>
+                      values.includes(item.value)
+                    );
               setDimensions(newValues);
             }}
             selectorId="dimensionSelector"
@@ -329,14 +360,18 @@ const TableTotalReport = (props: Props) => {
                   (column) =>
                     !revenueDimensionsValues.includes(column.name) ||
                     (revenueDimensionsValues.includes(column.name) &&
-                      (dimensions || []).find((dimension) => dimension.value === column.name))
+                      (dimensions || []).find(
+                        (dimension) => dimension.value === column.name
+                      ))
                 ).length
               }
               columns={totalReport?.resultColumnsShow.filter(
                 (column) =>
                   !revenueDimensionsValues.includes(column.name) ||
                   (revenueDimensionsValues.includes(column.name) &&
-                    (dimensions || []).find((dimension) => dimension.value === column.name))
+                    (dimensions || []).find(
+                      (dimension) => dimension.value === column.name
+                    ))
               )}
               onChangeColumn={handleChangeColumn}
             />
@@ -362,7 +397,9 @@ const TableTotalReport = (props: Props) => {
               (column) =>
                 !revenueDimensionsValues.includes(column.name) ||
                 (revenueDimensionsValues.includes(column.name) &&
-                  (dimensions || []).find((dimension) => dimension.value === column.name))
+                  (dimensions || []).find(
+                    (dimension) => dimension.value === column.name
+                  ))
             )
       }
       columnWidths={totalReport.columnsWidthResize}
@@ -389,6 +426,7 @@ const TableTotalReport = (props: Props) => {
         sx: {
           px: 2,
           pb: 4,
+          backgroundColor: "white",
           border: "none",
           "& .MuiTableHead-root": {
             zIndex: "600!important",
@@ -398,7 +436,8 @@ const TableTotalReport = (props: Props) => {
             zIndex: 3,
           },
           "& .MuiTableCell-head.TableFixedCell-fixedCell": {
-            background: theme.palette.mode === "light" ? "#F4F6F8" : "#919eab29",
+            background:
+              theme.palette.mode === "light" ? "#F4F6F8" : "#919eab29",
           },
         },
       }}

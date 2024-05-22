@@ -131,7 +131,8 @@ const DashboardSidebar = ({
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#1e1e2e",
+          // backgroundColor: "#1e1e2e",
+          backgroundColor: "white",
         },
       }}
     >
@@ -165,7 +166,7 @@ const DashboardSidebar = ({
                 width: "100%",
               }}
             >
-              <Logo isCollapse={isCollapse} isShowDecoration />
+              <Logo isLightLogo isCollapse={isCollapse} isShowDecoration />
             </Box>
           </Stack>
 
@@ -256,7 +257,7 @@ const DashboardSidebar = ({
                   }
                 />
                 <Box sx={{ ml: 2 }}>
-                  <Typography variant="subtitle2" sx={{ color: "white" }}>
+                  <Typography variant="subtitle2" sx={{ color: "black" }}>
                     {user?.username}
                   </Typography>
                   <Typography variant="body2" sx={{ color: "text.secondary" }}>
@@ -267,7 +268,7 @@ const DashboardSidebar = ({
               <Box>
                 <LogoutIcon
                   style={{
-                    color: "white",
+                    color: "black",
                     cursor: "pointer",
                   }}
                 />
@@ -316,7 +317,7 @@ const DashboardSidebar = ({
                 duration: "0.75s",
                 easing: theme.transitions.easing.easeInOut,
               }),
-              backgroundColor: "#1e1e2e",
+              backgroundColor: "white",
             },
           }}
         >
@@ -349,7 +350,7 @@ const DashboardSidebar = ({
                 bgcolor: (theme) =>
                   alpha(theme.palette.background.default, 0.88),
               }),
-              backgroundColor: "#1e1e2e",
+              backgroundColor: "white",
             },
           }}
         >

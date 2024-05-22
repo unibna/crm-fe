@@ -4,7 +4,11 @@ import { dd_MM_yyyy } from "constants/time";
 import { useDidUpdateEffect } from "hooks/useDidUpdateEffect";
 import { memo, useEffect, useState } from "react";
 
-interface Props extends Omit<DatePickerProps<string | Date>, "onChange" | "renderInput" | "value"> {
+interface Props
+  extends Omit<
+    DatePickerProps<string | Date>,
+    "onChange" | "renderInput" | "value"
+  > {
   value?: string | null | Date;
   onChangeDate: (newValue: any) => void;
   error?: boolean;
@@ -46,6 +50,9 @@ const MDatePicker = ({
             size={size}
             error={dateProps.error}
             helperText={dateProps.helperText}
+            style={{
+              backgroundColor: "white",
+            }}
           />
         );
       }}
